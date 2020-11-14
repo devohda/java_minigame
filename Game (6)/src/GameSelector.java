@@ -6,10 +6,14 @@ import javax.swing.*;
 
 public class GameSelector  {
 	
-	private JLabel playBottleCap, playCatch, playRandom, playSingContest, playHunmin;
-	private ImageIcon imgBottle, imgCatch, imgRandom, imgSingContest, imgHunmin;	
+	private JLabel playBottleCap, playCatch, playRandom, playSingContest, playHunmin, playCombination;
+	private ImageIcon imgBottle, imgCatch, imgRandom, imgSingContest, imgHunmin, imgCombination;	
 	private BottleCapPanel bottleCap;
 	private CatchCatchPanel Catch;
+	private Singer singer;
+	private HunMinGame hunmin;
+	private Game game;
+	
 	private MainPanel main;
 	
 	// 벌칙화면
@@ -92,7 +96,7 @@ public class GameSelector  {
 		playCatch.addMouseListener(new startListener());
 		playSingContest.addMouseListener(new startListener());
 		playHunmin.addMouseListener(new startListener());
-		// 결합게임.addMouseListener(new startListener());
+		playRandom.addMouseListener(new startListener());
 		playRandom.addMouseListener(new startListener());
 		
 	}
@@ -117,6 +121,34 @@ public class GameSelector  {
 		main.repaint();
 	}
 	
+	public void createSingContest() {
+		main.removeAll();
+		singer = new Singer();
+		main.add(singer);
+		main.addMainPanel();
+		main.revalidate();
+		main.repaint();
+	}
+	
+	public void createHunmin() {
+		main.removeAll();
+		hunmin = new HunMinGame();
+		main.add(hunmin);
+		main.addMainPanel();
+		main.revalidate();
+		main.repaint();
+	}
+	
+	public void createCombination() {
+		main.removeAll();
+		game = new Game(); //게임 실행 패널 객체 생성
+		game.init();
+		main.add(game);
+		main.addMainPanel();
+		main.revalidate();
+		main.repaint();
+	}
+	
 	public void createSadari() {
 		main.removeAll();
 		sadari = new Sadari();
@@ -136,7 +168,14 @@ public class GameSelector  {
 				createBottleCap();				
 			} else if (obj == playCatch) {
 				createCatchCatch();
-			}
+			} else if (obj == playSingContest) {
+				createSingContest();
+			} else if (obj == playHunmin) {
+				createHunmin();
+			} else if (obj == playRandom) {
+				createCombination();
+			} 
+		
 			
 		}
 		

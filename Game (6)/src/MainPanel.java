@@ -11,6 +11,7 @@ public class MainPanel extends JPanel {
 	private JButton intro; // 인트로 버튼
 	private JButton gameStart; // 게임시작 버튼
 	private JButton goToHome;
+	private JButton help; // 도움말 프레임을 불러내는 버튼
 	private ButtonListener buttonL; // 이벤트 리스터
 	private int bgmOn = 0; // 이벤트 핸들러
 
@@ -19,6 +20,8 @@ public class MainPanel extends JPanel {
 			
 	private JButton InsertPeople ; // 입력하기 버튼 선언
 	private JTextField PeopleField; // 인원수 입력 필드 
+	
+	private Help helpFrame;
 	
 	// 이미지 크기 조절
 	private Image resizeImg;
@@ -65,6 +68,10 @@ public class MainPanel extends JPanel {
 		goToHome.setBounds(50, 700, 100, 40);
 		goToHome.addActionListener(buttonL);
 		
+		help = new JButton("도움말");
+		help.setBounds(900, 700, 100, 40);
+		help.addActionListener(buttonL);
+		
 
 		intro = new JButton("INTRO"); // 게임 인트로 버튼 생성
 		intro.setBounds(920,30,80,40); // 버튼 위치 및 사이즈 조절
@@ -74,6 +81,7 @@ public class MainPanel extends JPanel {
 	}
 	
 	public void addMainPanel() {
+		add(help);
 		add(bgm); 
 		add(intro); 
 		add(gameStart);
@@ -126,6 +134,9 @@ public class MainPanel extends JPanel {
 			else if(object == InsertPeople) {
 				String output = PeopleField.getText();
 				people = Integer.parseInt(output);
+			}
+			else if(object == help) {
+				helpFrame = new Help();
 			}
 		}
 	}

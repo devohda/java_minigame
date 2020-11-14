@@ -19,4 +19,5 @@ public class test {
 		frame.pack();// 포장
 		frame.setVisible(true); // 프레임 보이게 설정 
 	}
+
 }
