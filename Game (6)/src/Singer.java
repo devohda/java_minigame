@@ -17,7 +17,7 @@ public class Singer extends JPanel {
 		
 		setBounds(50, 100, 950, 550);
 		this.setLayout(null);
-		singerList = "블랙핑크,소녀시대,BTX";
+		singerList = "블랙핑크,소녀시대,  BTX";
 		pickSinger = singerList.split(",");
 		
 		index = (int)(Math.random()*3);
