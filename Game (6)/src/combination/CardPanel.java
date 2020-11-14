@@ -1,4 +1,4 @@
-
+package combination;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,12 +21,15 @@ public class CardPanel extends JPanel {
         switch (card.getCardColor()){
             case RED : {
                 paint.setColor(Color.RED);
+                break;
             }
             case YELLOW : {
                 paint.setColor(Color.YELLOW);
+                break;
             }
             case GREEN : {
                 paint.setColor(Color.GREEN);
+                break;
             }
         }
 
@@ -34,14 +37,17 @@ public class CardPanel extends JPanel {
         switch (card.getShape()){
             case CIRCLE : { //원 그리기
                 paint.fillOval(15,15,70,70);
+                break;
             }
             case SQUARE : { // 사각형 그리기
                 paint.fillRect(15,15,70,70);
+                break;
             }
             case TRIANGLE : { //삼각형 그리기
                 int x[] = { 15, 50, 85 };
                 int y[] = { 85, 15, 85 };
                 paint.fillPolygon( x, y, 3 );
+                break;
             }
         }
 
@@ -49,12 +55,15 @@ public class CardPanel extends JPanel {
         switch (card.getBackgroundColor()){
             case WHITE : {
                 super.setBackground(Color.WHITE);
+                break;
             }
             case GRAY : {
                 super.setBackground(Color.GRAY);
+                break;
             }
             case BLACK : {
                 super.setBackground(Color.BLACK);
+                break;
             }
         }
 

@@ -13,6 +13,10 @@
 /Game$renewScore.class
 /Game.class
 /GameBoardPanel.class
+<<<<<<< HEAD
+=======
+/Shape.class
+>>>>>>> ohda/combination
 /GameSelector$startListener.class
 /GameSelector.class
 /Help$ButtonListener.class
@@ -21,16 +25,27 @@
 /MainPanel$ButtonListener.class
 /MainPanel.class
 /Player.class
+<<<<<<< HEAD
+=======
+/PointX.class
+>>>>>>> ohda/combination
 /ResizeImg.class
 /Sadari$ResetListener.class
 /Sadari$StartListener.class
 /Sadari.class
 /SadariInterFace$STATUS.class
 /SadariInterFace.class
+<<<<<<< HEAD
 /Shape.class
 /PointX.class
+=======
+>>>>>>> ohda/combination
 /SadariPanel.class
 /Simulation.class
 /Singer.class
 /Sound.class
 /test.class
+<<<<<<< HEAD
+=======
+/combination/
+>>>>>>> ohda/combination

@@ -2,6 +2,8 @@
 
 import javax.swing.JFrame;
 
+import combination.Game;
+
 public class Simulation {
     public static void main(String[] args) {
         JFrame frame = new JFrame("결합게임");

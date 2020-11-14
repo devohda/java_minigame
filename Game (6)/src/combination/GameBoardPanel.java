@@ -1,6 +1,8 @@
+package combination;
 
 
 import javax.swing.*;
+
 import java.awt.*;
 
 public class GameBoardPanel extends JPanel {

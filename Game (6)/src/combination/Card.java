@@ -1,3 +1,4 @@
+package combination;
 
 
 import java.util.Random;
