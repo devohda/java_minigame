@@ -4,6 +4,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+import BottleCap.BottleCapPanel;
+import Catch.CatchCatchPanel;
+import Sadari.Sadari;
 import combination.Game;
 
 public class GameSelector  {
@@ -105,8 +108,7 @@ public class GameSelector  {
 	
 	public void createBottleCap() {
 		main.removeAll();
-		//bottleCap = new BottleCapPanel();
-		bottleCap = new BottleCapPanel(this); 
+		bottleCap = new BottleCapPanel();
 		main.add(bottleCap);
 		main.addMainPanel();
 		main.revalidate();

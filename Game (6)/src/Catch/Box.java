@@ -1,3 +1,4 @@
+package Catch;
 
 import javax.swing.*;
 import java.awt.*;

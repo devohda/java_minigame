@@ -1,3 +1,4 @@
+package BottleCap;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -8,6 +9,8 @@ import java.util.Random;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+
+
 
 public class BottleCapPanel extends JPanel {
 
@@ -20,14 +23,10 @@ public class BottleCapPanel extends JPanel {
 	private int iWrongAns[] = new int[50];
 	private int iRanNum;
 	
-	// 게임선택화면 
-	private GameSelector gameselector;
-	// 벌칙화면
-	private Sadari sadari;
 	
-	public BottleCapPanel(GameSelector gs) {
+	
+	public BottleCapPanel() {
 		
-		gameselector = gs;
 		
 		Random generator = new Random();
 		iRanNum = generator.nextInt(50)+1; //1~50 랜덤숫자 생성
@@ -150,16 +149,6 @@ public class BottleCapPanel extends JPanel {
 		else {
 			str = " 정답! ";
 			blank.setVisible(false);
-			int result = JOptionPane.showConfirmDialog(this, "정답!\n벌칙 화면으로 이동하시겠습니까?");
-			if (result == JOptionPane.YES_OPTION) {
-				System.out.println("YES");
-				gameselector.createSadari();
-			} else if (result == JOptionPane.NO_OPTION) {
-				// System.exit(0);
-				
-			} else {
-				System.out.println("CANCLE");
-			}
 		}
 		return str;
 

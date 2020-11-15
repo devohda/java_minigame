@@ -1,3 +1,4 @@
+package Catch;
 
 public class Player {
 	private int order;
