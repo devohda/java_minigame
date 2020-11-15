@@ -10,6 +10,7 @@ public class test {
 		JFrame frame = new JFrame("ONE SHOT");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(1050,800));
+		frame.setResizable(false); // 크기 조절 못하게 설정
 		
 		// main panel
 		MainPanel Main = new MainPanel();

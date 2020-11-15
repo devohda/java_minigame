@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:junhyuk" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:ohda" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:junhyuk" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:ohda" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f66bf148-8751-46e1-ac84-41e27058b0af" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/bin/CreatinPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/CreatinPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GameSelector$startListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GameSelector$startListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GameSelector.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GameSelector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Help$ButtonListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Help$ButtonListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Help.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Help.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/HunMinGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/HunMinGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/MainPanel$ButtonListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/MainPanel$ButtonListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/MainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/MainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/ResizeImg.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/ResizeImg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Simulation.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Simulation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Singer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Singer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Sound.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Sound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/test.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Singer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Singer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/combination/CardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/combination/CardPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1kKiLuyWpu7bkCFGpxg7ohbkCCk" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="test" />
+      <module name="Game" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test" />
+      <module name="Game" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f66bf148-8751-46e1-ac84-41e27058b0af" name="Default Changelist" comment="" />
+      <created>1605455636514</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605455636514</updated>
+      <workItem from="1605455637616" duration="161000" />
+      <workItem from="1605462716669" duration="969000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605462841609">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.1080.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1605462841609" />
+    <state x="689" y="309" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1605462788379">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="689" y="309" key="#com.intellij.ide.util.TreeClassChooserDialog/0.1080.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1605462788379" />
+    <state width="1879" height="276" key="GridCell.Tab.0.bottom" timestamp="1605463533618">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1879" height="276" key="GridCell.Tab.0.bottom/0.1080.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1605463533618" />
+    <state width="1879" height="276" key="GridCell.Tab.0.center" timestamp="1605463533618">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1879" height="276" key="GridCell.Tab.0.center/0.1080.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1605463533618" />
+    <state width="1879" height="276" key="GridCell.Tab.0.left" timestamp="1605463533618">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1879" height="276" key="GridCell.Tab.0.left/0.1080.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1605463533618" />
+    <state width="1879" height="276" key="GridCell.Tab.0.right" timestamp="1605463533618">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1879" height="276" key="GridCell.Tab.0.right/0.1080.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1605463533618" />
+  </component>
+</project>

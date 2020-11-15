@@ -8,7 +8,7 @@ public class CardPanel extends JPanel {
     private Card card;
 
     public CardPanel(Card c){
-        setPreferredSize(new Dimension(100,100));
+        setPreferredSize(new Dimension(50,50));
         card = c;
     }//constructor
     
@@ -36,17 +36,18 @@ public class CardPanel extends JPanel {
         //도형 그리기
         switch (card.getShape()){
             case CIRCLE : { //원 그리기
-                paint.fillOval(15,15,70,70);
+                paint.fillOval(10,10,40,40);
                 break;
             }
             case SQUARE : { // 사각형 그리기
-                paint.fillRect(15,15,70,70);
+                paint.fillRect(10,10,40,40);
                 break;
             }
             case TRIANGLE : { //삼각형 그리기
-                int x[] = { 15, 50, 85 };
-                int y[] = { 85, 15, 85 };
+                int[] x = { 0, 10, 0 };
+                int[] y = { 75, 10, 75 };
                 paint.fillPolygon( x, y, 3 );
+                System.out.println(card);
                 break;
             }
         }
