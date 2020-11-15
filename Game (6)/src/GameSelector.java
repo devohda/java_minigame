@@ -8,6 +8,7 @@ import BottleCap.BottleCapPanel;
 import Catch.CatchCatchPanel;
 import Sadari.Sadari;
 import combination.Game;
+import tool.ResizeImg;
 
 public class GameSelector  {
 	
@@ -156,7 +157,6 @@ public class GameSelector  {
 	public void createCombination() {
 		main.removeAll();
 		game = new Game(); //게임 실행 패널 객체 생성
-		game.init();
 		main.add(game);
 		main.addMainPanel();
 		main.revalidate();

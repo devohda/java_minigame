@@ -1,3 +1,5 @@
+package tool;
+
 import java.awt.*;
 import java.io.File; 
 import javax.imageio.ImageIO;
