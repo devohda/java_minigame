@@ -10,10 +10,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-<<<<<<< HEAD:Game (6)/src/frame_panel/MainPanel.java
-=======
 import tool.*;
->>>>>>> ohda/design:Game (6)/src/MainPanel.java
+
 
 public class MainPanel extends JPanel {
 	
@@ -38,10 +36,14 @@ public class MainPanel extends JPanel {
 	// 이미지 크기 조절
 	private Image resizeImg;
 	private ResizeImg rImg;
-	
+
 	private int people = 0;
 	private JLabel lbl;
-	
+
+	private ImageIcon icon;
+	private ImageIcon musicOn;
+	private ImageIcon musicOff;
+
 	public MainPanel() {
 		
 		setLayout(null); // 레이아웃 널
@@ -50,38 +52,26 @@ public class MainPanel extends JPanel {
 
 		rImg = new ResizeImg("images/backimg.jpg", 1050, 800);
 		resizeImg = rImg.getResizeImage();
-		
-		ImageIcon icon = new ImageIcon("images/backimg.jpg"); // 배경 이미지
 		icon = new ImageIcon(resizeImg);
 		lbl = new JLabel("", icon, SwingConstants.RIGHT); // 배경이미지 라벨에 삽입
 		lbl.setBounds(0, 0, 1050, 800); // 배경이미지 위치 및 사이즈 조절
 		
 		gameStart = new JButton("게임시작"); // 게임 선택 패널 객체를 불러오는 버튼
-<<<<<<< HEAD:Game (6)/src/frame_panel/MainPanel.java
 		gameStart.setBounds(420,350,210,40); // 버튼 위치 및 사이즈 조절
 		gameStart.addActionListener(buttonL);
 		
-			
-=======
 		gameStart.setBounds(420,300,210,80); // 버튼 위치 및 사이즈 조절
 		gameStart.addActionListener(buttonL);
 
 
-		rImg = new ResizeImg("images/btn_gamestart2.png", 210, 80);
-		resizeImg = rImg.getResizeImage();
-		icon = new ImageIcon(resizeImg);
-		gameStart.setIcon(icon);
-		gameStart.setBorderPainted(false);
-		gameStart.setContentAreaFilled(false);
-		gameStart.setFocusPainted(false);
+		
 
-
-
->>>>>>> ohda/design:Game (6)/src/MainPanel.java
 		music = new Sound("sounds/1.wav"); // 배경음악에 넣을 음악 지정하며 객체 생성
 		bgm = new JButton("BGM"); // 배경음악 버튼
-		bgm.setBounds(830,30,80,40); // 버튼 위치 및 사이즈 조절
-		
+		bgm.setBounds(830,30,80,50); // 버튼 위치 및 사이즈 조절
+		bgm.setHorizontalTextPosition(JButton.CENTER);
+		bgm.setVerticalTextPosition(JButton.BOTTOM);
+
 		InsertPeople = new JButton("인원수 입력하기"); // 인원수 입력 버튼 생성
 		InsertPeople.setBounds(530, 400, 100, 40); // 위치 및 사이즈 조절
 		InsertPeople.setFont(new Font("Serif", Font.BOLD, 8));
@@ -96,23 +86,79 @@ public class MainPanel extends JPanel {
 		InsertPeople.addActionListener(buttonL); // 버튼에 리스너 삽입
 		
 		goToHome = new JButton("처음으로");
-		goToHome.setBounds(50, 700, 100, 40);
+		goToHome.setBounds(30, 650, 100, 100);
 		goToHome.addActionListener(buttonL);
+		goToHome.setVerticalTextPosition(JButton.TOP);
+		goToHome.setHorizontalTextPosition(JButton.CENTER);
 		
 		penalty = new JButton("벌칙으로");
-		penalty.setBounds(170, 700, 100, 40);
+		penalty.setBounds(140, 650, 100, 100);
 		penalty.addActionListener(buttonL);
-		
+		penalty.setVerticalTextPosition(JButton.TOP);
+		penalty.setHorizontalTextPosition(JButton.CENTER);
+
+
 		help = new JButton("도움말");
-		help.setBounds(900, 700, 100, 40);
+		help.setBounds(900, 650, 100, 100);
 		help.addActionListener(buttonL);
-		
+		help.setVerticalTextPosition(JButton.TOP);
+		help.setHorizontalTextPosition(JButton.CENTER);
 
 		intro = new JButton("INTRO"); // 게임 인트로 버튼 생성
 		intro.setBounds(920,30,80,40); // 버튼 위치 및 사이즈 조절
 		
 		addMainPanel();
-		
+
+
+		/********************************/
+		/******* 버튼에 이미지 추가 ********/
+		/********************************/
+
+		rImg = new ResizeImg("images/mute.png", 30, 30);
+		resizeImg = rImg.getResizeImage();
+		musicOff = new ImageIcon(resizeImg);
+
+		rImg = new ResizeImg("images/volume.png", 30, 30);
+		resizeImg = rImg.getResizeImage();
+		musicOn = new ImageIcon(resizeImg);
+
+		bgm.setIcon(musicOff);
+		bgm.setBorderPainted(false);
+		bgm.setContentAreaFilled(false);
+		bgm.setFocusPainted(false);
+
+		rImg = new ResizeImg("images/btn_gamestart2.png", 210, 80);
+		resizeImg = rImg.getResizeImage();
+		icon = new ImageIcon(resizeImg);
+		gameStart.setIcon(icon);
+		gameStart.setBorderPainted(false);
+		gameStart.setContentAreaFilled(false);
+		gameStart.setFocusPainted(false);
+
+		rImg = new ResizeImg("images/home.png", 50,50);
+		resizeImg = rImg.getResizeImage();
+		icon = new ImageIcon(resizeImg);
+		goToHome.setIcon(icon);
+		goToHome.setBorderPainted(false);
+		goToHome.setContentAreaFilled(false);
+		goToHome.setFocusPainted(false);
+
+		rImg = new ResizeImg("images/cheers.png", 50,50);
+		resizeImg = rImg.getResizeImage();
+		icon = new ImageIcon(resizeImg);
+		penalty.setIcon(icon);
+		penalty.setBorderPainted(false);
+		penalty.setContentAreaFilled(false);
+		penalty.setFocusPainted(false);
+
+		rImg = new ResizeImg("images/question-mark.png", 50,50);
+		resizeImg = rImg.getResizeImage();
+		icon = new ImageIcon(resizeImg);
+		help.setIcon(icon);
+		help.setBorderPainted(false);
+		help.setContentAreaFilled(false);
+		help.setFocusPainted(false);
+
 	}
 	
 	public void addMainPanel() {
@@ -143,10 +189,14 @@ public class MainPanel extends JPanel {
 				if(bgmOn==0) {
 					music.On();
 					bgmOn=1;
+					System.out.println("music on");
+					bgm.setIcon(musicOn);
 				}
 				else {
 					music.Off();
 					bgmOn=0;
+					System.out.println("music off");
+					bgm.setIcon(musicOff);
 				}
 			}
 			else if(object == gameStart) {

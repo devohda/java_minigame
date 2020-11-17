@@ -5,15 +5,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
-import jun_chang.BottleCapPanel;//////////////
-import jun_chang.CatchCatchPanel;/////////////
-import jun_chang.Sadari;//////////////////////
+import jun_chang.BottleCapPanel;
+import jun_chang.CatchCatchPanel;
+import jun_chang.Sadari;
 import combination.Game;
-<<<<<<< HEAD:Game (6)/src/frame_panel/GameSelector.java
+
 import hunmingame.HunMinGame;
 import singer.Singer;
-=======
->>>>>>> ohda/design:Game (6)/src/GameSelector.java
+
 import tool.ResizeImg;
 
 public class GameSelector  {

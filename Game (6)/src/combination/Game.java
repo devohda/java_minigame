@@ -311,7 +311,7 @@ public class Game extends JPanel {
 
     public void restartGame(){
         String[] option = {"다시 시작","종료"};
-        int select = JOptionPane.showOptionDialog(this,"게임이 종료되었습니다","게임종료",0,JOptionPane.INFORMATION_MESSAGE,null,option,option[0]);
+        int select = JOptionPane.showOptionDialog(this,"게임이 종료되었습니다","게임종료",JOptionPane.DEFAULT_OPTION ,JOptionPane.INFORMATION_MESSAGE,null,option,option[0]);
 
         if(select == 0){ //다시 시작
             init();

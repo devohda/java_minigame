@@ -11,8 +11,16 @@
     <file url="file://$PROJECT_DIR$/src/combination/CardPanel.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/combination/Game.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/combination/GameBoardPanel.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/frame_panel/GameSelector.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/frame_panel/MainPanel.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/frame_panel/test.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/hunmingame/HunMinGame.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/jun_chang/BottleCapPanel.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/jun_chang/CatchCatchPanel.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/jun_chang/SadariPanel.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/jun_chang/Simulation.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/singer/Singer.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/test.java" charset="x-windows-949" />
-    <file url="file://$PROJECT_DIR$/src/tool/Sound.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/tool/Sound.java" charset="x-windows-949" />
   </component>
 </project>
