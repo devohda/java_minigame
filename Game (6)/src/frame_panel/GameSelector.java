@@ -9,8 +9,11 @@ import jun_chang.BottleCapPanel;//////////////
 import jun_chang.CatchCatchPanel;/////////////
 import jun_chang.Sadari;//////////////////////
 import combination.Game;
+<<<<<<< HEAD:Game (6)/src/frame_panel/GameSelector.java
 import hunmingame.HunMinGame;
 import singer.Singer;
+=======
+>>>>>>> ohda/design:Game (6)/src/GameSelector.java
 import tool.ResizeImg;
 
 public class GameSelector  {
@@ -151,7 +154,6 @@ public class GameSelector  {
 	public void createCombination() {
 		main.removeAll();
 		game = new Game(); //게임 실행 패널 객체 생성
-		game.init();
 		main.add(game);
 		main.addMainPanel();
 		main.revalidate();

@@ -1,4 +1,12 @@
+<<<<<<< HEAD:Game (6)/src/singer/Singer.java
 package singer;
+=======
+import tool.ResizeImg;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+>>>>>>> ohda/design:Game (6)/src/Singer.java
 
 import java.awt.*;
 import javax.swing.*;
@@ -17,7 +25,7 @@ public class Singer extends JPanel {
 		
 		setBounds(50, 100, 950, 550);
 		this.setLayout(null);
-		singerList = "블랙핑크,소녀시대,  BTX";
+		singerList = "블랙핑크,소녀시대,BTS";
 		pickSinger = singerList.split(",");
 		
 		index = (int)(Math.random()*3);

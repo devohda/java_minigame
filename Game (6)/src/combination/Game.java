@@ -1,6 +1,8 @@
 package combination;
 
 
+import tool.ResizeImg;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -20,13 +22,15 @@ public class Game extends JPanel {
 
     private renewScore update; //actionListener class
 
+    private ImageIcon background;
+    private JLabel back;
+    private Image resizeimg;
+
     Font fnt = new Font("배달의민족 주아",Font.BOLD,20);
 
     public Game() {
     	
-    	setBounds(275, 40, 500, 700);
-        setPreferredSize(new Dimension(500,700));
-        setBackground(new Color(223, 255, 188));
+    	setBounds(125, 130, 800, 540);
         setLayout(null);
 
         btnHap = new JButton("합");
@@ -53,6 +57,38 @@ public class Game extends JPanel {
         add(btnHap);
         add(btnGeul);
         add(userinput);
+
+
+
+
+        _score = 0;
+        lblScore.setText("점수 : " + _score);
+        lblState.setText("게임을 시작합니다.");
+
+        hapset = new ArrayList<>();
+        deleteHapset = new ArrayList<>();
+
+        boardInfo = new Card[9];
+        setGameBoardInfo(); //게임 초기화
+        GameBoardPanel gameBoard = new GameBoardPanel(boardInfo);
+        gameBoard.setBounds(50,100,350,350);
+        gameBoard.setBackground(new Color(236, 191, 246));
+        add(gameBoard);
+
+        calculateHap();
+
+
+
+
+
+
+        ResizeImg img = new ResizeImg("images/bg_combination.jpg",800,540);
+        resizeimg = img.getResizeImage();
+        background = new ImageIcon(resizeimg);
+        // 배경 이미지 마지막에 배치 -> 가장 안쪽에 배치하기 위해
+        back = new JLabel("", background, SwingConstants.CENTER);
+        back.setBounds(0, 0, 800, 540);
+        add(back);
     }//constructor
 
     private Card[] boardInfo;
@@ -72,6 +108,7 @@ public class Game extends JPanel {
         setGameBoardInfo(); //게임 초기화
         GameBoardPanel gameBoard = new GameBoardPanel(boardInfo);
         gameBoard.setBounds(0,100,500,500);
+        gameBoard.setBackground(new Color(236, 191, 246));
         add(gameBoard);
 
         calculateHap();

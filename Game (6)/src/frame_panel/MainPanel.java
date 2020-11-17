@@ -10,6 +10,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+<<<<<<< HEAD:Game (6)/src/frame_panel/MainPanel.java
+=======
+import tool.*;
+>>>>>>> ohda/design:Game (6)/src/MainPanel.java
 
 public class MainPanel extends JPanel {
 	
@@ -53,10 +57,27 @@ public class MainPanel extends JPanel {
 		lbl.setBounds(0, 0, 1050, 800); // 배경이미지 위치 및 사이즈 조절
 		
 		gameStart = new JButton("게임시작"); // 게임 선택 패널 객체를 불러오는 버튼
+<<<<<<< HEAD:Game (6)/src/frame_panel/MainPanel.java
 		gameStart.setBounds(420,350,210,40); // 버튼 위치 및 사이즈 조절
 		gameStart.addActionListener(buttonL);
 		
 			
+=======
+		gameStart.setBounds(420,300,210,80); // 버튼 위치 및 사이즈 조절
+		gameStart.addActionListener(buttonL);
+
+
+		rImg = new ResizeImg("images/btn_gamestart2.png", 210, 80);
+		resizeImg = rImg.getResizeImage();
+		icon = new ImageIcon(resizeImg);
+		gameStart.setIcon(icon);
+		gameStart.setBorderPainted(false);
+		gameStart.setContentAreaFilled(false);
+		gameStart.setFocusPainted(false);
+
+
+
+>>>>>>> ohda/design:Game (6)/src/MainPanel.java
 		music = new Sound("sounds/1.wav"); // 배경음악에 넣을 음악 지정하며 객체 생성
 		bgm = new JButton("BGM"); // 배경음악 버튼
 		bgm.setBounds(830,30,80,40); // 버튼 위치 및 사이즈 조절
