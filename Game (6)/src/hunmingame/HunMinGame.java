@@ -1,9 +1,5 @@
-<<<<<<< HEAD:Game (6)/src/hunmingame/HunMinGame.java
 package hunmingame;
-=======
-import tool.ResizeImg;
 
->>>>>>> ohda/design:Game (6)/src/HunMinGame.java
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;

@@ -3,17 +3,18 @@ package frame_panel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileInputStream;
 import javax.swing.*;
 
-import jun_chang.BottleCapPanel;//////////////
-import jun_chang.CatchCatchPanel;/////////////
-import jun_chang.Sadari;//////////////////////
+import jun_chang.BottleCapPanel;
+import jun_chang.CatchCatchPanel;
+import jun_chang.Sadari;
 import combination.Game;
-<<<<<<< HEAD:Game (6)/src/frame_panel/GameSelector.java
+
 import hunmingame.HunMinGame;
 import singer.Singer;
-=======
->>>>>>> ohda/design:Game (6)/src/GameSelector.java
+
 import tool.ResizeImg;
 
 public class GameSelector  {
@@ -34,13 +35,21 @@ public class GameSelector  {
 	// 이미지 크기 조절
 	private Image resizeImg;
 	private ResizeImg rImg;
-	
+
+	private Font fnt;
 	public GameSelector(MainPanel m) {
 		
 		main = m;
 
-		Font fnt = new Font("Verdana", Font.BOLD, 20);
-		
+		try {
+			fnt = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("font/배달의민족주아.ttf"))).deriveFont(Font.PLAIN,20);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			System.err.println(" not loaded.  Using serif font.");
+			fnt = new Font("serif", Font.PLAIN, 24);
+		}
+
+
 		// 게임 라벨 add
 		// bottlecap
 		rImg = new ResizeImg("images/1.png", 300, 245);
@@ -50,8 +59,7 @@ public class GameSelector  {
 		playBottleCap.setHorizontalTextPosition(SwingConstants.CENTER);
 		playBottleCap.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playBottleCap.setFont(fnt);
-		playBottleCap.setForeground(Color.green);
-		playBottleCap.setBounds(50,120,300,270);
+		playBottleCap.setBounds(50,100,300,270);
 		main.add(playBottleCap);
 		
 		// catch!catch!
@@ -60,8 +68,7 @@ public class GameSelector  {
 		playCatch.setHorizontalTextPosition(SwingConstants.CENTER);
 		playCatch.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playCatch.setFont(fnt);
-		playCatch.setForeground(Color.green);
-		playCatch.setBounds(375,120,300,270);
+		playCatch.setBounds(375,100,300,270);
 		main.add(playCatch);
 		
 		// singcontest
@@ -70,8 +77,7 @@ public class GameSelector  {
 		playSingContest.setHorizontalTextPosition(SwingConstants.CENTER);
 		playSingContest.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playSingContest.setFont(fnt);
-		playSingContest.setForeground(Color.green);
-		playSingContest.setBounds(700,120,300,270);
+		playSingContest.setBounds(700,100,300,270);
 		main.add(playSingContest);
 		
 		// hunmin
@@ -80,8 +86,7 @@ public class GameSelector  {
 		playHunmin.setHorizontalTextPosition(SwingConstants.CENTER);
 		playHunmin.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playHunmin.setFont(fnt);
-		playHunmin.setForeground(Color.green);
-		playHunmin.setBounds(50,410,300,270);
+		playHunmin.setBounds(50,380,300,270);
 		main.add(playHunmin);
 		
 		// 결!합!
@@ -90,8 +95,7 @@ public class GameSelector  {
 		playRandom.setHorizontalTextPosition(SwingConstants.CENTER);
 		playRandom.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playRandom.setFont(fnt);
-		playRandom.setForeground(Color.green);
-		playRandom.setBounds(375,410,300,270);
+		playRandom.setBounds(375,380,300,270);
 		main.add(playRandom);
 		
 		// random
@@ -100,8 +104,7 @@ public class GameSelector  {
 		playRandom.setHorizontalTextPosition(SwingConstants.CENTER);
 		playRandom.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playRandom.setFont(fnt);
-		playRandom.setForeground(Color.green);
-		playRandom.setBounds(700,410,300,270);
+		playRandom.setBounds(700,380,300,270);
 		main.add(playRandom);
 		
 		playBottleCap.addMouseListener(new startListener());
@@ -153,7 +156,7 @@ public class GameSelector  {
 	
 	public void createCombination() {
 		main.removeAll();
-		game = new Game(); //게임 실행 패널 객체 생성
+		game = new Game(this); //게임 실행 패널 객체 생성
 		main.add(game);
 		main.addMainPanel();
 		main.revalidate();
@@ -185,9 +188,8 @@ public class GameSelector  {
 				createHunmin();
 			} else if (obj == playRandom) {
 				createCombination();
-			} 
-		
-			
+			}
+
 		}
 		
 	}

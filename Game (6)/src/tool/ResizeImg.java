@@ -1,8 +1,5 @@
 package tool;
-<<<<<<< HEAD:Game (6)/src/tool/ResizeImg.java
-=======
 
->>>>>>> ohda/design:Game (6)/src/ResizeImg.java
 import java.awt.*;
 import java.io.File; 
 import javax.imageio.ImageIO;
