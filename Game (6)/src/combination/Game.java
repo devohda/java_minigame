@@ -2,7 +2,7 @@ package combination;
 
 
 import frame_panel.GameSelector;
-import tool.ResizeImg;
+import tool.*;
 
 import javax.swing.*;
 
@@ -32,7 +32,8 @@ public class Game extends JPanel {
     private JLabel back;
     private Image resizeimg;
 
-    Font fnt = new Font("font/Typo_HelloPOP_OutlineM.ttf",Font.BOLD,20);
+    private Customfont makeFnt;
+    Font fnt;
 
     public Game(GameSelector g) {
     	
@@ -74,17 +75,11 @@ public class Game extends JPanel {
         userinput.addActionListener(update);
         
         /************* 폰트 지정 **************/
-        try {
-            fnt = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("font/고양체.ttf"))).deriveFont(Font.BOLD,26);
-            lblState.setFont(fnt);
-            fnt = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("font/고양체.ttf"))).deriveFont(Font.PLAIN,22);
-            lblScore.setFont(fnt);
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.err.println(" not loaded.  Using serif font.");
-            fnt = new Font("serif", Font.PLAIN, 24);
-        }
+        makeFnt = new Customfont();
+        fnt = makeFnt.getCustomFont("font/고양체.ttf",Font.BOLD,24);
+        lblState.setFont(fnt);
+        fnt = makeFnt.getCustomFont("font/고양체.ttf",Font.PLAIN,22);
+        lblScore.setFont(fnt);
 
         // 위치 지정
         lblState.setBounds(170,35,500,50);

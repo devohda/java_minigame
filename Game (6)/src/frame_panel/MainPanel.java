@@ -37,6 +37,7 @@ public class MainPanel extends JPanel {
 	private Image resizeImg;
 	private ResizeImg rImg;
 
+	private JLabel lblstatePeople;
 	private int people = 0;
 	private JLabel lbl;
 
@@ -77,7 +78,8 @@ public class MainPanel extends JPanel {
 		InsertPeople.setFont(new Font("Serif", Font.BOLD, 8));
 		PeopleField = new JTextField(); // 인원수 입력 필드 생성
 		PeopleField.setBounds(420, 400, 100, 40); // 위치 및 사이즈 조절
-		
+		lblstatePeople = new JLabel("인원수를 입력하세요");
+		lblstatePeople.setBounds(530,450,120,40);
 		
 		
 		buttonL = new ButtonListener(); // 리스너 객체 생성
@@ -166,7 +168,8 @@ public class MainPanel extends JPanel {
 		add(intro); 
 		add(gameStart);
 		add(PeopleField);
-		add(InsertPeople); 
+		add(InsertPeople);
+		add(lblstatePeople);
 		add(goToHome);
 		add(penalty);
 		add(lbl); 
@@ -219,6 +222,7 @@ public class MainPanel extends JPanel {
 			else if(object == InsertPeople) {
 				String output = PeopleField.getText();
 				people = Integer.parseInt(output);
+				PeopleField.setText(""); //텍스트 창 비우기
 			}
 			else if(object == help) {
 				helpFrame = new Help();

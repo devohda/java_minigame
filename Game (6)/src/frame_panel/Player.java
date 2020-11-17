@@ -1,4 +1,4 @@
-package jun_chang;
+package frame_panel;
 
 public class Player {
 	private int order;
