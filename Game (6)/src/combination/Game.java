@@ -82,8 +82,6 @@ public class Game extends JPanel {
             fnt = new Font("serif", Font.PLAIN, 24);
         }
 
-
-
         // 위치 지정
         lblState.setBounds(170,35,500,50);
         lblScore.setBounds(490,120,200,50);

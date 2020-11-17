@@ -50,7 +50,7 @@ public class MainPanel extends JPanel {
 		setBackground(Color.gray); // 배경색 no 중요
 		
 
-		rImg = new ResizeImg("images/backimg.jpg", 1050, 800);
+		rImg = new ResizeImg("images/bg_1.png", 1050, 800);
 		resizeImg = rImg.getResizeImage();
 		icon = new ImageIcon(resizeImg);
 		lbl = new JLabel("", icon, SwingConstants.RIGHT); // 배경이미지 라벨에 삽입
@@ -158,7 +158,6 @@ public class MainPanel extends JPanel {
 		help.setBorderPainted(false);
 		help.setContentAreaFilled(false);
 		help.setFocusPainted(false);
-
 	}
 	
 	public void addMainPanel() {
