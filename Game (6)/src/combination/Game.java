@@ -66,10 +66,12 @@ public class Game extends JPanel {
         btnHap = new JButton("합");
         btnGeul = new JButton("결");
         userinput = new JTextField(5);
-        
+
+        //add action listener
         update = new renewScore();
         btnHap.addActionListener(update);
         btnGeul.addActionListener(update);
+        userinput.addActionListener(update);
         
         /************* 폰트 지정 **************/
         try {
@@ -265,7 +267,7 @@ public class Game extends JPanel {
                     lblState.setForeground(new Color(184, 22, 22));
                 }
             }
-            else if(e.getSource() == btnHap){ //합을 누른 경우
+            else if(e.getSource() == btnHap || e.getSource() == userinput){ //합을 누른 경우, enter 친 경우
 
                 int answer = 0;
 
