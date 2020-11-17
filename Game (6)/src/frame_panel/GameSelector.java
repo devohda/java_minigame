@@ -156,7 +156,7 @@ public class GameSelector  {
 	
 	public void createCombination() {
 		main.removeAll();
-		game = new Game(); //게임 실행 패널 객체 생성
+		game = new Game(this); //게임 실행 패널 객체 생성
 		main.add(game);
 		main.addMainPanel();
 		main.revalidate();

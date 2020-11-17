@@ -1,6 +1,7 @@
 package combination;
 
 
+import frame_panel.GameSelector;
 import tool.ResizeImg;
 
 import javax.swing.*;
@@ -23,6 +24,7 @@ public class Game extends JPanel {
     private JLabel lblScore;
     private JLabel lblState;
     private int _score;
+    private GameBoardPanel gameBoard;
 
     private renewScore update; //actionListener class
 
@@ -32,7 +34,7 @@ public class Game extends JPanel {
 
     Font fnt = new Font("font/Typo_HelloPOP_OutlineM.ttf",Font.BOLD,20);
 
-    public Game() {
+    public Game(GameSelector g) {
     	
     	setBounds(125, 130, 800, 540); // Game 패널 크기 지정
         setLayout(null); // 레이아웃 매니저 끄기
@@ -44,7 +46,7 @@ public class Game extends JPanel {
 
         boardInfo = new Card[9]; // 게임판 정보
         setGameBoardInfo(); //게임 초기화
-        GameBoardPanel gameBoard = new GameBoardPanel(boardInfo); // 게임판 만들기
+        gameBoard = new GameBoardPanel(boardInfo); // 게임판 만들기
         gameBoard.setBounds(50,120,350,350); // 게임판 위치, 크기 지정
         gameBoard.setBackground(new Color(236, 191, 246)); // 게임판 배경색 지정
         add(gameBoard); // 게임판 추가
@@ -122,11 +124,15 @@ public class Game extends JPanel {
         deleteHapset = new ArrayList<>();
 
         boardInfo = new Card[9];
+
+
         setGameBoardInfo(); //게임 초기화
-        GameBoardPanel gameBoard = new GameBoardPanel(boardInfo);
-        gameBoard.setBounds(0,100,500,500);
-        gameBoard.setBackground(new Color(236, 191, 246));
+        gameBoard = new GameBoardPanel(boardInfo);
+        gameBoard.setBounds(50,120,500,500);
         add(gameBoard);
+        repaint();
+
+
 
         calculateHap();
     }
@@ -249,6 +255,7 @@ public class Game extends JPanel {
                     _score += 3;
                     lblState.setText("'결' 입니다. 게임을 종료합니다!");
                     lblState.setForeground(new Color(31, 76, 224));
+                    lblScore.setText("점수 : " + _score);
 
                     restartGame();
                 }
