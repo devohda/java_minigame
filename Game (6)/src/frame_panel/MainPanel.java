@@ -70,7 +70,7 @@ public class MainPanel extends JPanel {
 
 		// 객체 만들기
 		gameStart = new RoundedButton("게임시작"); // 게임 선택 패널 객체를 불러오는 버튼
-		gameStart.setBounds(420,330,210,70); // 버튼 위치 및 사이즈 조절
+		gameStart.setBounds(420,340,210,70); // 버튼 위치 및 사이즈 조절
 		gameStart.setBackground(new Color(237, 248, 141));
 		gameStart.addActionListener(buttonL); // 버튼에 리스너 삽입
 		gameStart.setFont(fnt2);
