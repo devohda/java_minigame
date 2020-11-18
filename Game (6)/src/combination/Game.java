@@ -39,9 +39,14 @@ public class Game extends JPanel {
     //player
     private Player[] players;
     private int _playerNum;
+    
+    //종료 시 게임선택화면 가기위해 이용할 객체
+    private MainPanel main;
 
-    public Game(GameSelector g) {
+    public Game(GameSelector g, MainPanel m) {
 
+    	main = m; //종료 시 게임선택화면 가기위해 이용할 객체
+    	
         _playerNum = g.getPeopleNum();
         System.out.println(_playerNum);
         setBounds(125, 130, 800, 520); // Game 패널 크기 지정
@@ -340,7 +345,9 @@ public class Game extends JPanel {
         if (select == 0) { //다시 시작
             init();
         } else { //종료 누르면 시스템 종료
-            setVisible(false);
+        	main.createGameSelector();
+        	main.addMainPanel();
+        	//setVisible(false);
             //종료하기 위한 상위 패널에 함수 만들어야 할 거 같음
         }
     }

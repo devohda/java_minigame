@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import frame_panel.GameSelector;
+import frame_panel.MainPanel;
 
 public class BottleCapPanel extends JPanel {
 
@@ -26,18 +27,34 @@ public class BottleCapPanel extends JPanel {
 	private GameSelector gameselector;
 	// 벌칙화면
 	private Sadari sadari;
+	// 게임 종료시 게임선택화면으로 갈때 사용되는 객체
+	private MainPanel main; 
+	// 플레이어들의 차례 및 인원수 정보
+	private int personNum; 
+	private JLabel personNumLabel;
+	private int n=1; // 차례
 	
-	public BottleCapPanel(GameSelector gs) {
+	public BottleCapPanel(GameSelector gs, MainPanel m) {
 		
 		gameselector = gs;
+		main = m;
+		
+		personNum = gs.getPeopleNum(); // 처음 화면에서 입력받은 인원수 
 		
 		Random generator = new Random();
-		iRanNum = generator.nextInt(50)+1; //1~50 랜덤숫자 생성
+		iRanNum = generator.nextInt(50)+1; //1~50 랜덤숫자 생성.. 50은 범위 너무 커서 수정하는게 나으려나?
 		
 		setBounds(325, 200, 400, 400);
 		setPreferredSize(new Dimension(400, 400));
 		setLayout(null);
 		
+		// 플레이어의 순번을 나타내는 라벨
+		personNumLabel = new JLabel("1 번째 사람의 차례입니다.");
+		personNumLabel.setBounds(250, 150, 140, 10);
+		personNumLabel.setForeground(Color.black);
+		add(personNumLabel);
+		
+		// 오답을 나타내는 패널
 		wrongAns = new JPanel();
 		wrongAns.setBounds(250, 10, 140, 130);
 		wrongAns.setBackground(Color.white);
@@ -152,13 +169,14 @@ public class BottleCapPanel extends JPanel {
 		else {
 			str = " 정답! ";
 			blank.setVisible(false);
-			int result = JOptionPane.showConfirmDialog(this, "정답!\n벌칙 화면으로 이동하시겠습니까?");
-			if (result == JOptionPane.YES_OPTION) {
-				System.out.println("YES");
-				gameselector.createSadari();
-			} else if (result == JOptionPane.NO_OPTION) {
-				// System.exit(0);
-				
+			String[] option = {"다시 시작", "종료"};
+			int select = JOptionPane.showOptionDialog(this, "게임이 종료되었습니다", "게임종료", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, option, option[0]);
+
+			if (select == 0) {
+				init(num, wrongAnswerLabel, blank);
+			} else if (select == JOptionPane.NO_OPTION) {
+				main.createGameSelector();
+	        	main.addMainPanel();		
 			} else {
 				System.out.println("CANCLE");
 			}
@@ -209,9 +227,20 @@ public class BottleCapPanel extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			try {
 				WrongAnswers = result(iRanNum, Integer.valueOf(enterNum.getText()), WrongAnswers, blank);
-				wrongAnswerLabel.setText(WrongAnswers);
-				audio1();
+				if(WrongAnswers!=" 정답! ") {
+					wrongAnswerLabel.setText(WrongAnswers);
+					audio1();
+				}
 				enterNum.setText("");
+				
+				// 순번 갱신
+				if(n != personNum) {
+					n++;
+					personNumLabel.setText("" + n + " 번째 사람의 차례입니다.");
+				}
+				if( n==personNum) n=0;
+
+				
 			} catch (Exception e1) {
 				 System.out.println("오류 발생! >> " + e1); 
 			}

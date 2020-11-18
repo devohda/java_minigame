@@ -143,7 +143,7 @@ public class GameSelector  {
 	public void createBottleCap() {
 		main.removeAll();
 		//bottleCap = new BottleCapPanel();
-		bottleCap = new BottleCapPanel(this); 
+		bottleCap = new BottleCapPanel(this, main); 
 		main.add(bottleCap);
 		main.addMainPanel();
 		main.revalidate();
@@ -153,7 +153,7 @@ public class GameSelector  {
 	
 	public void createCatchCatch() {
 		main.removeAll();
-		Catch = new CatchCatchPanel();
+		Catch = new CatchCatchPanel(this, main);
 		main.add(Catch);
 		main.addMainPanel();
 		main.revalidate();
@@ -180,7 +180,7 @@ public class GameSelector  {
 	
 	public void createCombination() {
 		main.removeAll();
-		game = new Game(this); //게임 실행 패널 객체 생성
+		game = new Game(this, main); //게임 실행 패널 객체 생성
 		main.add(game);
 		main.addMainPanel();
 		main.revalidate();
