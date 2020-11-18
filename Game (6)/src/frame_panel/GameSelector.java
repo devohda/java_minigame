@@ -37,12 +37,17 @@ public class GameSelector  {
 	private ResizeImg rImg;
 
 	private Font fnt;
+
+
+	private final int WIDTH = 230;
+	private final int HEIGHT = 230;
+
 	public GameSelector(MainPanel m) {
 		
 		main = m;
 
 		try {
-			fnt = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("font/배달의민족주아.ttf"))).deriveFont(Font.PLAIN,20);
+			fnt = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("font/SSShinb7.ttf"))).deriveFont(Font.PLAIN,20);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			System.err.println(" not loaded.  Using serif font.");
@@ -52,59 +57,69 @@ public class GameSelector  {
 
 		// 게임 라벨 add
 		// bottlecap
-		rImg = new ResizeImg("images/1.png", 300, 245);
+		rImg = new ResizeImg("images/1.png", WIDTH-20,HEIGHT-20);
 		resizeImg = rImg.getResizeImage();
 		imgBottle = new ImageIcon(resizeImg);		
 		playBottleCap = new JLabel("BottleCap", imgBottle, SwingConstants.CENTER);
 		playBottleCap.setHorizontalTextPosition(SwingConstants.CENTER);
 		playBottleCap.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playBottleCap.setFont(fnt);
-		playBottleCap.setBounds(50,100,300,270);
+		playBottleCap.setBounds(180,150,WIDTH,HEIGHT+10);
 		main.add(playBottleCap);
 		
 		// catch!catch!
-		imgCatch = new ImageIcon("images/catchPlay.png");
+		rImg = new ResizeImg("images/catchPlay.png", WIDTH-20,HEIGHT-20);
+		resizeImg = rImg.getResizeImage();
+		imgCatch = new ImageIcon(resizeImg);
 		playCatch = new JLabel("Catch!Catch!", imgCatch, SwingConstants.CENTER);
 		playCatch.setHorizontalTextPosition(SwingConstants.CENTER);
 		playCatch.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playCatch.setFont(fnt);
-		playCatch.setBounds(375,100,300,270);
+		playCatch.setBounds(180+WIDTH+15,150,WIDTH,HEIGHT+10);
 		main.add(playCatch);
 		
 		// singcontest
-		imgSingContest = new ImageIcon("images/singcontestPlay.png");
+		rImg = new ResizeImg("images/singcontestPlay.png", WIDTH-20,HEIGHT-20);
+		resizeImg = rImg.getResizeImage();
+		imgSingContest = new ImageIcon(resizeImg);
 		playSingContest = new JLabel("Sing Contest", imgSingContest, SwingConstants.CENTER);
 		playSingContest.setHorizontalTextPosition(SwingConstants.CENTER);
 		playSingContest.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playSingContest.setFont(fnt);
-		playSingContest.setBounds(700,100,300,270);
+		playSingContest.setBounds(180+WIDTH*2+30,150,WIDTH,HEIGHT+10);
 		main.add(playSingContest);
 		
 		// hunmin
-		imgHunmin = new ImageIcon("images/hunminPlay.png");
+		rImg = new ResizeImg("images/hunminPlay.png", WIDTH-20,HEIGHT-20);
+		resizeImg = rImg.getResizeImage();
+		imgHunmin = new ImageIcon(resizeImg);
 		playHunmin = new JLabel("Hunmin Jungum", imgHunmin, SwingConstants.CENTER);
 		playHunmin.setHorizontalTextPosition(SwingConstants.CENTER);
 		playHunmin.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playHunmin.setFont(fnt);
-		playHunmin.setBounds(50,380,300,270);
+		playHunmin.setBounds(180,170+HEIGHT,WIDTH,HEIGHT+10);
 		main.add(playHunmin);
 		
 		// 결!합!
-		imgRandom = new ImageIcon("images/randomPlay.png");
+		rImg = new ResizeImg("images/randomPlay.png", WIDTH-20,HEIGHT-20);
+		resizeImg = rImg.getResizeImage();
+		imgRandom = new ImageIcon(resizeImg);
 		playRandom = new JLabel("Random", imgRandom, SwingConstants.CENTER);
 		playRandom.setHorizontalTextPosition(SwingConstants.CENTER);
 		playRandom.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playRandom.setFont(fnt);
-		playRandom.setBounds(375,380,300,270);
+		playRandom.setBounds(180+WIDTH+15,170+HEIGHT,WIDTH,HEIGHT+10);
 		main.add(playRandom);
 		
 		// random
-		imgRandom = new ImageIcon("images/randomPlay.png");
+		rImg = new ResizeImg("images/randomPlay.png", WIDTH-20,HEIGHT-20);
+		resizeImg = rImg.getResizeImage();
+		imgRandom = new ImageIcon(resizeImg);
 		playRandom = new JLabel("Random", imgRandom, SwingConstants.CENTER);
 		playRandom.setHorizontalTextPosition(SwingConstants.CENTER);
 		playRandom.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playRandom.setFont(fnt);
-		playRandom.setBounds(700,380,300,270);
+		playRandom.setBounds(180 + WIDTH*2 + 30,170+HEIGHT,WIDTH,HEIGHT+10);
 		main.add(playRandom);
 		
 		playBottleCap.addMouseListener(new startListener());
