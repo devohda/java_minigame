@@ -61,42 +61,46 @@ public class MainPanel extends JPanel {
 
 
 		// 배경 이미지 삽입
-		rImg = new ResizeImg("images/bg_1.png", 850, 600);
+		rImg = new ResizeImg("images/bg_2.jpg", 1050, 800);
 		resizeImg = rImg.getResizeImage();
 		icon = new ImageIcon(resizeImg);
 		lbl = new JLabel("", icon, SwingConstants.RIGHT); // 배경이미지 라벨에 삽입
-		lbl.setBounds(0, 0, 850, 600); // 배경이미지 위치 및 사이즈 조절
+		lbl.setBounds(0, 0, 1050, 800); // 배경이미지 위치 및 사이즈 조절
 
 
 		// 객체 만들기
 		gameStart = new RoundedButton("게임시작"); // 게임 선택 패널 객체를 불러오는 버튼
-		gameStart.setBounds(320,210,210,70); // 버튼 위치 및 사이즈 조절
-		gameStart.setBackground(new Color(113, 200, 222));
+		gameStart.setBounds(420,310,210,70); // 버튼 위치 및 사이즈 조절
+		gameStart.setBackground(new Color(237, 248, 141));
 		gameStart.addActionListener(buttonL); // 버튼에 리스너 삽입
 		gameStart.setFont(fnt2);
 		gameStart.setVisible(false);
 
 		lblstatePeople = new JLabel("인원수를 입력하세요");
-		lblstatePeople.setBounds(320,230,210,40);
+		lblstatePeople.setBounds(420,330,210,40);
 		lblstatePeople.setHorizontalAlignment(JLabel.CENTER);
 		lblstatePeople.setVerticalAlignment(JLabel.CENTER);
 		lblstatePeople.setFont(fnt2);
 
 		music = new Sound("sounds/1.wav"); // 배경음악에 넣을 음악 지정하며 객체 생성
 		bgm = new JButton("BGM"); // 배경음악 버튼
-		bgm.setBounds(630,30,80,50); // 버튼 위치 및 사이즈 조절
+		bgm.setBounds(800,30,80,50); // 버튼 위치 및 사이즈 조절
 		bgm.setFont(fnt);
 		bgm.setHorizontalTextPosition(JButton.CENTER);
 		bgm.setVerticalTextPosition(JButton.BOTTOM);
 		bgm.addActionListener(buttonL); // 버튼에 리스너 삽입
 
+		intro = new JButton("INTRO"); // 게임 인트로 버튼 생성
+		intro.setBounds(900,30,80,40); // 버튼 위치 및 사이즈 조절
+
+
 		InsertPeople = new RoundedButton("입력"); // 인원수 입력 버튼 생성
-		InsertPeople.setBounds(430, 300, 100, 40); // 위치 및 사이즈 조절
+		InsertPeople.setBounds(530, 400, 100, 40); // 위치 및 사이즈 조절
 		InsertPeople.setFont(fnt2);
 		InsertPeople.addActionListener(buttonL); // 버튼에 리스너 삽입
 
 		PeopleField = new JTextField(); // 인원수 입력 필드 생성
-		PeopleField.setBounds(320, 300, 100, 40); // 위치 및 사이즈 조절
+		PeopleField.setBounds(420, 400, 100, 40); // 위치 및 사이즈 조절
 		PeopleField.setFont(fnt2);
 		PeopleField.addActionListener(buttonL);
 
@@ -104,28 +108,25 @@ public class MainPanel extends JPanel {
 
 		// 하단 버튼 생성
 		goToHome = new JButton("처음으로");
-		goToHome.setBounds(30, 450, 100, 100);
+		goToHome.setBounds(30, 650, 100, 100);
 		goToHome.addActionListener(buttonL);
 		goToHome.setVerticalTextPosition(JButton.TOP);
 		goToHome.setHorizontalTextPosition(JButton.CENTER);
 		goToHome.setFont(fnt);
 		
 		penalty = new JButton("벌칙으로");
-		penalty.setBounds(140, 450, 100, 100);
+		penalty.setBounds(140, 650, 100, 100);
 		penalty.addActionListener(buttonL);
 		penalty.setVerticalTextPosition(JButton.TOP);
 		penalty.setHorizontalTextPosition(JButton.CENTER);
 		penalty.setFont(fnt);
 
 		help = new JButton("도움말");
-		help.setBounds(700, 450, 100, 100);
+		help.setBounds(900, 650, 100, 100);
 		help.addActionListener(buttonL);
 		help.setVerticalTextPosition(JButton.TOP);
 		help.setHorizontalTextPosition(JButton.CENTER);
 		help.setFont(fnt);
-
-		intro = new JButton("INTRO"); // 게임 인트로 버튼 생성
-		intro.setBounds(720,30,80,40); // 버튼 위치 및 사이즈 조절
 		
 		addMainPanel();
 

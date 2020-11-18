@@ -39,8 +39,8 @@ public class GameSelector  {
 	private Font fnt;
 
 
-	private final int WIDTH = 170;
-	private final int HEIGHT = 170;
+	private final int WIDTH = 230;
+	private final int HEIGHT = 230;
 
 	public GameSelector(MainPanel m) {
 		
@@ -62,9 +62,9 @@ public class GameSelector  {
 		imgBottle = new ImageIcon(resizeImg);		
 		playBottleCap = new JLabel("BottleCap", imgBottle, SwingConstants.CENTER);
 		playBottleCap.setHorizontalTextPosition(SwingConstants.CENTER);
-		playBottleCap.setVerticalTextPosition(SwingConstants.CENTER);
+		playBottleCap.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playBottleCap.setFont(fnt);
-		playBottleCap.setBounds(155,100,WIDTH,HEIGHT);
+		playBottleCap.setBounds(180,150,WIDTH,HEIGHT+10);
 		main.add(playBottleCap);
 		
 		// catch!catch!
@@ -73,9 +73,9 @@ public class GameSelector  {
 		imgCatch = new ImageIcon(resizeImg);
 		playCatch = new JLabel("Catch!Catch!", imgCatch, SwingConstants.CENTER);
 		playCatch.setHorizontalTextPosition(SwingConstants.CENTER);
-		playCatch.setVerticalTextPosition(SwingConstants.CENTER);
+		playCatch.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playCatch.setFont(fnt);
-		playCatch.setBounds(340,100,WIDTH,HEIGHT);
+		playCatch.setBounds(180+WIDTH+15,150,WIDTH,HEIGHT+10);
 		main.add(playCatch);
 		
 		// singcontest
@@ -84,9 +84,9 @@ public class GameSelector  {
 		imgSingContest = new ImageIcon(resizeImg);
 		playSingContest = new JLabel("Sing Contest", imgSingContest, SwingConstants.CENTER);
 		playSingContest.setHorizontalTextPosition(SwingConstants.CENTER);
-		playSingContest.setVerticalTextPosition(SwingConstants.CENTER);
+		playSingContest.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playSingContest.setFont(fnt);
-		playSingContest.setBounds(525,100,WIDTH,HEIGHT);
+		playSingContest.setBounds(180+WIDTH*2+30,150,WIDTH,HEIGHT+10);
 		main.add(playSingContest);
 		
 		// hunmin
@@ -95,9 +95,9 @@ public class GameSelector  {
 		imgHunmin = new ImageIcon(resizeImg);
 		playHunmin = new JLabel("Hunmin Jungum", imgHunmin, SwingConstants.CENTER);
 		playHunmin.setHorizontalTextPosition(SwingConstants.CENTER);
-		playHunmin.setVerticalTextPosition(SwingConstants.CENTER);
+		playHunmin.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playHunmin.setFont(fnt);
-		playHunmin.setBounds(155,280,WIDTH,HEIGHT);
+		playHunmin.setBounds(180,170+HEIGHT,WIDTH,HEIGHT+10);
 		main.add(playHunmin);
 		
 		// ╟А!гу!
@@ -106,9 +106,9 @@ public class GameSelector  {
 		imgRandom = new ImageIcon(resizeImg);
 		playRandom = new JLabel("Random", imgRandom, SwingConstants.CENTER);
 		playRandom.setHorizontalTextPosition(SwingConstants.CENTER);
-		playRandom.setVerticalTextPosition(SwingConstants.CENTER);
+		playRandom.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playRandom.setFont(fnt);
-		playRandom.setBounds(340,280,WIDTH,HEIGHT);
+		playRandom.setBounds(180+WIDTH+15,170+HEIGHT,WIDTH,HEIGHT+10);
 		main.add(playRandom);
 		
 		// random
@@ -117,9 +117,9 @@ public class GameSelector  {
 		imgRandom = new ImageIcon(resizeImg);
 		playRandom = new JLabel("Random", imgRandom, SwingConstants.CENTER);
 		playRandom.setHorizontalTextPosition(SwingConstants.CENTER);
-		playRandom.setVerticalTextPosition(SwingConstants.CENTER);
+		playRandom.setVerticalTextPosition(SwingConstants.BOTTOM);
 		playRandom.setFont(fnt);
-		playRandom.setBounds(525,280,WIDTH,HEIGHT);
+		playRandom.setBounds(180 + WIDTH*2 + 30,170+HEIGHT,WIDTH,HEIGHT+10);
 		main.add(playRandom);
 		
 		playBottleCap.addMouseListener(new startListener());
