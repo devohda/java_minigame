@@ -1,16 +1,10 @@
-<<<<<<< HEAD:Game (6)/src/singer/Singer.java
 package singer;
-=======
+
 import tool.ResizeImg;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
->>>>>>> ohda/design:Game (6)/src/Singer.java
-
-import java.awt.*;
 import javax.swing.*;
-import tool.ResizeImg;
+import java.awt.*;
+
 
 public class Singer extends JPanel {
 	private String singerList;

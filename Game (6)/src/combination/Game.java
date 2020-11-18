@@ -1,6 +1,7 @@
 package combination;
 
 
+import frame_panel.GameSelector;
 import tool.ResizeImg;
 
 import javax.swing.*;
@@ -8,6 +9,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -19,6 +24,7 @@ public class Game extends JPanel {
     private JLabel lblScore;
     private JLabel lblState;
     private int _score;
+    private GameBoardPanel gameBoard;
 
     private renewScore update; //actionListener class
 
@@ -26,69 +32,83 @@ public class Game extends JPanel {
     private JLabel back;
     private Image resizeimg;
 
-    Font fnt = new Font("배달의민족 주아",Font.BOLD,20);
+    Font fnt = new Font("font/Typo_HelloPOP_OutlineM.ttf",Font.BOLD,20);
 
-    public Game() {
+    public Game(GameSelector g) {
     	
-    	setBounds(125, 130, 800, 540);
-        setLayout(null);
+    	setBounds(125, 130, 800, 540); // Game 패널 크기 지정
+        setLayout(null); // 레이아웃 매니저 끄기
+
+
+        /**********************************/
+        /**********좌측 부분 만들기***********/
+        /**********************************/
+
+        boardInfo = new Card[9]; // 게임판 정보
+        setGameBoardInfo(); //게임 초기화
+        gameBoard = new GameBoardPanel(boardInfo); // 게임판 만들기
+        gameBoard.setBounds(50,120,350,350); // 게임판 위치, 크기 지정
+        gameBoard.setBackground(new Color(236, 191, 246)); // 게임판 배경색 지정
+        add(gameBoard); // 게임판 추가
+
+
+
+        /**********************************/
+        /**********우측 부분 만들기***********/
+        /**********************************/
+
+        _score = 0; // 점수 초기화
+        lblScore = new JLabel("점수 : 0"); // lblScore 초기화
+        lblState = new JLabel("게임을 시작합니다."); // lblState 초기화
+        lblState.setHorizontalAlignment(JLabel.CENTER); //글자 가운데 정렬
+        lblState.setForeground(Color.black);
 
         btnHap = new JButton("합");
         btnGeul = new JButton("결");
         userinput = new JTextField(5);
-        lblScore = new JLabel("점수 : 0");
-        lblState = new JLabel("게임을 시작합니다.");
 
+        //add action listener
         update = new renewScore();
         btnHap.addActionListener(update);
         btnGeul.addActionListener(update);
+        userinput.addActionListener(update);
+        
+        /************* 폰트 지정 **************/
+        try {
+            fnt = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("font/고양체.ttf"))).deriveFont(Font.BOLD,26);
+            lblState.setFont(fnt);
+            fnt = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("font/고양체.ttf"))).deriveFont(Font.PLAIN,22);
+            lblScore.setFont(fnt);
 
-        lblScore.setFont(fnt);
-        lblState.setFont(fnt);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.err.println(" not loaded.  Using serif font.");
+            fnt = new Font("serif", Font.PLAIN, 24);
+        }
 
-        lblScore.setBounds(10,0,200,50);
-        lblState.setBounds(10,50,500,50);
-        btnGeul.setBounds(50, 635, 70,30);
-        btnHap.setBounds(180,635,70,30);
-        userinput.setBounds(260,635, 160, 30);
+        // 위치 지정
+        lblState.setBounds(170,35,500,50);
+        lblScore.setBounds(490,120,200,50);
+        btnGeul.setBounds(480, 380, 70,30);
+        btnHap.setBounds(480,420,70,30);
+        userinput.setBounds(560,420, 160, 30);
 
-        add(lblScore);
         add(lblState);
+        add(lblScore);
         add(btnHap);
         add(btnGeul);
         add(userinput);
 
-
-
-
-        _score = 0;
-        lblScore.setText("점수 : " + _score);
-        lblState.setText("게임을 시작합니다.");
-
-        hapset = new ArrayList<>();
-        deleteHapset = new ArrayList<>();
-
-        boardInfo = new Card[9];
-        setGameBoardInfo(); //게임 초기화
-        GameBoardPanel gameBoard = new GameBoardPanel(boardInfo);
-        gameBoard.setBounds(50,100,350,350);
-        gameBoard.setBackground(new Color(236, 191, 246));
-        add(gameBoard);
-
-        calculateHap();
-
-
-
-
-
-
+        // 게임판 배경 설정
         ResizeImg img = new ResizeImg("images/bg_combination.jpg",800,540);
         resizeimg = img.getResizeImage();
         background = new ImageIcon(resizeimg);
-        // 배경 이미지 마지막에 배치 -> 가장 안쪽에 배치하기 위해
         back = new JLabel("", background, SwingConstants.CENTER);
         back.setBounds(0, 0, 800, 540);
-        add(back);
+        add(back); // 배경 이미지 마지막에 배치 -> 가장 안쪽에 배치하기 위해
+
+        calculateHap();
+
     }//constructor
 
     private Card[] boardInfo;
@@ -100,16 +120,21 @@ public class Game extends JPanel {
         _score = 0;
         lblScore.setText("점수 : " + _score);
         lblState.setText("게임을 시작합니다.");
+        lblState.setForeground(Color.black);
 
         hapset = new ArrayList<>();
         deleteHapset = new ArrayList<>();
 
         boardInfo = new Card[9];
+
+
         setGameBoardInfo(); //게임 초기화
-        GameBoardPanel gameBoard = new GameBoardPanel(boardInfo);
-        gameBoard.setBounds(0,100,500,500);
-        gameBoard.setBackground(new Color(236, 191, 246));
+        gameBoard = new GameBoardPanel(boardInfo);
+        gameBoard.setBounds(50,120,500,500);
         add(gameBoard);
+        repaint();
+
+
 
         calculateHap();
     }
@@ -119,8 +144,8 @@ public class Game extends JPanel {
     /*******************************/
 
 
+    // 타일 중복 없이 게임판 만들기
     public void setGameBoardInfo(){
-
         for (int i = 0; i < 9; i++) {
             Card tmp = new Card();
 
@@ -183,9 +208,11 @@ public class Game extends JPanel {
         return(stateBg(a,b,c)&&stateColor(a,b,c)&&stateShape(a,b,c));
     }
 
-
+    // 합 계산하는 함수
     public void calculateHap(){
-        hapset = new ArrayList<>();
+        hapset = new ArrayList<>(); //합 집합 저장 변수
+        deleteHapset = new ArrayList<>(); //이미 입력된 합 집합 저장 변수
+        
         int hapNum = 0;
 
         //카드 세 개의 조합이 합인 것 찾기
@@ -204,7 +231,6 @@ public class Game extends JPanel {
             }
         }
 
-
         //합 개수 맞나 검증용
         if(hapNum == 0){
             System.out.println("NONE");
@@ -214,9 +240,9 @@ public class Game extends JPanel {
                 System.out.println(obj);
             }
         }
+    } //calculateHap()
 
-    }
-
+    
     /*******************************/
     /********* 점수 계산하기 *********/
     /*******************************/
@@ -229,17 +255,19 @@ public class Game extends JPanel {
             if (e.getSource() == btnGeul){ //결 누른 경우
                 if(hapset.isEmpty()){
                     _score += 3;
-                    lblState.setText("'결' 입니다. 짝짝짝!!! 3점 획득하셨습니다!");
-                    lblState.setForeground(Color.BLUE);
+                    lblState.setText("'결' 입니다. 게임을 종료합니다!");
+                    lblState.setForeground(new Color(31, 76, 224));
+                    lblScore.setText("점수 : " + _score);
+
                     restartGame();
                 }
                 else{
                     _score -= 1;
                     lblState.setText("아직 합이 될 수 있는 경우가 남았습니다.");
-                    lblState.setForeground(Color.RED);
+                    lblState.setForeground(new Color(184, 22, 22));
                 }
             }
-            else if(e.getSource() == btnHap){ //합을 누른 경우
+            else if(e.getSource() == btnHap || e.getSource() == userinput){ //합을 누른 경우, enter 친 경우
 
                 int answer = 0;
 
@@ -269,7 +297,7 @@ public class Game extends JPanel {
                             for (HashSet i : deleteHapset){
                                 if(userAnswerSet.equals(i)){
                                     lblState.setText("카드 " + userAnswerSet + " 은(는) 이미 나왔습니다.");
-                                    lblState.setForeground(Color.RED);
+                                    lblState.setForeground(new Color(184, 22, 22));
                                     _score--;
                                     isBefore = true;
                                     break;
@@ -283,7 +311,7 @@ public class Game extends JPanel {
                                         deleteHapset.add(i);
                                         hapset.remove(i);
                                         lblState.setText("카드 " + userAnswerSet + " 은(는) '합' 입니다.");
-                                        lblState.setForeground(Color.BLUE);
+                                        lblState.setForeground(new Color(31, 76, 224));
                                         _score++;
                                         isAnswer = true;
                                         break;
@@ -292,7 +320,7 @@ public class Game extends JPanel {
                                 if(!isAnswer){
                                     _score--;
                                     lblState.setText("카드 " + userAnswerSet + " 은(는) 합이 아닙니다.");
-                                    lblState.setForeground(Color.RED);
+                                    lblState.setForeground(new Color(184, 22, 22));
                                 }
                             }
 
@@ -300,6 +328,7 @@ public class Game extends JPanel {
                     }
 
                 }catch (NumberFormatException ex){
+                    lblState.setForeground(Color.black);
                     lblState.setText("숫자 3개를 입력하세요");
                 }finally {
                     userinput.setText("");
@@ -311,12 +340,12 @@ public class Game extends JPanel {
 
     public void restartGame(){
         String[] option = {"다시 시작","종료"};
-        int select = JOptionPane.showOptionDialog(this,"게임이 종료되었습니다","게임종료",0,JOptionPane.INFORMATION_MESSAGE,null,option,option[0]);
+        int select = JOptionPane.showOptionDialog(this,"게임이 종료되었습니다","게임종료",JOptionPane.DEFAULT_OPTION ,JOptionPane.INFORMATION_MESSAGE,null,option,option[0]);
 
         if(select == 0){ //다시 시작
             init();
         }else{ //종료 누르면 시스템 종료
-            System.out.println("종료");
+            setVisible(false);
             //종료하기 위한 상위 패널에 함수 만들어야 할 거 같음
         }
     }

@@ -9,7 +9,6 @@ import java.util.Random;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
-
 import frame_panel.GameSelector;
 
 public class BottleCapPanel extends JPanel {
