@@ -3,6 +3,7 @@ package frame_panel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileInputStream;
 import javax.swing.*;
@@ -11,7 +12,6 @@ import jun_chang.BottleCapPanel;
 import jun_chang.CatchCatchPanel;
 import jun_chang.Sadari;
 import combination.Game;
-
 import hunmingame.HunMinGame;
 import singer.Singer;
 
@@ -28,6 +28,8 @@ public class GameSelector  {
 	private Game game;
 	
 	private MainPanel main;
+	
+	private startListener start;
 	
 	// 벌칙화면
 	Sadari sadari;
@@ -122,12 +124,15 @@ public class GameSelector  {
 		playRandom.setBounds(180 + WIDTH*2 + 30,170+HEIGHT,WIDTH,HEIGHT+10);
 		main.add(playRandom);
 		
-		playBottleCap.addMouseListener(new startListener());
-		playCatch.addMouseListener(new startListener());
+		//add action listener
+        start = new startListener();
+        playBottleCap.addMouseListener(start);
+        playCatch.addMouseListener(start);
 		playSingContest.addMouseListener(new startListener());
-		playHunmin.addMouseListener(new startListener());
-		playCombination.addMouseListener(new startListener());
-		playRandom.addMouseListener(new startListener());
+		playHunmin.addMouseListener(start);
+		playCombination.addMouseListener(start);
+		playRandom.addMouseListener(start);
+		
 		
 	}
 	
@@ -187,10 +192,10 @@ public class GameSelector  {
 		main.repaint();
 	}
 	
-	// hover 효과 줄 경우 마우스 리스너로 변경하기
-	private class startListener extends MouseAdapter {
+	private class startListener implements MouseListener {
+
+		@Override
 		public void mouseClicked(MouseEvent e) {
-			
 			Object obj = e.getSource();
 			
 			if (obj == playBottleCap) {
@@ -202,6 +207,7 @@ public class GameSelector  {
 			} else if (obj == playHunmin) {
 				createHunmin();
 			} else if (obj == playCombination) {
+				System.out.println("hello");
 				createCombination();
 			} else if (obj == playRandom) {
 				
@@ -213,9 +219,89 @@ public class GameSelector  {
 				else if (_randNum == 4) createHunmin();
 				else if (_randNum == 5) createCombination();
 			} 
+		}
 
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			Object obj = e.getSource();
+			
+			if (obj == playBottleCap) {
+				rImg = new ResizeImg("images/hoverBottle.png", WIDTH-20,HEIGHT-20);
+				resizeImgBottle = rImg.getResizeImage();
+				imgBottle = new ImageIcon(resizeImgBottle);	
+				playBottleCap.setIcon(imgBottle);
+				
+			} else if (obj == playCatch) {
+				rImg = new ResizeImg("images/hoverCatch.png", WIDTH-20,HEIGHT-20);
+				resizeImgCatch = rImg.getResizeImage();
+				imgCatch = new ImageIcon(resizeImgCatch);	
+				playCatch.setIcon(imgCatch);
+			} else if (obj == playSingContest) {
+				rImg = new ResizeImg("images/hoverSinger.png", WIDTH-20,HEIGHT-20);
+				resizeImgSing = rImg.getResizeImage();
+				imgSingContest = new ImageIcon(resizeImgSing);	
+				playSingContest.setIcon(imgSingContest);
+			} else if (obj == playHunmin) {
+				rImg = new ResizeImg("images/hoverHunmin.png", WIDTH-20,HEIGHT-20);
+				resizeImgHunmin = rImg.getResizeImage();
+				imgHunmin = new ImageIcon(resizeImgHunmin);	
+				playHunmin.setIcon(imgHunmin);
+			} else if (obj == playCombination) {
+				rImg = new ResizeImg("images/hoverCombination.png", WIDTH-20,HEIGHT-20);
+				resizeImgCom = rImg.getResizeImage();
+				imgCombination = new ImageIcon(resizeImgCom);	
+				playCombination.setIcon(imgCombination);
+			} else if (obj == playRandom) {
+				rImg = new ResizeImg("images/hoverRandom.png", WIDTH-20,HEIGHT-20);
+				resizeImgRandom = rImg.getResizeImage();
+				imgRandom = new ImageIcon(resizeImgRandom);	
+				playRandom.setIcon(imgRandom);
+			}
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			Object obj = e.getSource();
+			
+			if (obj == playBottleCap) {
+				rImg = new ResizeImg("images/1.png", WIDTH-20,HEIGHT-20);
+				resizeImgBottle = rImg.getResizeImage();
+				imgBottle = new ImageIcon(resizeImgBottle);	
+				playBottleCap.setIcon(imgBottle);				
+			} else if (obj == playCatch) {
+				rImg = new ResizeImg("images/catchPlay.png", WIDTH-20,HEIGHT-20);
+				resizeImgCatch = rImg.getResizeImage();
+				imgCatch = new ImageIcon(resizeImgCatch);	
+				playCatch.setIcon(imgCatch);
+			} else if (obj == playSingContest) {
+				rImg = new ResizeImg("images/singcontestPlay.png", WIDTH-20,HEIGHT-20);
+				resizeImgSing = rImg.getResizeImage();
+				imgSingContest = new ImageIcon(resizeImgSing);	
+				playSingContest.setIcon(imgSingContest);
+			} else if (obj == playHunmin) {
+				rImg = new ResizeImg("images/hunminPlay.png", WIDTH-20,HEIGHT-20);
+				resizeImgHunmin = rImg.getResizeImage();
+				imgHunmin = new ImageIcon(resizeImgHunmin);	
+				playHunmin.setIcon(imgHunmin);
+			} else if (obj == playCombination) {
+				rImg = new ResizeImg("images/combiPlay.png", WIDTH-20,HEIGHT-20);
+				resizeImgCom = rImg.getResizeImage();
+				imgCombination = new ImageIcon(resizeImgCom);	
+				playCombination.setIcon(imgCombination);
+			} else if (obj == playRandom) {
+				rImg = new ResizeImg("images/randomPlay.png", WIDTH-20,HEIGHT-20);
+				resizeImgRandom = rImg.getResizeImage();
+				imgRandom = new ImageIcon(resizeImgRandom);	
+				playRandom.setIcon(imgRandom);
+			}
 		}
 		
+		@Override
+		public void mousePressed(MouseEvent e) {}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {}
+
 	}
 }
 
