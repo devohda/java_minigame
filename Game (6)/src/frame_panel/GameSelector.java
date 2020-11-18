@@ -207,7 +207,6 @@ public class GameSelector  {
 				createHunmin();
 			} else if (obj == playCombination) {
 				createCombination();
-<<<<<<< HEAD
 			} else if (obj == playRandom) {
 				
 				int _randNum = (int)(Math.random()*5) + 1;
@@ -217,11 +216,7 @@ public class GameSelector  {
 				else if (_randNum == 3) createSingContest();
 				else if (_randNum == 4) createHunmin();
 				else if (_randNum == 5) createCombination();
-			} 
-
-=======
 			}
->>>>>>> ohda/design3
 		}
 	}// startListener()
 
