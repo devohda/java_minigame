@@ -33,7 +33,7 @@ public class GameSelector  {
 	Sadari sadari;
 	
 	// 이미지 크기 조절
-	private Image resizeImg;
+	private Image resizeImgBottle, resizeImgCatch, resizeImgSing, resizeImgHunmin, resizeImgCom, resizeImgRandom;
 	private ResizeImg rImg;
 
 	private Font fnt;
@@ -58,8 +58,8 @@ public class GameSelector  {
 		// 게임 라벨 add
 		// bottlecap
 		rImg = new ResizeImg("images/1.png", WIDTH-20,HEIGHT-20);
-		resizeImg = rImg.getResizeImage();
-		imgBottle = new ImageIcon(resizeImg);		
+		resizeImgBottle = rImg.getResizeImage();
+		imgBottle = new ImageIcon(resizeImgBottle);		
 		playBottleCap = new JLabel("BottleCap", imgBottle, SwingConstants.CENTER);
 		playBottleCap.setHorizontalTextPosition(SwingConstants.CENTER);
 		playBottleCap.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -69,8 +69,8 @@ public class GameSelector  {
 		
 		// catch!catch!
 		rImg = new ResizeImg("images/catchPlay.png", WIDTH-20,HEIGHT-20);
-		resizeImg = rImg.getResizeImage();
-		imgCatch = new ImageIcon(resizeImg);
+		resizeImgCatch = rImg.getResizeImage();
+		imgCatch = new ImageIcon(resizeImgCatch);
 		playCatch = new JLabel("Catch!Catch!", imgCatch, SwingConstants.CENTER);
 		playCatch.setHorizontalTextPosition(SwingConstants.CENTER);
 		playCatch.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -80,8 +80,8 @@ public class GameSelector  {
 		
 		// singcontest
 		rImg = new ResizeImg("images/singcontestPlay.png", WIDTH-20,HEIGHT-20);
-		resizeImg = rImg.getResizeImage();
-		imgSingContest = new ImageIcon(resizeImg);
+		resizeImgSing = rImg.getResizeImage();
+		imgSingContest = new ImageIcon(resizeImgSing);
 		playSingContest = new JLabel("Sing Contest", imgSingContest, SwingConstants.CENTER);
 		playSingContest.setHorizontalTextPosition(SwingConstants.CENTER);
 		playSingContest.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -91,8 +91,8 @@ public class GameSelector  {
 		
 		// hunmin
 		rImg = new ResizeImg("images/hunminPlay.png", WIDTH-20,HEIGHT-20);
-		resizeImg = rImg.getResizeImage();
-		imgHunmin = new ImageIcon(resizeImg);
+		resizeImgHunmin = rImg.getResizeImage();
+		imgHunmin = new ImageIcon(resizeImgHunmin);
 		playHunmin = new JLabel("Hunmin Jungum", imgHunmin, SwingConstants.CENTER);
 		playHunmin.setHorizontalTextPosition(SwingConstants.CENTER);
 		playHunmin.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -101,20 +101,20 @@ public class GameSelector  {
 		main.add(playHunmin);
 		
 		// 결!합!
-		rImg = new ResizeImg("images/randomPlay.png", WIDTH-20,HEIGHT-20);
-		resizeImg = rImg.getResizeImage();
-		imgRandom = new ImageIcon(resizeImg);
-		playRandom = new JLabel("Random", imgRandom, SwingConstants.CENTER);
-		playRandom.setHorizontalTextPosition(SwingConstants.CENTER);
-		playRandom.setVerticalTextPosition(SwingConstants.BOTTOM);
-		playRandom.setFont(fnt);
-		playRandom.setBounds(180+WIDTH+15,170+HEIGHT,WIDTH,HEIGHT+10);
-		main.add(playRandom);
+		rImg = new ResizeImg("images/combiPlay.png", WIDTH-20,HEIGHT-20);
+		resizeImgCom = rImg.getResizeImage();
+		imgCombination = new ImageIcon(resizeImgCom);
+		playCombination = new JLabel("Combination", imgCombination, SwingConstants.CENTER);
+		playCombination.setHorizontalTextPosition(SwingConstants.CENTER);
+		playCombination.setVerticalTextPosition(SwingConstants.BOTTOM);
+		playCombination.setFont(fnt);
+		playCombination.setBounds(180+WIDTH+15,170+HEIGHT,WIDTH,HEIGHT+10);
+		main.add(playCombination);
 		
 		// random
 		rImg = new ResizeImg("images/randomPlay.png", WIDTH-20,HEIGHT-20);
-		resizeImg = rImg.getResizeImage();
-		imgRandom = new ImageIcon(resizeImg);
+		resizeImgRandom = rImg.getResizeImage();
+		imgRandom = new ImageIcon(resizeImgRandom);
 		playRandom = new JLabel("Random", imgRandom, SwingConstants.CENTER);
 		playRandom.setHorizontalTextPosition(SwingConstants.CENTER);
 		playRandom.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -126,7 +126,7 @@ public class GameSelector  {
 		playCatch.addMouseListener(new startListener());
 		playSingContest.addMouseListener(new startListener());
 		playHunmin.addMouseListener(new startListener());
-		playRandom.addMouseListener(new startListener());
+		playCombination.addMouseListener(new startListener());
 		playRandom.addMouseListener(new startListener());
 		
 	}
@@ -201,9 +201,18 @@ public class GameSelector  {
 				createSingContest();
 			} else if (obj == playHunmin) {
 				createHunmin();
-			} else if (obj == playRandom) {
+			} else if (obj == playCombination) {
 				createCombination();
-			}
+			} else if (obj == playRandom) {
+				
+				int _randNum = (int)(Math.random()*5) + 1;
+				
+				if (_randNum == 1) createBottleCap();
+				else if (_randNum == 2) createCatchCatch();
+				else if (_randNum == 3) createSingContest();
+				else if (_randNum == 4) createHunmin();
+				else if (_randNum == 5) createCombination();
+			} 
 
 		}
 		

@@ -25,7 +25,7 @@ public class Singer extends JPanel {
 		index = (int)(Math.random()*3);
 		System.out.println(pickSinger[index]);
 		
-		ResizeImg bImg = new ResizeImg("images/sing_backimg2.jpeg",950,550);
+		ResizeImg bImg = new ResizeImg("images/sing_backimg3.png",950,550);
 		resizeimg = bImg.getResizeImage();
 		icon = new ImageIcon(resizeimg);
 		boardimg = new JLabel("",icon,SwingConstants.CENTER);
