@@ -42,10 +42,14 @@ public class GameSelector  {
 	private final int WIDTH = 230;
 	private final int HEIGHT = 230;
 
+	private int people;
+
 	public GameSelector(MainPanel m) {
 		
+		
 		main = m;
-
+		people = m.getPeopleNum(); //사용자 수 가져오기
+		
 		try {
 			fnt = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("font/SSShinb7.ttf"))).deriveFont(Font.PLAIN,20);
 		} catch (Exception ex) {
@@ -189,7 +193,7 @@ public class GameSelector  {
 	
 	// hover 효과 줄 경우 마우스 리스너로 변경하기
 	private class startListener extends MouseAdapter {
-		public void mouseClicked(MouseEvent e) {
+		public void mousePressed(MouseEvent e) {
 			
 			Object obj = e.getSource();
 			
@@ -203,6 +207,7 @@ public class GameSelector  {
 				createHunmin();
 			} else if (obj == playCombination) {
 				createCombination();
+<<<<<<< HEAD
 			} else if (obj == playRandom) {
 				
 				int _randNum = (int)(Math.random()*5) + 1;
@@ -214,8 +219,15 @@ public class GameSelector  {
 				else if (_randNum == 5) createCombination();
 			} 
 
+=======
+			}
+>>>>>>> ohda/design3
 		}
-		
+	}// startListener()
+
+	public int getPeopleNum(){
+		return people;
 	}
+
 }
 
