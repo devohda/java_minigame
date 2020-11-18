@@ -61,7 +61,7 @@ public class CatchCatchPanel extends JPanel {
 		eborder=new EtchedBorder(EtchedBorder.RAISED);;
 			
 		//Panel
-		setBounds(125, 70, 600, 460);
+		setBounds(225, 170, 600, 460);
 		setPreferredSize(new Dimension(600, 460));
 		setLayout(null);
 		

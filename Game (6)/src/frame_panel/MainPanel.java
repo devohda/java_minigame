@@ -70,14 +70,14 @@ public class MainPanel extends JPanel {
 
 		// 객체 만들기
 		gameStart = new RoundedButton("게임시작"); // 게임 선택 패널 객체를 불러오는 버튼
-		gameStart.setBounds(420,310,210,70); // 버튼 위치 및 사이즈 조절
+		gameStart.setBounds(420,330,210,70); // 버튼 위치 및 사이즈 조절
 		gameStart.setBackground(new Color(237, 248, 141));
 		gameStart.addActionListener(buttonL); // 버튼에 리스너 삽입
 		gameStart.setFont(fnt2);
 		gameStart.setVisible(false);
 
 		lblstatePeople = new JLabel("인원수를 입력하세요");
-		lblstatePeople.setBounds(420,330,210,40);
+		lblstatePeople.setBounds(420,350,210,40);
 		lblstatePeople.setHorizontalAlignment(JLabel.CENTER);
 		lblstatePeople.setVerticalAlignment(JLabel.CENTER);
 		lblstatePeople.setFont(fnt2);
@@ -95,12 +95,12 @@ public class MainPanel extends JPanel {
 
 
 		InsertPeople = new RoundedButton("입력"); // 인원수 입력 버튼 생성
-		InsertPeople.setBounds(530, 400, 100, 40); // 위치 및 사이즈 조절
+		InsertPeople.setBounds(530, 420, 100, 40); // 위치 및 사이즈 조절
 		InsertPeople.setFont(fnt2);
 		InsertPeople.addActionListener(buttonL); // 버튼에 리스너 삽입
 
 		PeopleField = new JTextField(); // 인원수 입력 필드 생성
-		PeopleField.setBounds(420, 400, 100, 40); // 위치 및 사이즈 조절
+		PeopleField.setBounds(420, 420, 100, 40); // 위치 및 사이즈 조절
 		PeopleField.setFont(fnt2);
 		PeopleField.addActionListener(buttonL);
 
