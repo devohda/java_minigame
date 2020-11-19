@@ -9,6 +9,8 @@ import tool.Sound;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import tool.*;
 
@@ -41,13 +43,23 @@ public class MainPanel extends JPanel {
     private ResizeImg rImg;
 
 
-    private ImageIcon icon;
+    private ImageIcon icon, home, cheers, question;
     private ImageIcon musicOn;
     private ImageIcon musicOff;
+    
 
     private Customfont makeFnt;
     private Font fnt;
     private Font fnt2;
+    
+    // hover 이미지
+    private ImageIcon hoverMusicOn;
+    private ImageIcon hoverMusicOff;
+    private ImageIcon hoverHome;
+    private ImageIcon hoverCheers;
+    private ImageIcon hoverHelp;
+    
+    private hoverListener hover;
 
     public MainPanel() {
 
@@ -58,6 +70,7 @@ public class MainPanel extends JPanel {
         fnt = makeFnt.getCustomFont("font/SSShinb7.ttf", Font.PLAIN, 20); //폰트 지정
         fnt2 = makeFnt.getCustomFont("font/지마켓.ttf", Font.PLAIN, 20);
         buttonL = new ButtonListener(); // 리스너 객체 생성
+        hover = new hoverListener();
 
 
         // 배경 이미지 삽입
@@ -89,6 +102,7 @@ public class MainPanel extends JPanel {
         bgm.setHorizontalTextPosition(JButton.CENTER);
         bgm.setVerticalTextPosition(JButton.BOTTOM);
         bgm.addActionListener(buttonL); // 버튼에 리스너 삽입
+        bgm.addMouseListener(hover);
 
         intro = new JButton("INTRO"); // 게임 인트로 버튼 생성
         intro.setBounds(900, 30, 80, 40); // 버튼 위치 및 사이즈 조절
@@ -109,6 +123,8 @@ public class MainPanel extends JPanel {
         goToHome = new JButton("처음으로");
         goToHome.setBounds(30, 650, 100, 100);
         goToHome.addActionListener(buttonL);
+        goToHome.addMouseListener(hover);
+        
         goToHome.setVerticalTextPosition(JButton.TOP);
         goToHome.setHorizontalTextPosition(JButton.CENTER);
         goToHome.setFont(fnt);
@@ -116,6 +132,8 @@ public class MainPanel extends JPanel {
         penalty = new JButton("벌칙으로");
         penalty.setBounds(140, 650, 100, 100);
         penalty.addActionListener(buttonL);
+        penalty.addMouseListener(hover);
+        
         penalty.setVerticalTextPosition(JButton.TOP);
         penalty.setHorizontalTextPosition(JButton.CENTER);
         penalty.setFont(fnt);
@@ -123,6 +141,8 @@ public class MainPanel extends JPanel {
         help = new JButton("도움말");
         help.setBounds(900, 650, 100, 100);
         help.addActionListener(buttonL);
+        help.addMouseListener(hover);
+        
         help.setVerticalTextPosition(JButton.TOP);
         help.setHorizontalTextPosition(JButton.CENTER);
         help.setFont(fnt);
@@ -157,27 +177,48 @@ public class MainPanel extends JPanel {
 
         rImg = new ResizeImg("images/home.png", 50, 50);
         resizeImg = rImg.getResizeImage();
-        icon = new ImageIcon(resizeImg);
-        goToHome.setIcon(icon);
+        home = new ImageIcon(resizeImg);
+        goToHome.setIcon(home);
         goToHome.setBorderPainted(false);
         goToHome.setContentAreaFilled(false);
         goToHome.setFocusPainted(false);
 
         rImg = new ResizeImg("images/cheers.png", 50, 50);
         resizeImg = rImg.getResizeImage();
-        icon = new ImageIcon(resizeImg);
-        penalty.setIcon(icon);
+        cheers = new ImageIcon(resizeImg);
+        penalty.setIcon(cheers);
         penalty.setBorderPainted(false);
         penalty.setContentAreaFilled(false);
         penalty.setFocusPainted(false);
 
         rImg = new ResizeImg("images/question-mark.png", 50, 50);
         resizeImg = rImg.getResizeImage();
-        icon = new ImageIcon(resizeImg);
-        help.setIcon(icon);
+        question = new ImageIcon(resizeImg);
+        help.setIcon(question);
         help.setBorderPainted(false);
         help.setContentAreaFilled(false);
         help.setFocusPainted(false);
+        
+        // hover 이미지
+        rImg = new ResizeImg("images/hoverMute.png", 30, 30);
+        resizeImg = rImg.getResizeImage();
+        hoverMusicOff = new ImageIcon(resizeImg);
+        
+        rImg = new ResizeImg("images/hoverVolume.png", 30, 30);
+        resizeImg = rImg.getResizeImage();
+        hoverMusicOn = new ImageIcon(resizeImg);
+        
+        rImg = new ResizeImg("images/hoverHome.png", 50, 50);
+        resizeImg = rImg.getResizeImage();
+        hoverHome = new ImageIcon(resizeImg);
+
+        rImg = new ResizeImg("images/hoverCheers.png", 50, 50);
+        resizeImg = rImg.getResizeImage();
+        hoverCheers = new ImageIcon(resizeImg);
+
+        rImg = new ResizeImg("images/hoverQuestion-mark.png", 50, 50);
+        resizeImg = rImg.getResizeImage();
+        hoverHelp = new ImageIcon(resizeImg);
     }
 
     public void addMainPanel() {
@@ -253,6 +294,81 @@ public class MainPanel extends JPanel {
                 createSadari();
             }
         }
+    }
+    
+    private class hoverListener implements MouseListener {
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			Object obj = e.getSource();
+			if (obj == goToHome) {
+				goToHome.setIcon(hoverHome);
+				goToHome.setBorderPainted(false);
+		        goToHome.setContentAreaFilled(false);
+		        goToHome.setFocusPainted(false);
+			} else if (obj == penalty) {
+				penalty.setIcon(hoverCheers);
+				penalty.setBorderPainted(false);
+				penalty.setContentAreaFilled(false);
+				penalty.setFocusPainted(false);
+			} else if (obj == help) {
+				help.setIcon(hoverHelp);
+				help.setBorderPainted(false);
+				help.setContentAreaFilled(false);
+				help.setFocusPainted(false);
+			} else if (obj == bgm) {
+				if (bgmOn == 0) {
+                    bgm.setIcon(hoverMusicOff);
+                } else {
+                    bgm.setIcon(hoverMusicOn);
+                }
+				bgm.setBorderPainted(false);
+				bgm.setContentAreaFilled(false);
+				bgm.setFocusPainted(false);
+			}
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			Object obj = e.getSource();
+			if (obj == goToHome) {
+				goToHome.setIcon(home);
+				goToHome.setBorderPainted(false);
+		        goToHome.setContentAreaFilled(false);
+		        goToHome.setFocusPainted(false);
+			} else if (obj == penalty) {
+				penalty.setIcon(cheers);
+				penalty.setBorderPainted(false);
+				penalty.setContentAreaFilled(false);
+				penalty.setFocusPainted(false);
+			} else if (obj == help) {
+				help.setIcon(question);
+				help.setBorderPainted(false);
+				help.setContentAreaFilled(false);
+				help.setFocusPainted(false);
+			} else if (obj == bgm) {
+				if (bgmOn == 0) {
+                    bgm.setIcon(musicOff);
+                } else {
+                    bgm.setIcon(musicOn);
+                }
+				bgm.setBorderPainted(false);
+				bgm.setContentAreaFilled(false);
+				bgm.setFocusPainted(false);
+			}
+			
+		}
+		
+		@Override
+		public void mouseClicked(MouseEvent e) {}
+		
+		@Override
+		public void mousePressed(MouseEvent e) {}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {}
+    	
     }
 
     public void createSadari() {
