@@ -3,6 +3,7 @@ package jun_chang;
 import frame_panel.GameSelector;
 import frame_panel.MainPanel;
 import frame_panel.Player;
+import tool.Customfont;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,9 +24,7 @@ public class CatchCatchPanel extends JPanel {
 	
 	private ImageIcon background, jewel, candy, bomb, skul, boxImg;
 	private EtchedBorder eborder;
-	private JPanel scorePanel;
 	private JTextArea scoreArea;
-	private JScrollPane scrollPane;
 	private JButton resetButton;
 	private JLabel back;
 	private Point pt[];
@@ -40,6 +39,13 @@ public class CatchCatchPanel extends JPanel {
 	private GameSelector gameselector;
 	// 게임 종료시 게임선택화면으로 갈때 사용되는 객체
 	private MainPanel main;
+	
+	// 점수나열하는 JTextArea 디자인
+	private Image jtaImg;
+	
+	//폰트 지정
+    private Customfont makeFnt;
+    Font fnt;
 	
 	public CatchCatchPanel(GameSelector gs, MainPanel m) {
 		
@@ -75,9 +81,9 @@ public class CatchCatchPanel extends JPanel {
 		background = new ImageIcon("images/bg_catch.png"); //배경이미지
 		
 		//ImageIcon
-		jewel = new ImageIcon("images/Jewel.jpg");
+		jewel = new ImageIcon("images/Jewel.png");
 		candy = new ImageIcon("images/Candy.png");
-		bomb = new ImageIcon("images/Bomb.jpg");
+		bomb = new ImageIcon("images/Bomb.png");
 		skul = new ImageIcon("images/Skul.png");
 				
 		boxImg = new ImageIcon("images/Box.png"); //test
@@ -101,21 +107,27 @@ public class CatchCatchPanel extends JPanel {
 		setLayout(null);
 		
 		//Panel+Label
-		scorePanel = new JPanel(); // 점수판 패널
-		scorePanel.setBounds(330, 50, 220, 250);
-		scorePanel.setBorder(eborder);
-		scorePanel.setLayout(null);
-		add(scorePanel);
-		
-		// JLabel scoreArea = new JLabel(scoreString); // 점수판 글씨  윤창
-		// scoreArea.setBounds(0, 0, 250, 300);
-		// scorePanel.add(scoreArea);
-		scoreArea = new JTextArea(scoreString); // 점수판 글씨 임준
-		scrollPane = new JScrollPane(scoreArea);
-		scoreArea.setEditable(false); // 점수판 편집 불가
-		scrollPane.setBounds(0, 0, 220, 250);
-		scorePanel.add(scrollPane);
+		jtaImg = new ImageIcon("images/jtaCatch_bg.png").getImage();	
 
+		scoreArea = new JTextArea(scoreString) {
+			{ setOpaque(false) ;}
+			public void paintComponent(Graphics g) {
+				g.drawImage(jtaImg, 0, 0, this);
+				super.paintComponent(g);
+			}
+		}; // 점수판 글씨 임준
+		scoreArea.setEditable(false); // 점수판 편집 불가
+		scoreArea.setForeground(Color.white);
+		scoreArea.setBounds(330, 50, 220, 250);
+		add(scoreArea);
+		
+		 /************* 폰트 지정 **************/
+        makeFnt = new Customfont();
+        fnt = makeFnt.getCustomFont("font/고양체.ttf", Font.BOLD, 15);
+        scoreArea.setFont(fnt);
+        boxStringLabel1.setFont(fnt);
+        boxStringLabel2.setFont(fnt);
+        
 		//초반 점수판 초기화 
 		scoreString += "현재 순서는 " + turn + "번 플레이어입니다.\r\n\n" + " ";
 				

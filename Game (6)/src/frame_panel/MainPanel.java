@@ -43,7 +43,7 @@ public class MainPanel extends JPanel {
     private ResizeImg rImg;
 
 
-    private ImageIcon icon, home, cheers, question;
+    private ImageIcon icon, home, cheers, question, introImg;
     private ImageIcon musicOn;
     private ImageIcon musicOff;
     
@@ -97,7 +97,7 @@ public class MainPanel extends JPanel {
 
         music = new Sound("sounds/1.wav"); // 배경음악에 넣을 음악 지정하며 객체 생성
         bgm = new JButton("BGM"); // 배경음악 버튼
-        bgm.setBounds(800, 30, 80, 50); // 버튼 위치 및 사이즈 조절
+        bgm.setBounds(800, 20, 80, 80); // 버튼 위치 및 사이즈 조절
         bgm.setFont(fnt);
         bgm.setHorizontalTextPosition(JButton.CENTER);
         bgm.setVerticalTextPosition(JButton.BOTTOM);
@@ -105,7 +105,10 @@ public class MainPanel extends JPanel {
         bgm.addMouseListener(hover);
 
         intro = new JButton("INTRO"); // 게임 인트로 버튼 생성
-        intro.setBounds(900, 30, 80, 40); // 버튼 위치 및 사이즈 조절
+        intro.setBounds(900, 20, 100, 80); // 버튼 위치 및 사이즈 조절
+        intro.setFont(fnt);
+        intro.setHorizontalTextPosition(JButton.CENTER);
+        intro.setVerticalTextPosition(JButton.BOTTOM);
 
 
         insertPeople = new RoundedButton("입력"); // 인원수 입력 버튼 생성
@@ -166,6 +169,15 @@ public class MainPanel extends JPanel {
         bgm.setBorderPainted(false);
         bgm.setContentAreaFilled(false);
         bgm.setFocusPainted(false);
+        
+        rImg = new ResizeImg("images/introImg2.png", 50, 30);
+        resizeImg = rImg.getResizeImage();
+        introImg = new ImageIcon(resizeImg);
+        
+        intro.setIcon(introImg);
+        intro.setBorderPainted(false);
+        intro.setContentAreaFilled(false);
+        intro.setFocusPainted(false);
 
         rImg = new ResizeImg("images/btn_gamestart2.png", 210, 80);
         resizeImg = rImg.getResizeImage();
