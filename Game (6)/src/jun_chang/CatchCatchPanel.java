@@ -5,12 +5,14 @@ import frame_panel.MainPanel;
 import frame_panel.Player;
 import tool.Customfont;
 import tool.ResizeImg;
+import tool.RoundedButton;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Random;
 
 import javax.swing.*;
@@ -23,10 +25,10 @@ public class CatchCatchPanel extends JPanel {
 	private String boxString1="", boxString2="";
 	private JLabel boxStringLabel1, boxStringLabel2;
 	
-	private ImageIcon background, backBox, jewel, candy, bomb, skul, boxImg;
+	private ImageIcon background, jewel, candy, bomb, skul, boxImg, hoverBoxImg;
 	private EtchedBorder eborder;
 	private JTextArea scoreArea;
-	private JButton resetButton;
+	private RoundedButton resetButton;
 	private JLabel back, backGameBox;
 	private Point pt[];
 	private Box box[] = new Box[25]; 
@@ -47,6 +49,7 @@ public class CatchCatchPanel extends JPanel {
 	//폰트 지정
     private Customfont makeFnt;
     Font fnt;
+    Font fnt2;
     
     // 이미지 크기 조절
     private Image resizeImg;
@@ -86,13 +89,9 @@ public class CatchCatchPanel extends JPanel {
 		}
 		
 		//Image
-		rImg = new ResizeImg("images/new_catch_bg.png", 600, 460);
+		rImg = new ResizeImg("images/bg_catch.png", 600, 460);
         resizeImg = rImg.getResizeImage();
         background = new ImageIcon(resizeImg);  //배경이미지
-        
-        rImg = new ResizeImg("images/bg_catch.png", 250, 250);
-        resizeImg = rImg.getResizeImage();
-        backBox = new ImageIcon(resizeImg); //박스5x5 배경이미지
 		
 		//ImageIcon
 		jewel = new ImageIcon("images/Jewel.png");
@@ -100,7 +99,8 @@ public class CatchCatchPanel extends JPanel {
 		bomb = new ImageIcon("images/Bomb.png");
 		skul = new ImageIcon("images/Skul.png");
 				
-		boxImg = new ImageIcon("images/Box.png"); //test
+		boxImg = new ImageIcon("images/Box.png"); 
+		hoverBoxImg = new ImageIcon("images/hoverBox.png");
 		
 		//Class 초기화 및 생성
 		for(int i=0; i<25; i++) {
@@ -138,6 +138,7 @@ public class CatchCatchPanel extends JPanel {
 		 /************* 폰트 지정 **************/
         makeFnt = new Customfont();
         fnt = makeFnt.getCustomFont("font/고양체.ttf", Font.BOLD, 15);
+        fnt2 = makeFnt.getCustomFont("font/지마켓.ttf", Font.PLAIN, 20);
         scoreArea.setFont(fnt);
         boxStringLabel1.setFont(fnt);
         boxStringLabel2.setFont(fnt);
@@ -168,21 +169,11 @@ public class CatchCatchPanel extends JPanel {
 			init(); // 박스 랜덤배치 
 		}
 		
-		//Button , 게임판 리셋
-		/*
-		rImg = new ResizeImg("images/resetImg.png", 50, 50);
-        resizeImg = rImg.getResizeImage();
-        reset = new ImageIcon(resizeImg);
-		*/
-		resetButton = new JButton("Reset");
+		resetButton = new RoundedButton("Reset");
 		resetButton.setBounds(50, 360, 70, 50);
-		//resetButton.setIcon(reset);
+		resetButton.setBackground(new Color(255, 96, 208));
+		resetButton.setFont(fnt2);
 		add(resetButton);
-		
-		// 배경 이미지 마지막에 배치 -> 가장 안쪽에 배치하기 위해
-		backGameBox = new JLabel("", backBox, SwingConstants.CENTER);
-		backGameBox.setBounds(50, 50, 250, 250);
-		add(backGameBox);
 		
 		back = new JLabel("", background, SwingConstants.CENTER);
 		back.setBounds(0, 0, 600, 460);
@@ -330,7 +321,7 @@ public class CatchCatchPanel extends JPanel {
 	}
 	
 	// MouseAdapter 사용 시 필요한 메서드만 구현해서 사용이 가능함
-	private class RewardListener extends MouseAdapter {
+	private class RewardListener implements MouseListener {
 		public void mouseClicked(MouseEvent e) {
 			
 			Object obj = e.getSource();
@@ -380,6 +371,24 @@ public class CatchCatchPanel extends JPanel {
 			}
 			
 		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			Object obj = e.getSource();
+			if (((Box) obj).getCount() == 0) ((Box) obj).setIcon(hoverBoxImg);
+		}
+		
+		@Override
+		public void mouseExited(MouseEvent e) {
+			Object obj = e.getSource();
+			if (((Box) obj).getCount() == 0) ((Box) obj).setIcon(boxImg);
+		}
+		
+		@Override
+		public void mouseReleased(MouseEvent e) {}
+		@Override
+		public void mousePressed(MouseEvent e) {}
+
 		
 	}
 	

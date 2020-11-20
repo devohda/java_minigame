@@ -63,7 +63,7 @@ public class GameSelector  {
 
 		// 게임 라벨 add
 		// bottlecap
-		rImg = new ResizeImg("images/1.png", WIDTH-20,HEIGHT-20);
+		rImg = new ResizeImg("images/bottlePlay.png", WIDTH-20,HEIGHT-20);
 		resizeImgBottle = rImg.getResizeImage();
 		imgBottle = new ImageIcon(resizeImgBottle);		
 		playBottleCap = new JLabel("BottleCap", imgBottle, SwingConstants.CENTER);
@@ -274,7 +274,7 @@ public class GameSelector  {
 			Object obj = e.getSource();
 			
 			if (obj == playBottleCap) {
-				rImg = new ResizeImg("images/1.png", WIDTH-20,HEIGHT-20);
+				rImg = new ResizeImg("images/bottlePlay.png", WIDTH-20,HEIGHT-20);
 				resizeImgBottle = rImg.getResizeImage();
 				imgBottle = new ImageIcon(resizeImgBottle);	
 				playBottleCap.setIcon(imgBottle);				

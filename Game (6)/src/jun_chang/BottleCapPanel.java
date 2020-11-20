@@ -11,14 +11,16 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import frame_panel.GameSelector;
 import frame_panel.MainPanel;
+import tool.Customfont;
 import tool.ResizeImg;
+import tool.RoundedButton;
 
 public class BottleCapPanel extends JPanel {
 
-	private JPanel wrongAns, blank;
+	private JPanel blank;
 	private JLabel blankLab, sojuLabel, capLabel, num, wrongBoard, wrong, wrongAnswerLabel, back;
 	private JTextField enterNum;
-	private JButton enterNumButton, init;
+	private RoundedButton enterNumButton, init;
 	private String WrongAnswers= "";
 	private int filled = 0;
 	private int iWrongAns[] = new int[50];
@@ -40,6 +42,11 @@ public class BottleCapPanel extends JPanel {
 	// 이미지 크기 조절
     private Image resizeImg;
     private ResizeImg rImg;
+    
+    //폰트 지정
+    private Customfont makeFnt;
+    Font fnt;
+    Font fnt2;
 	
 	public BottleCapPanel(GameSelector gs, MainPanel m) {
 		
@@ -57,18 +64,9 @@ public class BottleCapPanel extends JPanel {
 		
 		// 플레이어의 순번을 나타내는 라벨
 		personNumLabel = new JLabel("1 번째 사람의 차례입니다.");
-		personNumLabel.setBounds(250, 150, 140, 10);
+		personNumLabel.setBounds(230, 140, 150, 20);
 		personNumLabel.setForeground(Color.black);
 		add(personNumLabel);
-		
-		// 오답을 나타내는 패널
-		/*
-		wrongAns = new JPanel();
-		wrongAns.setBounds(250, 10, 140, 130);
-		wrongAns.setBackground(Color.white);
-		TitledBorder oneTb = new TitledBorder(new LineBorder(Color.black), "오답");
-		wrongAns.setBorder(oneTb);
-		add(wrongAns);*/
 		
 		//번호가리기 판넬 + 라벨
 		blank = new JPanel();
@@ -101,39 +99,52 @@ public class BottleCapPanel extends JPanel {
 		num.setBounds(191, 190, 20, 20);
 		add(num);
 		
-		// 오답 표시 라벨 3개		
+		// 오답 표시 라벨 3개		--------------------
 		wrong = new JLabel("<오답>");
-		wrong.setBounds(250, 10, 50, 30);
+		wrong.setBounds(240, 30, 50, 30);
+		wrong.setForeground(Color.white);
 		add(wrong);
 		
 		wrongAnswerLabel = new JLabel(); // 정답 오답 표시
-		wrongAnswerLabel.setBounds(250, 45, 136, 126);
-		//wrongAns.add(wrongAnswerLabel);
+		wrongAnswerLabel.setBounds(240, 10, 146, 126);
+		wrongAnswerLabel.setForeground(Color.white);
 		add(wrongAnswerLabel);
 		
-		//Image
-		rImg = new ResizeImg("images/wrongBoard.png", 140, 130);
+		rImg = new ResizeImg("images/wrongBoard.png", 170, 130);
 		resizeImg = rImg.getResizeImage();
 		wrongBoardImg = new ImageIcon(resizeImg);  //배경이미지
 		
 		wrongBoard = new JLabel("", wrongBoardImg, SwingConstants.CENTER); //오답 칠판이미지
-		wrongBoard.setBounds(250, 10, 140, 130);
+		wrongBoard.setBounds(220, 10, 170, 130);
 		add(wrongBoard);
-		// 오답..
+		
+		 /************* 폰트 지정 **************/
+        makeFnt = new Customfont();
+        fnt = makeFnt.getCustomFont("font/고양체.ttf", Font.BOLD, 15);
+        fnt2 = makeFnt.getCustomFont("font/지마켓.ttf", Font.PLAIN, 20);
+        wrong.setFont(fnt);
+        wrongAnswerLabel.setFont(fnt);
+        personNumLabel.setFont(fnt);
+        
+		// 오답..              --------------------
 		
 		//TextField + Button
 		enterNum = new JTextField(); // 정답입력필드
 		enterNum.setBounds(165, 360, 30, 32);
 		add(enterNum);
 		
-		enterNumButton = new JButton("OK"); // 정답입력 확인 버튼
+		enterNumButton = new RoundedButton("OK"); // 정답입력 확인 버튼
 		enterNumButton.setFont(new Font("Arial", Font.BOLD, 10));
 		enterNumButton.setBounds(195, 360, 49, 30);
+		enterNumButton.setBackground(new Color(255, 160, 16));
+		enterNumButton.setFont(fnt2);
 		add(enterNumButton);
 		
-		init = new JButton("Reset"); // 게임 초기화 버튼
+		init = new RoundedButton("Reset"); // 게임 초기화 버튼
 		init.setFont(new Font("Arial", Font.BOLD, 10));
 		init.setBounds(10, 360, 65, 30);
+		init.setBackground(new Color(255, 160, 16));
+		init.setFont(fnt2);
 		add(init);
 		
 		//배경이미지 우선순위 꼴찌
