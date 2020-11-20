@@ -11,11 +11,12 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import frame_panel.GameSelector;
 import frame_panel.MainPanel;
+import tool.ResizeImg;
 
 public class BottleCapPanel extends JPanel {
 
 	private JPanel wrongAns, blank;
-	private JLabel blankLab, sojuLabel, capLabel, num, wrongAnswerLabel, back;
+	private JLabel blankLab, sojuLabel, capLabel, num, wrongBoard, wrong, wrongAnswerLabel, back;
 	private JTextField enterNum;
 	private JButton enterNumButton, init;
 	private String WrongAnswers= "";
@@ -33,6 +34,12 @@ public class BottleCapPanel extends JPanel {
 	private int personNum; 
 	private JLabel personNumLabel;
 	private int n=1; // 차례
+	
+	// 아이코
+	private ImageIcon wrongBoardImg;
+	// 이미지 크기 조절
+    private Image resizeImg;
+    private ResizeImg rImg;
 	
 	public BottleCapPanel(GameSelector gs, MainPanel m) {
 		
@@ -55,12 +62,13 @@ public class BottleCapPanel extends JPanel {
 		add(personNumLabel);
 		
 		// 오답을 나타내는 패널
+		/*
 		wrongAns = new JPanel();
 		wrongAns.setBounds(250, 10, 140, 130);
 		wrongAns.setBackground(Color.white);
 		TitledBorder oneTb = new TitledBorder(new LineBorder(Color.black), "오답");
 		wrongAns.setBorder(oneTb);
-		add(wrongAns);
+		add(wrongAns);*/
 		
 		//번호가리기 판넬 + 라벨
 		blank = new JPanel();
@@ -93,10 +101,25 @@ public class BottleCapPanel extends JPanel {
 		num.setBounds(191, 190, 20, 20);
 		add(num);
 		
-		wrongAnswerLabel = new JLabel(); // 정답 오답 표시
-		wrongAnswerLabel.setBounds(2, 2, 136, 126);
-		wrongAns.add(wrongAnswerLabel);
+		// 오답 표시 라벨 3개		
+		wrong = new JLabel("<오답>");
+		wrong.setBounds(250, 10, 50, 30);
+		add(wrong);
 		
+		wrongAnswerLabel = new JLabel(); // 정답 오답 표시
+		wrongAnswerLabel.setBounds(250, 45, 136, 126);
+		//wrongAns.add(wrongAnswerLabel);
+		add(wrongAnswerLabel);
+		
+		//Image
+		rImg = new ResizeImg("images/wrongBoard.png", 140, 130);
+		resizeImg = rImg.getResizeImage();
+		wrongBoardImg = new ImageIcon(resizeImg);  //배경이미지
+		
+		wrongBoard = new JLabel("", wrongBoardImg, SwingConstants.CENTER); //오답 칠판이미지
+		wrongBoard.setBounds(250, 10, 140, 130);
+		add(wrongBoard);
+		// 오답..
 		
 		//TextField + Button
 		enterNum = new JTextField(); // 정답입력필드

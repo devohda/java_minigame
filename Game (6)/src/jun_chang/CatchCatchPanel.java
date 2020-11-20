@@ -4,6 +4,7 @@ import frame_panel.GameSelector;
 import frame_panel.MainPanel;
 import frame_panel.Player;
 import tool.Customfont;
+import tool.ResizeImg;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,11 +23,11 @@ public class CatchCatchPanel extends JPanel {
 	private String boxString1="", boxString2="";
 	private JLabel boxStringLabel1, boxStringLabel2;
 	
-	private ImageIcon background, jewel, candy, bomb, skul, boxImg;
+	private ImageIcon background, backBox, jewel, candy, bomb, skul, boxImg;
 	private EtchedBorder eborder;
 	private JTextArea scoreArea;
 	private JButton resetButton;
-	private JLabel back;
+	private JLabel back, backGameBox;
 	private Point pt[];
 	private Box box[] = new Box[25]; 
 	private String scoreString = " ";
@@ -46,6 +47,13 @@ public class CatchCatchPanel extends JPanel {
 	//폰트 지정
     private Customfont makeFnt;
     Font fnt;
+    
+    // 이미지 크기 조절
+    private Image resizeImg;
+    private ResizeImg rImg;
+    
+    // 리셋 이미지
+    private ImageIcon reset;
 	
 	public CatchCatchPanel(GameSelector gs, MainPanel m) {
 		
@@ -78,7 +86,13 @@ public class CatchCatchPanel extends JPanel {
 		}
 		
 		//Image
-		background = new ImageIcon("images/bg_catch.png"); //배경이미지
+		rImg = new ResizeImg("images/new_catch_bg.png", 600, 460);
+        resizeImg = rImg.getResizeImage();
+        background = new ImageIcon(resizeImg);  //배경이미지
+        
+        rImg = new ResizeImg("images/bg_catch.png", 250, 250);
+        resizeImg = rImg.getResizeImage();
+        backBox = new ImageIcon(resizeImg); //박스5x5 배경이미지
 		
 		//ImageIcon
 		jewel = new ImageIcon("images/Jewel.png");
@@ -115,7 +129,7 @@ public class CatchCatchPanel extends JPanel {
 				g.drawImage(jtaImg, 0, 0, this);
 				super.paintComponent(g);
 			}
-		}; // 점수판 글씨 임준
+		}; 
 		scoreArea.setEditable(false); // 점수판 편집 불가
 		scoreArea.setForeground(Color.white);
 		scoreArea.setBounds(330, 50, 220, 250);
@@ -127,6 +141,7 @@ public class CatchCatchPanel extends JPanel {
         scoreArea.setFont(fnt);
         boxStringLabel1.setFont(fnt);
         boxStringLabel2.setFont(fnt);
+        boxStringLabel2.setForeground(Color.red);
         
 		//초반 점수판 초기화 
 		scoreString += "현재 순서는 " + turn + "번 플레이어입니다.\r\n\n" + " ";
@@ -154,11 +169,21 @@ public class CatchCatchPanel extends JPanel {
 		}
 		
 		//Button , 게임판 리셋
+		/*
+		rImg = new ResizeImg("images/resetImg.png", 50, 50);
+        resizeImg = rImg.getResizeImage();
+        reset = new ImageIcon(resizeImg);
+		*/
 		resetButton = new JButton("Reset");
 		resetButton.setBounds(50, 360, 70, 50);
+		//resetButton.setIcon(reset);
 		add(resetButton);
 		
 		// 배경 이미지 마지막에 배치 -> 가장 안쪽에 배치하기 위해
+		backGameBox = new JLabel("", backBox, SwingConstants.CENTER);
+		backGameBox.setBounds(50, 50, 250, 250);
+		add(backGameBox);
+		
 		back = new JLabel("", background, SwingConstants.CENTER);
 		back.setBounds(0, 0, 600, 460);
 		add(back);		

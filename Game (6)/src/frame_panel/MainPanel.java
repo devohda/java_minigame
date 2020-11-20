@@ -58,6 +58,7 @@ public class MainPanel extends JPanel {
     private ImageIcon hoverHome;
     private ImageIcon hoverCheers;
     private ImageIcon hoverHelp;
+    private ImageIcon hoverIntro;
     
     private hoverListener hover;
 
@@ -97,7 +98,7 @@ public class MainPanel extends JPanel {
 
         music = new Sound("sounds/1.wav"); // 배경음악에 넣을 음악 지정하며 객체 생성
         bgm = new JButton("BGM"); // 배경음악 버튼
-        bgm.setBounds(800, 20, 80, 80); // 버튼 위치 및 사이즈 조절
+        bgm.setBounds(810, 20, 80, 80); // 버튼 위치 및 사이즈 조절
         bgm.setFont(fnt);
         bgm.setHorizontalTextPosition(JButton.CENTER);
         bgm.setVerticalTextPosition(JButton.BOTTOM);
@@ -109,6 +110,7 @@ public class MainPanel extends JPanel {
         intro.setFont(fnt);
         intro.setHorizontalTextPosition(JButton.CENTER);
         intro.setVerticalTextPosition(JButton.BOTTOM);
+        intro.addMouseListener(hover);
 
 
         insertPeople = new RoundedButton("입력"); // 인원수 입력 버튼 생성
@@ -170,7 +172,7 @@ public class MainPanel extends JPanel {
         bgm.setContentAreaFilled(false);
         bgm.setFocusPainted(false);
         
-        rImg = new ResizeImg("images/introImg2.png", 50, 30);
+        rImg = new ResizeImg("images/introImg.png", 50, 30);
         resizeImg = rImg.getResizeImage();
         introImg = new ImageIcon(resizeImg);
         
@@ -219,6 +221,10 @@ public class MainPanel extends JPanel {
         rImg = new ResizeImg("images/hoverVolume.png", 30, 30);
         resizeImg = rImg.getResizeImage();
         hoverMusicOn = new ImageIcon(resizeImg);
+        
+        rImg = new ResizeImg("images/hoverIntro.png", 50, 30);
+        resizeImg = rImg.getResizeImage();
+        hoverIntro = new ImageIcon(resizeImg);
         
         rImg = new ResizeImg("images/hoverHome.png", 50, 50);
         resizeImg = rImg.getResizeImage();
@@ -328,6 +334,11 @@ public class MainPanel extends JPanel {
 				help.setBorderPainted(false);
 				help.setContentAreaFilled(false);
 				help.setFocusPainted(false);
+			} else if (obj == intro) {
+				intro.setIcon(hoverIntro);
+				intro.setBorderPainted(false);
+				intro.setContentAreaFilled(false);
+				intro.setFocusPainted(false);
 			} else if (obj == bgm) {
 				if (bgmOn == 0) {
                     bgm.setIcon(hoverMusicOff);
@@ -359,6 +370,11 @@ public class MainPanel extends JPanel {
 				help.setBorderPainted(false);
 				help.setContentAreaFilled(false);
 				help.setFocusPainted(false);
+			} else if (obj == intro) {
+				intro.setIcon(introImg);
+				intro.setBorderPainted(false);
+				intro.setContentAreaFilled(false);
+				intro.setFocusPainted(false);
 			} else if (obj == bgm) {
 				if (bgmOn == 0) {
                     bgm.setIcon(musicOff);
