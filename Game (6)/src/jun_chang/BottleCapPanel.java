@@ -130,26 +130,27 @@ public class BottleCapPanel extends JPanel {
 		
 		//TextField + Button
 		enterNum = new JTextField(); // 정답입력필드
-		enterNum.setBounds(165, 360, 30, 32);
+		enterNum.setBounds(180, 350, 30, 32);
 		add(enterNum);
 		
 		enterNumButton = new RoundedButton("OK"); // 정답입력 확인 버튼
 		enterNumButton.setFont(new Font("Arial", Font.BOLD, 10));
-		enterNumButton.setBounds(195, 360, 49, 30);
-		enterNumButton.setBackground(new Color(255, 160, 16));
+		enterNumButton.setBounds(210, 350, 49, 30);
+		enterNumButton.setBackground(new Color(200, 160, 16));
 		enterNumButton.setFont(fnt2);
 		add(enterNumButton);
 		
 		init = new RoundedButton("Reset"); // 게임 초기화 버튼
 		init.setFont(new Font("Arial", Font.BOLD, 10));
-		init.setBounds(10, 360, 65, 30);
-		init.setBackground(new Color(255, 160, 16));
+		init.setBounds(40, 350, 65, 30);
+		init.setBackground(new Color(200, 160, 16));
 		init.setFont(fnt2);
 		add(init);
 		
 		//배경이미지 우선순위 꼴찌
 		back = new JLabel("", background, SwingConstants.CENTER);
 		back.setBounds(0, 0, 400, 400);
+		back.setBorder(new TitledBorder(new LineBorder(new Color(200, 160, 16),5), ""));
 		add(back);
 		
 		init.addActionListener(new InitListener());
@@ -175,6 +176,11 @@ public class BottleCapPanel extends JPanel {
 		num.setText("" + iRanNum);
 		wrongAnswerLabel.setText(WrongAnswers);
 		blank.setVisible(true);
+		
+		// 추가된 부분 초기화 시 순번 1로
+		
+		n = 1; 
+		personNumLabel.setText("" + n + " 번째 사람의 차례입니다.");
 	}
 	
 	
@@ -260,19 +266,19 @@ public class BottleCapPanel extends JPanel {
 	private class AnwserListener implements ActionListener { // 숫자 입력 및, 오답 판 갱신
 		public void actionPerformed(ActionEvent e) {
 			try {
-				WrongAnswers = result(iRanNum, Integer.valueOf(enterNum.getText()), WrongAnswers, blank);
-				if(WrongAnswers!=" 정답! ") {
-					wrongAnswerLabel.setText(WrongAnswers);
-					audio1();
-				}
-				enterNum.setText("");
-				
 				// 순번 갱신
 				if(n != personNum) {
 					n++;
 					personNumLabel.setText("" + n + " 번째 사람의 차례입니다.");
 				}
 				if( n==personNum) n=0;
+				
+				WrongAnswers = result(iRanNum, Integer.valueOf(enterNum.getText()), WrongAnswers, blank);
+				if(WrongAnswers!=" 정답! ") {
+					wrongAnswerLabel.setText(WrongAnswers);
+					audio1();
+				}
+				enterNum.setText("");
 
 				
 			} catch (Exception e1) {

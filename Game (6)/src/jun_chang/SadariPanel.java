@@ -5,9 +5,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.Hashtable;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class SadariPanel extends JPanel implements SadariInterFace{
@@ -23,12 +25,41 @@ public class SadariPanel extends JPanel implements SadariInterFace{
 	
 	final int countBridge = 6;//6+4개 실제로  add Bridge Count 
 	
+	private JTextField txtPenalty1,txtPenalty2,txtPenalty3,txtPenalty4,txtPenalty5;
+	private JLabel txt;
+	
 	int currentDrawX, currentDrawY;
 	Hashtable<Integer,PointX> bridge; // 다리 정보 갖는 해쉬 
+	private Color color = new Color(201,200,208);
 	
 	public SadariPanel(Sadari _mainFrame)
 	{
 		mainFrame = _mainFrame;
+
+		txtPenalty1 = new JTextField();
+		txtPenalty1.setBounds(55, 360, 45, 25);
+		txtPenalty1.setHorizontalAlignment(SwingConstants.CENTER);
+		mainFrame.add(txtPenalty1);
+		txtPenalty2 = new JTextField();
+		txtPenalty2.setBounds(125, 360, 45, 25);
+		txtPenalty2.setHorizontalAlignment(SwingConstants.CENTER);
+		mainFrame.add(txtPenalty2);
+		txtPenalty3 = new JTextField();
+		txtPenalty3.setBounds(195, 360, 45, 25);
+		txtPenalty3.setHorizontalAlignment(SwingConstants.CENTER);
+		mainFrame.add(txtPenalty3);
+		txtPenalty4 = new JTextField();
+		txtPenalty4.setBounds(265, 360, 45, 25);
+		txtPenalty4.setHorizontalAlignment(SwingConstants.CENTER);
+		mainFrame.add(txtPenalty4);
+		txtPenalty5 = new JTextField();
+		txtPenalty5.setBounds(335, 360, 45, 25);
+		txtPenalty5.setHorizontalAlignment(SwingConstants.CENTER);
+		mainFrame.add(txtPenalty5);
+		
+		txt = new JLabel("↑ 벌칙 입력!");
+		txt.setBounds(55, 390, 80, 20);
+		mainFrame.add(txt);		
 	}
 	
 	public void setStartPosition(int start)
@@ -36,30 +67,25 @@ public class SadariPanel extends JPanel implements SadariInterFace{
 		currentDrawX = paddingX + (start-1)*termX;
 		currentDrawY = paddingY;		
 	}
+	
 	public void paintComponent(Graphics g)
-	{
+	{		
+
 		Font fnt = new Font("Verdana", Font.BOLD, 15);
-		Font fnt2 = new Font("Verdana", Font.ITALIC, 12);
+		
+		
 		if( mainFrame.mainStatus == STATUS.INIT)
-		{			
+		{		
 			super.paintComponent(g);  /* 화면삭제 */
 			/* 기본 사다리폼 */
-			String pass = "PaSS!";
 			g.setColor(Color.BLACK);
-			String[] loto = {"Drink!","Drink!","Drink!","Drink!","Drink!"};
-			loto[(int)(Math.random() * loto.length)] = pass;
 			for(int i=0;i<5;i++)
 			{				
 				g.setColor(Color.BLACK);
 				g.setFont(fnt);
-				g.drawString(""+(i+1), paddingX+i*termX, paddingY-3);
+				g.drawString(""+(i+1), paddingX-3+i*termX, paddingY-3);
 				g.drawLine(paddingX+2+i*termX, paddingY+lineLength, paddingX+2+i*termX, paddingY+lineLength+lengthY);
-				
-				g.setFont(fnt2);
-				if( loto[i] == pass ) {g.setFont(fnt);
-					}
-				
-				g.drawString(loto[i], paddingX-5+i*termX, paddingY+10+lineLength+lengthY+lineLength*2);
+
 			}
 			
 			bridge = new Hashtable<Integer,PointX>();
@@ -96,15 +122,28 @@ public class SadariPanel extends JPanel implements SadariInterFace{
 				/* 랜덤생성한 브릿지를 저장 */
 				bridge.put(paddingY+rdY+lineLength, new PointX(paddingX+rdX*termX,paddingX+rdX*termX+termX));
 			}
-
-		}
-		else if( mainFrame.mainStatus == STATUS.DRAWING)
+			
+			Graphics2D g2 = (Graphics2D)g;
+			g2.setColor(color);
+		    g2.setStroke(new BasicStroke(10,BasicStroke.CAP_ROUND,0));
+			
+		    g2.drawLine(0, 0, 0, 400);
+			g2.drawLine(0, 0, 450, 0);
+			g2.drawLine(450, 0, 450, 400);
+			
+		}else if( mainFrame.mainStatus == STATUS.DRAWING)
 		{
 			Graphics2D g2 = (Graphics2D)g;
-			g2.setColor(Color.red);
-		
+			g2.setColor(color);
+		    g2.setStroke(new BasicStroke(10,BasicStroke.CAP_ROUND,0));
+			
+			g2.drawLine(0, 0, 0, 400);
+			g2.drawLine(0, 0, 450, 0);
+			g2.drawLine(450, 0, 450, 400);
+			
 			while(currentDrawY < paddingY+lengthY+lineLength)
 			{
+				g2.setColor(color.red);
 				/* 생성된 브릿지 검색 */
 				PointX value = bridge.get(currentDrawY);
 				if( value != null )
@@ -126,11 +165,10 @@ public class SadariPanel extends JPanel implements SadariInterFace{
 			    g2.setStroke(new BasicStroke(3,BasicStroke.CAP_ROUND,0));
 				g2.drawLine(currentDrawX+3, currentDrawY, currentDrawX+3, ++currentDrawY);
 				repaint();
-			}
-			
-			
+			}	
 			mainFrame.mainStatus = STATUS.END;
 		}
+
 		
 	}
 }

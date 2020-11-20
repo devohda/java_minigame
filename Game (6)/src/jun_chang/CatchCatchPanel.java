@@ -113,7 +113,7 @@ public class CatchCatchPanel extends JPanel {
 		}
 		
 		//border
-		eborder=new EtchedBorder(EtchedBorder.RAISED);;
+		eborder=new EtchedBorder(EtchedBorder.RAISED);
 			
 		//Panel
 		setBounds(225, 170, 600, 460);
@@ -171,12 +171,13 @@ public class CatchCatchPanel extends JPanel {
 		
 		resetButton = new RoundedButton("Reset");
 		resetButton.setBounds(50, 360, 70, 50);
-		resetButton.setBackground(new Color(255, 96, 208));
+		resetButton.setBackground(new Color(111, 110, 40));
 		resetButton.setFont(fnt2);
 		add(resetButton);
 		
 		back = new JLabel("", background, SwingConstants.CENTER);
 		back.setBounds(0, 0, 600, 460);
+		back.setBorder(new TitledBorder(new LineBorder(new Color(111, 110, 40),5), "")); // 게임 테두리 설정
 		add(back);		
 		
 		resetButton.addActionListener(new ResetListener());
