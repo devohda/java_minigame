@@ -221,6 +221,8 @@ public class CatchCatchPanel extends JPanel {
 	}
 	
 	public void initGame(JTextArea scoreArea) {
+		turn = 1;
+		
 		ImageIcon boximg = new ImageIcon("images/Box.png");
 		for(int i=0; i<personNum; i++) { // 지금현재 4명임의 수  // >> 수정 personNum 만큼의 숫자로
 			player[i].setScore(0); // 플레이어 수 점수 전부 0점초기화
@@ -238,8 +240,6 @@ public class CatchCatchPanel extends JPanel {
 			scoreString += player[i].getOrder() + "등 [Player " + (i+1) + "]" + " : " + player[i].getScore() + "\r\n ";
 		}	
 		scoreArea.setText(scoreString);
-		
-		turn = 1;
 		
 		//수정
 		turnNum = 25%personNum; //상자 남은 갯수 이때까지 진행
@@ -357,6 +357,7 @@ public class CatchCatchPanel extends JPanel {
 			if(nBox == turnNum) {
 				boxStringLabel2.setText("게임이 종료되었습니다.");
 				gameEnd();
+				turn--;
 			}
 			sortPlayer(scoreArea);
 			
