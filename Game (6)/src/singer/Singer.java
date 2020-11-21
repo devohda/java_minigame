@@ -1,7 +1,8 @@
 package singer;
 
+import tool.LabelThread;
 import tool.ResizeImg;
-
+import tool.LabelThread;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,6 +18,7 @@ public class Singer extends JPanel {
 	private JLabel board;
 	private int index;
 	private JButton reset;
+	private LabelThread time;
 	
 	public Singer() {
 		
@@ -47,8 +49,15 @@ public class Singer extends JPanel {
 		reset.setBounds(800, 50, 100, 50);
 		reset.addActionListener(new ButtonListener());
 		
+		time = new LabelThread("10",10);
+		time.setBounds(400, 150, 500, 200);
+		time.setFont(new Font("MDº÷√º", Font.BOLD, 150));
+		board.add(time);
+		time.start();
+		
 		this.add(reset);
 		this.add(word);
+		this.add(time);
 		this.add(board);
 		this.add(boardimg);	
 	}

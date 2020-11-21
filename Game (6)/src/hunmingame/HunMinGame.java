@@ -3,25 +3,29 @@ package hunmingame;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import tool.ResizeImg;
 
-import javax.swing.Timer;
+import tool.LabelThread;
+import tool.ResizeImg;
 
 public class HunMinGame extends JPanel {
 	private String hangul, added;
-	private int index, t=10;
+	private int index, i = 10;
 	private char one, two;
-	private JLabel word, board, time;
+	private JLabel word, board;
 	private ImageIcon icon;
 	private Image resizeimg;
 	private JButton reset;
 	private Listener Listen;
-	
+	private LabelThread time;
+	private JPanel here;
 	public HunMinGame() {
-				
+						
 		setBounds(50, 100, 950, 550);
 		this.setLayout(null);
-			
+		
+		here = this;
+		Listen = new Listener();
+		
 		ResizeImg bImg = new ResizeImg("images/board.jpg",950,550);
 		resizeimg = bImg.getResizeImage();
 		icon = new ImageIcon(resizeimg);
@@ -46,35 +50,34 @@ public class HunMinGame extends JPanel {
 		word.setVerticalAlignment(SwingConstants.CENTER);
 		board.add(word);
 		
-		time = new JLabel("10");
+		time = new LabelThread("10",10);
 		time.setBounds(400, 50, 500, 200);
 		time.setFont(new Font("MD솔체", Font.BOLD, 150));
 		board.add(time);
-		
+		time.start();
+	
 		reset = new JButton("다시뽑기");
 		reset.setBounds(800, 50, 100, 50);
 		reset.addActionListener(Listen);
 		board.add(reset);
-		
-		while(t>=0) { try{ System.out.println("반복문"+t); t--;Thread.sleep(1000); } catch(InterruptedException e){ } }
 		
 		this.add(board);
 	}
 	public class Listener implements ActionListener{
 
 		@Override
-		public void actionPerformed(ActionEvent ev) {
-			Object obj = ev.getSource();
+		public void actionPerformed(ActionEvent e) {
+			Object obj = e.getSource();
 			if(obj == reset) {
 				one = hangul.charAt(index);
 				index = (int)(Math.random()*14);
 				two = hangul.charAt(index);
 				added = String.valueOf(one);
 				added = added + two;
-				word.setText(added);
-				t = 10;
+				word.setText(added);				
 			}
 		}
 	}
+
 
 }
