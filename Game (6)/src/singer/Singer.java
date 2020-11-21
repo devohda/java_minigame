@@ -57,7 +57,7 @@ public class Singer extends JPanel {
 		
 		this.add(reset);
 		this.add(word);
-		this.add(time);
+		this.add(time); 
 		this.add(board);
 		this.add(boardimg);	
 	}
@@ -74,6 +74,20 @@ public class Singer extends JPanel {
 			if(obj == reset) {
 				index = (int)(Math.random()*3);
 				word.setText(pickSinger[index]);
+				
+				if(time.getThread().isAlive()){
+					time.getThread().interrupt(); 
+				}
+				remove(time);
+				time = new LabelThread("10",10);
+				time.setBounds(400, 150, 500, 200);
+				time.setFont(new Font("MDº÷√º", Font.BOLD, 150));
+				add(time);
+				add(board);
+				add(boardimg);	
+				revalidate();
+				repaint();
+				time.start();
 			}
 			
 		}

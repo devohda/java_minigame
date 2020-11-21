@@ -37,6 +37,8 @@ public class LabelThread extends JLabel implements Runnable {
 	public int getStart() { return _start;}
 	public int getFinish() { return _finish;}
 	public int getDelayTime() { return _delayTime;}
+	public Thread getThread() { return myThread;}
+	
 	public void setStart(int start) {_start = start;}
 	public void setFinish(int finish) { _finish = finish;}
 	public void setNumber(int start, int finish) { _start = start; _finish = finish;}
@@ -55,6 +57,7 @@ public class LabelThread extends JLabel implements Runnable {
 				myThread.sleep(_delayTime);
 			}catch(Exception e) {}
 		}
+		
 		setForeground(Color.red);
 		for( int i=0; i<10;i++) {
 			setVisible(false);

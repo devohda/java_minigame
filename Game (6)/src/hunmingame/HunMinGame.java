@@ -74,7 +74,19 @@ public class HunMinGame extends JPanel {
 				two = hangul.charAt(index);
 				added = String.valueOf(one);
 				added = added + two;
-				word.setText(added);				
+				word.setText(added);
+				
+				if(time.getThread().isAlive()){
+					time.getThread().interrupt(); 
+				}
+				board.remove(time);
+				time = new LabelThread("10",10);
+				time.setBounds(400, 50, 500, 200);
+				time.setFont(new Font("MDº÷√º", Font.BOLD, 150));
+				board.add(time);
+				revalidate();
+				repaint();
+				time.start();
 			}
 		}
 	}
