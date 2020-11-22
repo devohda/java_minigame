@@ -31,7 +31,7 @@ public class Sadari extends JPanel implements SadariInterFace{
 	
 	private JPanel inputPanel;
 	private JTextField inputNumber;
-	private JButton startButton;
+	private JButton btnBasic, startButton;
 	private JButton resetButton;
 	private JLabel borderLab;
 	
@@ -64,10 +64,7 @@ public class Sadari extends JPanel implements SadariInterFace{
 		mainPanel.setBounds(0, 0, 450, 360);
 
 		mainPanel.setBackground(color);
-		mainPanel.setLayout(null);
-		
-
-		
+		mainPanel.setLayout(null);		
 		
 		inputPanel = new JPanel();
 		inputPanel.setLayout(new FlowLayout());
@@ -75,20 +72,27 @@ public class Sadari extends JPanel implements SadariInterFace{
 		inputNumber = new JTextField(2);
 		inputNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		inputNumber.setSize(new Dimension(10,10));
+		inputNumber.setVisible(false);
+		
+		btnBasic = new JButton("시작하기");
+		btnBasic.setFont(fnt);
 		
 		startButton = new JButton("START");
 		startButton.setFont(fnt);
+		startButton.setVisible(false);
 		resetButton = new JButton("RESET");
 		resetButton.setFont(fnt);
 		add(mainPanel);
 		
 		inputPanel.add(inputNumber);
 		inputPanel.add(startButton);
+		inputPanel.add(btnBasic);
 		inputPanel.add(resetButton);
 		inputPanel.setBounds(0, 450, 450, 50);
 		add(inputPanel);	
 		
 
+		btnBasic.addActionListener(new basicListener());
 		startButton.addActionListener(new StartListener());
 		resetButton.addActionListener(new ResetListener());
 		
@@ -129,6 +133,20 @@ public class Sadari extends JPanel implements SadariInterFace{
 		
 		} 	
 	} 
+	
+	public class basicListener implements ActionListener 
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			mainStatus = STATUS.INIT;
+			inputNumber.setVisible(true);
+			startButton.setVisible(true);
+			btnBasic.setVisible(false);
+			mainPanel.repaint();
+			
+		}
+		
+	}
 
 
 }
