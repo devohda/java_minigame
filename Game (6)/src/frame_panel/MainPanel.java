@@ -90,9 +90,6 @@ public class MainPanel extends JPanel {
         bgm.setVerticalTextPosition(JButton.BOTTOM);
         bgm.addActionListener(buttonL); // 버튼에 리스너 삽입
 
-        intro_0 = new Sound("sounds/main.wav");
-        intro_3 = new Sound("sounds/sing.wav");
-        intro_4 = new Sound("sounds/hun.wav");
         intro = new JButton("INTRO"); // 게임 인트로 버튼 생성
         intro.setBounds(900, 30, 80, 40); // 버튼 위치 및 사이즈 조절
         intro.addActionListener(buttonL);
@@ -150,12 +147,6 @@ public class MainPanel extends JPanel {
         bgm.setContentAreaFilled(false);
         bgm.setFocusPainted(false);
         
-        intro.setIcon(musicOff);
-        intro.setBorderPainted(false);
-        intro.setContentAreaFilled(false);
-        intro.setFocusPainted(false);
-        
-
         rImg = new ResizeImg("images/btn_gamestart2.png", 210, 80);
         resizeImg = rImg.getResizeImage();
         icon = new ImageIcon(resizeImg);
