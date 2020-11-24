@@ -176,8 +176,7 @@ public class MainPanel extends JPanel {
         bgm.setBorderPainted(false);
         bgm.setContentAreaFilled(false);
         bgm.setFocusPainted(false);
-        
-<<<<<<< HEAD
+
         rImg = new ResizeImg("images/introImg.png", 50, 30);
         resizeImg = rImg.getResizeImage();
         introImg = new ImageIcon(resizeImg);
@@ -186,13 +185,6 @@ public class MainPanel extends JPanel {
         intro.setBorderPainted(false);
         intro.setContentAreaFilled(false);
         intro.setFocusPainted(false);
-=======
-        intro.setIcon(musicOff);
-        intro.setBorderPainted(false);
-        intro.setContentAreaFilled(false);
-        intro.setFocusPainted(false);
-        
->>>>>>> hunmin_singer_reset_timer
 
         rImg = new ResizeImg("images/btn_gamestart2.png", 210, 80);
         resizeImg = rImg.getResizeImage();
