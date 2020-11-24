@@ -1,16 +1,28 @@
 package frame_panel;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+
+import tool.ResizeImg;
 	
 public class Help extends JFrame {
 	private JPanel helpPanel;
 	private JButton game1, game2, game3, game4, game5, back;
 	private ButtonListener buttonL;
-	private JLabel sentence;
 	private ImageIcon image = new ImageIcon("images/sadari.png");
+	
+	
+	private JLabel bgLab, catchlab, bottleLab, hunminLab, singerLab;
+	private ImageIcon bgimage,catchimg, bottleimg, hunminimg, singerimg, backimage;
+	private ResizeImg bImg, rImg;
+	private Image resizeimg, back1;
+	
+	
 	Help(){
 		setPreferredSize(new Dimension(700,400));
 		setLayout(null);
@@ -23,9 +35,43 @@ public class Help extends JFrame {
 		helpPanel = new JPanel();
 		helpPanel.setBounds(0, 0, 700, 400);
 		helpPanel.setLayout(null);
-
+		
+		//catch
+		catchimg = new ImageIcon("images/helpimg1.png");
+		catchlab = new JLabel("", catchimg, SwingConstants.CENTER);
+		catchlab.setBounds(0, 0, 700, 400);
+		catchlab.setVisible(false);
+		helpPanel.add(catchlab);
+		
+		//bottle
+		bottleimg = new ImageIcon("images/helpimg2.png");
+		bottleLab = new JLabel("", bottleimg, SwingConstants.CENTER);
+		bottleLab.setBounds(0, 0, 700, 400);
+		bottleLab.setVisible(false);
+		helpPanel.add(bottleLab);
+		
+		//hunmin
+		hunminimg = new ImageIcon("images/helpimg3.png");
+		hunminLab = new JLabel("", hunminimg, SwingConstants.CENTER);
+		hunminLab.setBounds(0, 0, 700, 400);
+		hunminLab.setVisible(false);
+		helpPanel.add(hunminLab);
+		
+		//singer
+		singerimg = new ImageIcon("images/helpimg4.png");
+		singerLab = new JLabel("", singerimg, SwingConstants.CENTER);
+		singerLab.setBounds(0, 0, 700, 400);
+		singerLab.setVisible(false);
+		helpPanel.add(singerLab);
 		
 		
+		//back
+		rImg = new ResizeImg("images/helpback.png", 50, 50);
+        back1 = rImg.getResizeImage();
+        backimage = new ImageIcon(back1);
+        
+		//
+        
 		game1 = new JButton("결합");
 		game1.setBounds(250, 55, 200, 50);
 		game1.addActionListener(buttonL);
@@ -51,21 +97,31 @@ public class Help extends JFrame {
 		game5.addActionListener(buttonL);
 		helpPanel.add(game5);
 		
-		sentence = new JLabel("");
-		sentence.setBounds(50, 50, 600, 300);
-		sentence.setVisible(false);
-		helpPanel.add(sentence);
 		
-		back = new JButton("뒤로가기");
-		back.setBounds(550, 300, 100, 50);
+		back = new JButton("");
+		back.setIcon(backimage);
+		back.setBounds(590, 290, 50, 50);
 		back.addActionListener(buttonL);
-		back.setVisible(false);
+		back.setVisible(false);       
 		helpPanel.add(back);
+		
+
+
+		bImg = new ResizeImg("images/helpimg.jpg",700,400);
+		resizeimg = bImg.getResizeImage();
+		bgimage = new ImageIcon(resizeimg);
+		bgLab= new JLabel("", bgimage, SwingConstants.CENTER);
+		bgLab.setBounds(0, 0, 700, 400);
+		helpPanel.add(bgLab);
+		
 		
 		getContentPane().add(helpPanel);
 		pack();
 		setVisible(true);
 	}
+	
+
+	
 	
 	private class ButtonListener implements ActionListener{
 
@@ -78,33 +134,41 @@ public class Help extends JFrame {
 				game3.setVisible(false);
 				game4.setVisible(false);
 				game5.setVisible(false);
-				sentence.setVisible(true);
 				back.setVisible(true);
 			}
 			if(object == game1) {
-				sentence.setText("1");
 			}
 			else if(object == game2) {
-				sentence.setText("2");
+				bgLab.setVisible(false);
+				bottleLab.setVisible(true);
 			}
 			else if(object == game3) {
-				sentence.setText("3");
+				bgLab.setVisible(false);
+				catchlab.setVisible(true);
 			}
 			else if(object == game4) {
-				sentence.setText("4");
+				bgLab.setVisible(false);
+				hunminLab.setVisible(true);
 			}
 			else if(object == game5) {
-				sentence.setText("5");
+				bgLab.setVisible(false);
+				singerLab.setVisible(true);
 			}
 			else if(object == back) {
-				sentence.setText("");
 				game1.setVisible(true);
 				game2.setVisible(true);
 				game3.setVisible(true);
 				game4.setVisible(true);
 				game5.setVisible(true);
-				sentence.setVisible(false);
 				back.setVisible(false);
+				
+				catchlab.setVisible(false);
+				bottleLab.setVisible(false);
+				hunminLab.setVisible(false);
+				singerLab.setVisible(false);
+				
+
+				bgLab.setVisible(true);
 			}
 		}
 		
