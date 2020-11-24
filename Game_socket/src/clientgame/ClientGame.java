@@ -28,18 +28,18 @@ public class ClientGame {
     private String msg;
     private String nickName;
     
-    // 蹂묐슌猿�
+    // 癰귣쵎�뒏�뙼占�
     private int iRandNum;
-    // �끂�옒�옄�옉
+    // 占쎈걗占쎌삋占쎌쁽占쎌삂
     private int singerIndex;
-    // �썕誘쇱젙�쓬
+    // 占쎌뜒沃섏눘�젟占쎌벉
     private int[] hunminIndex = new int[2];
-    // 罹먯튂罹먯튂
+    // 筌�癒��뒄筌�癒��뒄
     private int[] Point = new int[25];
-    // 寃고빀
+    // 野껉퀬鍮�
     private int[][] indexCombi = {{1,1,0}, {1,2,0}, {2,1,2}, {2,2,2}, {0,1,1}, {0,2,2}, {0,2,1}, {1,0,2}, {1,2,1}};
  
-    // �옖�뜡寃뚯엫
+    // 占쎌삏占쎈쑁野껊슣�뿫
     // private int randomGame = 4; 
     
     
@@ -70,29 +70,29 @@ public class ClientGame {
     public void connet() {
         try {
             socket = new Socket("127.0.0.1", 7777);
-            System.out.println("�꽌踰� �뿰寃곕맖.");
+            System.out.println("占쎄퐣甕곤옙 占쎈염野껉퀡留�.");
  
             out = new DataOutputStream(socket.getOutputStream());
             in = new DataInputStream(socket.getInputStream());
  
-            // �젒�냽�븯�옄留덉옄 �땳�꽕�엫 �쟾�넚
+            // 占쎌젔占쎈꺗占쎈릭占쎌쁽筌띾뜆�쁽 占쎈빏占쎄퐬占쎌뿫 占쎌읈占쎈꽊
             System.out.println(nickName);
             
             out.writeUTF(nickName);
-            System.out.println("�겢�씪�씠�뼵�듃 : 硫붿떆吏� �쟾�넚�셿猷�");
+            System.out.println("占쎄깻占쎌뵬占쎌뵠占쎈섧占쎈뱜 : 筌롫뗄�뻻筌욑옙 占쎌읈占쎈꽊占쎌끏�뙴占�");
             while (in != null) {
             	System.out.println("11");
                 msg = (String)in.readUTF();
                 System.out.println("12");
               
-     // ----------------------------------------寃뚯엫蹂� �뜲�씠�꽣 泥섎━-----------------------------------
-                // ---------蹂묐슌猿� flow 泥섎━--------------
+     // ----------------------------------------野껊슣�뿫癰귨옙 占쎈쑓占쎌뵠占쎄숲 筌ｌ꼶�봺-----------------------------------
+                // ---------癰귣쵎�뒏�뙼占� flow 筌ｌ꼶�봺--------------
                 if ( msg.startsWith("[TRUE OR FALSE]") && guiBottle!=null) {
                 	guiBottle.initTurn();
 
-                	if(msg.substring(15) == "정답!") {
-                		 System.out.println("�굹媛��옄 �젣�씪");
-                		// 醫낅즺李� �쓣�슦湲�
+                	if(msg.substring(15) == "�젙�떟!") {
+                		 System.out.println("占쎄돌揶쏉옙占쎌쁽 占쎌젫占쎌뵬");
+                		// �넫�굝利븝㎕占� 占쎌뱽占쎌뒭疫뀐옙
                 		guiBottle.exit();
                 	}
                 	else {
@@ -109,7 +109,7 @@ public class ClientGame {
                 	System.out.println(iRandNum);
                 }
                 else if (guiBottle!=null) guiBottle.appendMsg(msg);
-                // ----------------�썕誘쇱젙�쓬-----------------------------------------------------
+                // ----------------占쎌뜒沃섏눘�젟占쎌벉-----------------------------------------------------
                 if (msg.startsWith("[HUNMININDEX]") && guiHunmin!=null) {
                 	int nSplit = msg.indexOf("/"); 
                 	hunminIndex[0] = Integer.parseInt(msg.substring(13,nSplit)); 
@@ -117,14 +117,14 @@ public class ClientGame {
                 	System.out.println(hunminIndex[0] + "@@" + hunminIndex[1]);
                 	guiHunmin.init();
                 }
-                else if (guiHunmin!=null) guiHunmin.appendMsg(msg); // �뿬湲곗꽌 �삤瑜� �궗�뿀�쓬 ==> �빐�떦 怨좉컼�뱾�씠 寃뚯엫 �떎�뻾�쟾 �뱾�뼱�삤硫� gui �뒗 null�씠湲곗뿉
-                // --------------�쟾援��끂�옒�옄�옉-----------------------------------------------------
+                else if (guiHunmin!=null) guiHunmin.appendMsg(msg); // 占쎈연疫꿸퀣苑� 占쎌궎�몴占� 占쎄텢占쎈�占쎌벉 ==> 占쎈퉸占쎈뼣 �⑥쥒而쇽옙諭억옙�뵠 野껊슣�뿫 占쎈뼄占쎈뻬占쎌읈 占쎈굶占쎈선占쎌궎筌롳옙 gui 占쎈뮉 null占쎌뵠疫꿸퀣肉�
+                // --------------占쎌읈�뤃占쏙옙�걗占쎌삋占쎌쁽占쎌삂-----------------------------------------------------
                 if (msg.startsWith("[SINGERINDEX]") && guiSing!=null) {
                 	singerIndex = Integer.parseInt(msg.substring(13)); 
                 	guiSing.init();
                 }
                 else if (guiSing!=null) guiSing.appendMsg(msg);
-                // ----------------罹먯튂罹먯튂------------------------------------------------------
+                // ----------------筌�癒��뒄筌�癒��뒄------------------------------------------------------
                 if (msg.startsWith("[POINTINDEX]") && guiCatch!=null) {
                 	int start = 12;
                 	int nSplit = msg.indexOf("/"); 
@@ -143,7 +143,7 @@ public class ClientGame {
                 	guiCatch.BoxOff(catchIndex);
                 }
                 else if (guiCatch!=null) guiCatch.appendMsg(msg);
-                // -----------------寃고빀------------------------------------------------------------
+                // -----------------野껉퀬鍮�------------------------------------------------------------
                 if (msg.startsWith("[COMBINATIONINIT]") && guiCombination!=null) {
                 	//card = msg.substring(17);
                 	int cnt = 0;
@@ -170,7 +170,7 @@ public class ClientGame {
         }
     }
  
-    // -----------------------------------梨꾪똿援ы쁽----------------------------------
+    // -----------------------------------筌�袁る샒�뤃�뗭겱----------------------------------
     public void sendMessage(String msg2) {
         try {
             out.writeUTF(msg2);
@@ -187,19 +187,19 @@ public class ClientGame {
         this.nickName = nickName;
     }
  
-    // ------------------------------------蹂묐슌猿�------------------------------------
+    // ------------------------------------癰귣쵎�뒏�뙼占�------------------------------------
     public int getRandNum() { return iRandNum; }
     
-    // --------------------------------------�끂�옒�옄�옉---------------------------------
+    // --------------------------------------占쎈걗占쎌삋占쎌쁽占쎌삂---------------------------------
     public int getSingerIndex() { return singerIndex; }
     
-    // ------------------------------------�썕誘쇱젙�쓬-------------------------------------
+    // ------------------------------------占쎌뜒沃섏눘�젟占쎌벉-------------------------------------
     public int[] getHunminIndex() { return hunminIndex; }
   
-    // ----------------------------------罹먯튂罹먯튂--------------------------------------
+    // ----------------------------------筌�癒��뒄筌�癒��뒄--------------------------------------
     public int[] getCatchPoint() { return Point; }
     
-    // --------------------------------------寃고빀----------------------------------
+    // --------------------------------------野껉퀬鍮�----------------------------------
     public int[][] getCombiIndex() { return indexCombi; }
     
 }
