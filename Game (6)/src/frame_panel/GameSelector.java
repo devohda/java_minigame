@@ -165,7 +165,7 @@ public class GameSelector  {
 	public void createSingContest() {
 		main.removeAll();
 		game_number = 3;
-		singer = new Singer();
+		singer = new Singer(main);
 		main.add(singer);
 		main.addMainPanel();
 		main.revalidate();
@@ -175,7 +175,7 @@ public class GameSelector  {
 	public void createHunmin() {
 		main.removeAll();
 		game_number = 4;
-		hunmin = new HunMinGame();
+		hunmin = new HunMinGame(main);
 		main.add(hunmin);
 		main.addMainPanel();
 		main.revalidate();

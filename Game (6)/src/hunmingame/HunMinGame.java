@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import frame_panel.MainPanel;
 import tool.LabelThread;
 import tool.ResizeImg;
 
@@ -14,11 +15,17 @@ public class HunMinGame extends JPanel {
 	private JLabel word, board;
 	private ImageIcon icon;
 	private Image resizeimg;
-	private JButton reset;
+	private JButton reset, back;
 	private Listener Listen;
 	private LabelThread time;
 	private JPanel here;
-	public HunMinGame() {
+	private MainPanel main;
+    private ResizeImg rImg;
+    private Image resizeImg;
+    
+	public HunMinGame(MainPanel m) {
+		
+		main = m;
 						
 		setBounds(50, 100, 950, 550);
 		this.setLayout(null);
@@ -55,12 +62,33 @@ public class HunMinGame extends JPanel {
 		time.setFont(new Font("MD솔체", Font.BOLD, 150));
 		board.add(time);
 		time.start();
+		
+		back = new JButton("");
+		back.setBounds(50, 450, 100, 50);
+		back.addActionListener(Listen);
+		board.add(back);
 	
-		reset = new JButton("다시뽑기");
+		reset = new JButton("");
 		reset.setBounds(800, 50, 100, 50);
 		reset.addActionListener(Listen);
 		board.add(reset);
 		
+        rImg = new ResizeImg("images/back.png", 50, 50);
+        resizeImg = rImg.getResizeImage();
+        icon = new ImageIcon(resizeImg);
+        back.setIcon(icon);
+        back.setBorderPainted(false);
+        back.setContentAreaFilled(false);
+        back.setFocusPainted(false);
+		
+        rImg = new ResizeImg("images/rotate.png", 50, 50);
+        resizeImg = rImg.getResizeImage();
+        icon = new ImageIcon(resizeImg);
+        reset.setIcon(icon);
+        reset.setBorderPainted(false);
+        reset.setContentAreaFilled(false);
+        reset.setFocusPainted(false);
+        
 		this.add(board);
 	}
 	public class Listener implements ActionListener{
@@ -87,6 +115,10 @@ public class HunMinGame extends JPanel {
 				revalidate();
 				repaint();
 				time.start();
+			}
+			else if(obj == back) {
+				main.createGameSelector();
+	        	main.addMainPanel();	
 			}
 		}
 	}
