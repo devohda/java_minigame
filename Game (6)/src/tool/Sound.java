@@ -19,11 +19,15 @@ public class Sound { // 음악 관련 클래스
 	    }
 	}
 	
+	
 	public void On() { // 음악 재생 함수
         clip.start();
         clip.loop(clip.LOOP_CONTINUOUSLY);
 	}
 	public void Off() { // 음악 중지 함수
 		clip.stop();
+	}
+	public void On_1() {
+		clip.start();
 	}
 }

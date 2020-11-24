@@ -42,10 +42,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f66bf148-8751-46e1-ac84-41e27058b0af" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/sounds/hun.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/main.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/sing.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tool/LabelThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/combination/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/combination/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frame_panel/GameSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frame_panel/GameSelector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frame_panel/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frame_panel/MainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hunmingame/HunMinGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hunmingame/HunMinGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/singer/Singer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/singer/Singer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/Sound.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,19 +103,6 @@
     <configuration name="test" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="frame_panel.test" />
       <module name="Game" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
