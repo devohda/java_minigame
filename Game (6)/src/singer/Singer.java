@@ -2,6 +2,7 @@ package singer;
 
 import tool.LabelThread;
 import tool.ResizeImg;
+import tool.Sound;
 import tool.LabelThread;
 import javax.swing.*;
 import java.awt.*;

@@ -22,9 +22,9 @@ public class MainPanel extends JPanel {
     private JButton help; // 도움말 프레임을 불러내는 버튼
     private ButtonListener buttonL; // 이벤트 리스터
     private JButton penalty; // 벌칙 클래스를 불러내는 버튼
-    private int bgmOn = 0; // 이벤트 핸들러
+    private int bgmOn = 0, introOn = 0, introNumber = 0; // 이벤트 핸들러
 
-    private Sound music; // 음악 클래스 객체 선언
+    private Sound music, intro_0, intro_3, intro_4; // 음악 클래스 객체 선언
     private GameSelector game; // 게임 선택창 패널 객체 선언
 
     private RoundedButton insertPeople; // 입력하기 버튼 선언
@@ -90,9 +90,12 @@ public class MainPanel extends JPanel {
         bgm.setVerticalTextPosition(JButton.BOTTOM);
         bgm.addActionListener(buttonL); // 버튼에 리스너 삽입
 
+        intro_0 = new Sound("sounds/main.wav");
+        intro_3 = new Sound("sounds/sing.wav");
+        intro_4 = new Sound("sounds/hun.wav");
         intro = new JButton("INTRO"); // 게임 인트로 버튼 생성
         intro.setBounds(900, 30, 80, 40); // 버튼 위치 및 사이즈 조절
-
+        intro.addActionListener(buttonL);
 
         insertPeople = new RoundedButton("입력"); // 인원수 입력 버튼 생성
         insertPeople.setBounds(530, 420, 100, 40); // 위치 및 사이즈 조절
@@ -146,6 +149,12 @@ public class MainPanel extends JPanel {
         bgm.setBorderPainted(false);
         bgm.setContentAreaFilled(false);
         bgm.setFocusPainted(false);
+        
+        intro.setIcon(musicOff);
+        intro.setBorderPainted(false);
+        intro.setContentAreaFilled(false);
+        intro.setFocusPainted(false);
+        
 
         rImg = new ResizeImg("images/btn_gamestart2.png", 210, 80);
         resizeImg = rImg.getResizeImage();
@@ -251,6 +260,39 @@ public class MainPanel extends JPanel {
                 helpFrame = new Help();
             } else if (object == penalty) {
                 createSadari();
+            }
+            else if (object == intro) {
+                if (introOn == 0) {
+                	if(game!=null) {
+                		introNumber = game.getIntroNumber();
+                	}
+                	System.out.println(introNumber);
+                	if(introNumber == 0) {
+                		intro_0.On_1();
+                	}
+                	else if(introNumber == 3) {
+                		intro_3.On_1();
+                	}
+                	else if(introNumber == 4) {
+                		intro_4.On_1();
+                	}
+                    introOn = 1;
+                    System.out.println("music on");
+                    intro.setIcon(musicOn);
+                } else {
+                	if(introNumber == 0) {
+                		intro_0.Off();
+                	}
+                	else if(introNumber == 3) {
+                		intro_3.Off();
+                	}
+                	else if(introNumber == 4) {
+                		intro_4.Off();
+                	}
+                    introOn = 0;
+                    System.out.println("music off");
+                    intro.setIcon(musicOff);
+                }
             }
         }
     }
