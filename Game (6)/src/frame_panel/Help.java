@@ -61,7 +61,7 @@ public class Help extends JFrame {
 		game2.addActionListener(buttonL);
 		helpPanel.add(game2);
 
-		game3 = new JButton("∞‘¿”3");
+		game3 = new JButton("CatchCatch");
 		game3.setBounds(250, 175, 200, 50);
 		game3.addActionListener(buttonL);
 		helpPanel.add(game3);

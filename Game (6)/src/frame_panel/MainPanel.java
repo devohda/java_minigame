@@ -443,7 +443,9 @@ public class MainPanel extends JPanel {
         return introOn;
     }
     public void offMainIntro() {
-    	intro_0.Off();
+    	if(intro_0!=null) {
+        	intro_0.Off();
+    	}
     }
     public void OnMainIntro() {
     	intro_0 = new Sound("sounds/main.wav");

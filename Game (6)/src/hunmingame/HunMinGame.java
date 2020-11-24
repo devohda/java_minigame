@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import frame_panel.GameSelector;
 import frame_panel.MainPanel;
 import tool.LabelThread;
 import tool.ResizeImg;
@@ -22,11 +23,13 @@ public class HunMinGame extends JPanel {
 	private MainPanel main;
     private ResizeImg rImg;
     private Image resizeImg;
+    private GameSelector game;
     
-	public HunMinGame(MainPanel m) {
+	public HunMinGame(MainPanel m, GameSelector g) {
 		
 		main = m;
-						
+		game = g;
+		
 		setBounds(50, 100, 950, 550);
 		this.setLayout(null);
 		
@@ -119,13 +122,11 @@ public class HunMinGame extends JPanel {
 			else if(obj == back) {
 				main.createGameSelector();
 	        	main.addMainPanel();
-	        	main.OnMainIntro();
+	        	game.offIntro();
+	    		if(main.getIntroNum()==1) {
+	    			main.OnMainIntro();
+	    		}
 			}
-		}
-	}
-	public void onMainIntro() {
-		if(main.getIntroNum()==1) {
-			main.OnMainIntro();
 		}
 	}
 

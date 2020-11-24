@@ -179,7 +179,7 @@ public class GameSelector  {
 		main.removeAll();
 		game_number = 4;
 		main.offMainIntro();
-		hunmin = new HunMinGame(main);
+		hunmin = new HunMinGame(main, this);
 		main.add(hunmin);
 		main.addMainPanel();
 		main.revalidate();
@@ -229,7 +229,9 @@ public class GameSelector  {
 			}
 		}
 		else {
-			intro.Off();
+			if(intro!=null) {
+				intro.Off();
+			}
 		}
 	}
 	
@@ -346,6 +348,10 @@ public class GameSelector  {
 
 
 	}
-
+	public void offIntro() {
+		if(intro!=null) {
+			intro.Off();
+		}
+	}
 }
 
