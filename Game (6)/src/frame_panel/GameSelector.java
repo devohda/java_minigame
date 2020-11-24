@@ -16,6 +16,7 @@ import hunmingame.HunMinGame;
 import singer.Singer;
 
 import tool.ResizeImg;
+import tool.Sound;
 
 public class GameSelector  {
 	
@@ -26,6 +27,7 @@ public class GameSelector  {
 	private Singer singer;
 	private HunMinGame hunmin;
 	private Game game;
+	private Sound intro;
 	
 	private MainPanel main;
 	
@@ -46,7 +48,7 @@ public class GameSelector  {
 
 	private int people;
 	
-	private int game_number=0;
+	private int game_number=0, introOn;
 
 	public GameSelector(MainPanel m) {
 		
@@ -165,6 +167,7 @@ public class GameSelector  {
 	public void createSingContest() {
 		main.removeAll();
 		game_number = 3;
+		main.offMainIntro();
 		singer = new Singer(main);
 		main.add(singer);
 		main.addMainPanel();
@@ -175,6 +178,7 @@ public class GameSelector  {
 	public void createHunmin() {
 		main.removeAll();
 		game_number = 4;
+		main.offMainIntro();
 		hunmin = new HunMinGame(main);
 		main.add(hunmin);
 		main.addMainPanel();
@@ -207,6 +211,26 @@ public class GameSelector  {
 	
 	public int getIntroNumber() {
 		return game_number;
+	}
+	
+	public void onOff(int onOff) {
+		if(onOff==1) {
+			if(game_number==0) {
+				intro = new Sound("sounds/main.wav");
+				intro.On_1();
+			}
+			else if(game_number==3) {
+				intro = new Sound("sounds/sing.wav");
+				intro.On_1();
+			}
+			else if(game_number==4) {
+				intro = new Sound("sounds/hun.wav");
+				intro.On_1();
+			}
+		}
+		else {
+			intro.Off();
+		}
 	}
 	
 	private class startListener implements MouseListener {

@@ -118,10 +118,15 @@ public class HunMinGame extends JPanel {
 			}
 			else if(obj == back) {
 				main.createGameSelector();
-	        	main.addMainPanel();	
+	        	main.addMainPanel();
+	        	main.OnMainIntro();
 			}
 		}
 	}
-
+	public void onMainIntro() {
+		if(main.getIntroNum()==1) {
+			main.OnMainIntro();
+		}
+	}
 
 }
