@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
@@ -14,14 +16,13 @@ public class Help extends JFrame {
 	private JPanel helpPanel;
 	private JButton game1, game2, game3, game4, game5, back;
 	private ButtonListener buttonL;
-	private ImageIcon image = new ImageIcon("images/sadari.png");
-	
+
 	
 	private JLabel bgLab, catchlab, bottleLab, hunminLab, singerLab;
-	private ImageIcon bgimage,catchimg, bottleimg, hunminimg, singerimg, backimage;
+	private ImageIcon bgimage,catchimg, bottleimg, hunminimg, singerimg, backimage, hoverimage;
 	private ResizeImg bImg, rImg;
-	private Image resizeimg, back1;
-	
+	private Image resizeimg, back1 ;
+	private hoverListener hover;
 	
 	Help(){
 		setPreferredSize(new Dimension(700,400));
@@ -36,40 +37,18 @@ public class Help extends JFrame {
 		helpPanel.setBounds(0, 0, 700, 400);
 		helpPanel.setLayout(null);
 		
-		//catch
-		catchimg = new ImageIcon("images/helpimg1.png");
-		catchlab = new JLabel("", catchimg, SwingConstants.CENTER);
-		catchlab.setBounds(0, 0, 700, 400);
-		catchlab.setVisible(false);
-		helpPanel.add(catchlab);
-		
-		//bottle
-		bottleimg = new ImageIcon("images/helpimg2.png");
-		bottleLab = new JLabel("", bottleimg, SwingConstants.CENTER);
-		bottleLab.setBounds(0, 0, 700, 400);
-		bottleLab.setVisible(false);
-		helpPanel.add(bottleLab);
-		
-		//hunmin
-		hunminimg = new ImageIcon("images/helpimg3.png");
-		hunminLab = new JLabel("", hunminimg, SwingConstants.CENTER);
-		hunminLab.setBounds(0, 0, 700, 400);
-		hunminLab.setVisible(false);
-		helpPanel.add(hunminLab);
-		
-		//singer
-		singerimg = new ImageIcon("images/helpimg4.png");
-		singerLab = new JLabel("", singerimg, SwingConstants.CENTER);
-		singerLab.setBounds(0, 0, 700, 400);
-		singerLab.setVisible(false);
-		helpPanel.add(singerLab);
-		
+		//event 
+		hover = new hoverListener();
 		
 		//back
 		rImg = new ResizeImg("images/helpback.png", 50, 50);
         back1 = rImg.getResizeImage();
         backimage = new ImageIcon(back1);
         
+
+		rImg = new ResizeImg("images/hoverback.png", 50, 50);
+        back1 = rImg.getResizeImage();
+        hoverimage = new ImageIcon(back1);
 		//
         
 		game1 = new JButton("∞·«’");
@@ -102,7 +81,11 @@ public class Help extends JFrame {
 		back.setIcon(backimage);
 		back.setBounds(590, 290, 50, 50);
 		back.addActionListener(buttonL);
-		back.setVisible(false);       
+		back.setVisible(false);
+		back.setBorderPainted(false);
+		back.setContentAreaFilled(false);
+		back.setFocusPainted(false);       
+		back.addMouseListener(hover);
 		helpPanel.add(back);
 		
 
@@ -114,7 +97,35 @@ public class Help extends JFrame {
 		bgLab.setBounds(0, 0, 700, 400);
 		helpPanel.add(bgLab);
 		
-		
+		//catch
+		catchimg = new ImageIcon("images/helpimg1.png");
+		catchlab = new JLabel("", catchimg, SwingConstants.CENTER);
+		catchlab.setBounds(0, 0, 700, 400);
+		catchlab.setVisible(false);
+		helpPanel.add(catchlab);
+				
+		//bottle
+		bottleimg = new ImageIcon("images/helpimg2.png");
+		bottleLab = new JLabel("", bottleimg, SwingConstants.CENTER);
+		bottleLab.setBounds(0, 0, 700, 400);
+		bottleLab.setVisible(false);
+		helpPanel.add(bottleLab);
+				
+		//hunmin
+		hunminimg = new ImageIcon("images/helpimg3.png");
+		hunminLab = new JLabel("", hunminimg, SwingConstants.CENTER);
+		hunminLab.setBounds(0, 0, 700, 400);
+		hunminLab.setVisible(false);
+		helpPanel.add(hunminLab);
+				
+		//singer
+		singerimg = new ImageIcon("images/helpimg4.png");
+		singerLab = new JLabel("", singerimg, SwingConstants.CENTER);
+		singerLab.setBounds(0, 0, 700, 400);
+		singerLab.setVisible(false);
+		helpPanel.add(singerLab);
+				
+				
 		getContentPane().add(helpPanel);
 		pack();
 		setVisible(true);
@@ -171,7 +182,45 @@ public class Help extends JFrame {
 				bgLab.setVisible(true);
 			}
 		}
-		
 	}
+	
+	
+	private class hoverListener implements MouseListener {
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				Object obj = e.getSource();
+				if (obj == back) {
+					back.setIcon(hoverimage);
+					back.setBorderPainted(false);
+					back.setContentAreaFilled(false);
+			        back.setFocusPainted(false);
+				}
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				Object obj = e.getSource();
+				if (obj == back) {
+					back.setIcon(backimage);
+					back.setBorderPainted(false);
+					back.setContentAreaFilled(false);
+					back.setFocusPainted(false);
+
+				}
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+	    	
+	    }
 	
 }
