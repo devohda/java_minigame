@@ -255,7 +255,7 @@ public class CatchCatchPanel extends JPanel {
 	public void sortPlayer(JTextArea scoreArea) {
 
 		scoreString = "";
-		int turntmp=turn+1;
+		int turntmp = turn+1;
 		if(turntmp == personNum+1)
 			turntmp=1;
 		scoreString += "현재 순서는 " + turntmp + "번 플레이어입니다.\r\n\n" + " ";

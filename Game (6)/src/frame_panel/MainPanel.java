@@ -378,16 +378,15 @@ public class MainPanel extends JPanel {
 				intro.setContentAreaFilled(false);
 				intro.setFocusPainted(false);
 			} else if (obj == bgm) {
-				if (bgmOn == 0) {
+                if (bgmOn == 0) {
                     bgm.setIcon(hoverMusicOff);
                 } else {
                     bgm.setIcon(hoverMusicOn);
                 }
-				bgm.setBorderPainted(false);
-				bgm.setContentAreaFilled(false);
-				bgm.setFocusPainted(false);
-			}
-			
+                bgm.setBorderPainted(false);
+                bgm.setContentAreaFilled(false);
+                bgm.setFocusPainted(false);
+            }
 		}
 
 		@Override
@@ -423,7 +422,6 @@ public class MainPanel extends JPanel {
 				bgm.setContentAreaFilled(false);
 				bgm.setFocusPainted(false);
 			}
-			
 		}
 		
 		@Override
