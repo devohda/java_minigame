@@ -60,7 +60,7 @@ public class HunMinGame extends JPanel {
 		word.setVerticalAlignment(SwingConstants.CENTER);
 		board.add(word);
 		
-		time = new LabelThread("10",10);
+		time = new LabelThread(10);
 		time.setBounds(400, 50, 500, 200);
 		time.setFont(new Font("MD솔체", Font.BOLD, 150));
 		board.add(time);
@@ -111,7 +111,7 @@ public class HunMinGame extends JPanel {
 					time.getThread().interrupt(); 
 				}
 				board.remove(time);
-				time = new LabelThread("10",10);
+				time = new LabelThread(10);
 				time.setBounds(400, 50, 500, 200);
 				time.setFont(new Font("MD솔체", Font.BOLD, 150));
 				board.add(time);
@@ -119,12 +119,12 @@ public class HunMinGame extends JPanel {
 				repaint();
 				time.start();
 			}
-			else if(obj == back) {
-				main.createGameSelector();
-	        	main.addMainPanel();
-	        	main.offMainIntro();
-	        	game.offIntro();
-	        	game.setgameNumZero();
+			else if(obj == back) { // 뒤로가기 버튼 누르면
+				main.createGameSelector();  // 게임셀랙터로 돌아감
+	        	main.addMainPanel(); // 메인 패널은 배경으로
+	        	main.offMainIntro(); // 인트로 꺼주기
+	        	game.offIntro(); // 인트로 꺼주기
+	        	game.setgameNumZero(); // 인트로 관련 번호 0으로 설정
 			}
 		}
 	}

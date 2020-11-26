@@ -48,7 +48,7 @@ public class GameSelector  {
 
 	private int people;
 	
-	private int game_number=0, introOn;
+	private int game_number=0; // 인트로 번호
 
 	public GameSelector(MainPanel m) {
 		
@@ -215,31 +215,6 @@ public class GameSelector  {
 
 	} 
 	
-	public int getIntroNumber() {
-		return game_number;
-	}
-	
-	public void onOff(int onOff) {
-		if(onOff==1) {
-			if(game_number==0) {
-				intro = new Sound("sounds/main.wav");
-				intro.On_1();
-			}
-			else if(game_number==3) {
-				intro = new Sound("sounds/sing.wav");
-				intro.On_1();
-			}
-			else if(game_number==4) {
-				intro = new Sound("sounds/hun.wav");
-				intro.On_1();
-			}
-		}
-		else {
-			if(intro!=null) {
-				intro.Off();
-			}
-		}
-	}
 	
 	private class startListener implements MouseListener {
 
@@ -354,19 +329,28 @@ public class GameSelector  {
 
 
 	}
-	public void offIntro() {
+	public void offIntro() { // 게임을 나갈 때 게임의 인트로를 꺼주기 위함
 		if(intro!=null) {
 			intro.Off();
 		}
-		main.offMainIntro();
+		main.offMainIntro(); // 메인의 노래도 확실하게 꺼주기 위함
 	}
 	
-	public int getgameNum() {
+	public int getgameNum() { // 게임을 선택하면 게임에 해당하는 인트로를 얻기 위한 함수
 		return game_number;
 	}
 	
 	public void setgameNumZero() {
-		game_number = 0;
+		game_number = 0; // 게임이 끝나거나 메인화면으로 넘어갈 시 인트로 번호 0 으로 넘겨주기 위함
+	}
+	public int getIntroNumber() { // 게임을 선택하면 게임에 해당하는 인트로를 얻기 위한 함수 // 함수 확인 실수로 같은 기능으로 재생성
+		return game_number;
+	}
+	
+	public void onOff(int onOff) { // 게임을 나갈 때 게임의 인트로를 꺼주기 위함  // 함수 확인 실수로 같은 기능으로 재생성
+		if(intro!=null) {
+			intro.Off();
+		}
 	}
 }
 
