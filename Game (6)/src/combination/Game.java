@@ -42,10 +42,13 @@ public class Game extends JPanel {
     
     //종료 시 게임선택화면 가기위해 이용할 객체
     private MainPanel main;
+    
+    private GameSelector game;
 
     public Game(GameSelector g, MainPanel m) {
 
     	main = m; //종료 시 게임선택화면 가기위해 이용할 객체
+    	game = g;
     	
         _playerNum = g.getPeopleNum();
         System.out.println(_playerNum);
@@ -344,9 +347,14 @@ public class Game extends JPanel {
 
         if (select == 0) { //다시 시작
             init();
+        	game.offIntro();
+        	main.offMainIntro();
         } else { //종료 누르면 시스템 종료
         	main.createGameSelector();
         	main.addMainPanel();
+        	game.offIntro();
+        	main.offMainIntro();
+        	game.setgameNumZero();
         	//setVisible(false);
             //종료하기 위한 상위 패널에 함수 만들어야 할 거 같음
         }

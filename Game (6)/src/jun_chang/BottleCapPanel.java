@@ -214,9 +214,14 @@ public class BottleCapPanel extends JPanel {
 
 			if (select == 0) {
 				init(num, wrongAnswerLabel, blank);
+	        	gameselector.offIntro();
+	        	main.offMainIntro();
 			} else if (select == JOptionPane.NO_OPTION) {
 				main.createGameSelector();
-	        	main.addMainPanel();		
+	        	main.addMainPanel();
+	        	gameselector.offIntro();
+	        	main.offMainIntro();
+	        	gameselector.setgameNumZero();
 			} else {
 				System.out.println("CANCLE");
 			}

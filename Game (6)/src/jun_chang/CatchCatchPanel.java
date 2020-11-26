@@ -301,9 +301,14 @@ public class CatchCatchPanel extends JPanel {
 
 		if (select == 0) {
 			initGame(scoreArea);
+        	gameselector.offIntro();
+        	main.offMainIntro();
 		} else if (select == JOptionPane.NO_OPTION) {
 			main.createGameSelector();
-        	main.addMainPanel();		
+        	main.addMainPanel();
+        	main.offMainIntro();
+        	gameselector.offIntro();
+        	gameselector.setgameNumZero();
 		} else {
 			System.out.println("CANCLE");
 		}

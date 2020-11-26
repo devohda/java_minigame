@@ -6,6 +6,7 @@ import tool.Sound;
 import tool.LabelThread;
 import javax.swing.*;
 
+import frame_panel.GameSelector;
 import frame_panel.MainPanel;
 
 import java.awt.*;
@@ -27,10 +28,12 @@ public class Singer extends JPanel {
 	private MainPanel main;
     private ResizeImg rImg;
     private Image resizeImg;
+    private GameSelector game;
 	
-	public Singer(MainPanel m) {
+	public Singer(MainPanel m, GameSelector g) {
 		
 		main = m;
+		game = g;
 		
 		Listen = new ButtonListener();
 		
@@ -124,7 +127,10 @@ public class Singer extends JPanel {
 			}
 			else if(obj == back) {
 				main.createGameSelector();
-	        	main.addMainPanel();	
+	        	main.addMainPanel();
+	        	main.offMainIntro();
+	        	game.offIntro();
+	        	game.setgameNumZero();
 			}
 			
 		}

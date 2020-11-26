@@ -96,7 +96,7 @@ public class MainPanel extends JPanel {
         lblstatePeople.setVerticalAlignment(JLabel.CENTER);
         lblstatePeople.setFont(fnt2);
 
-        music = new Sound("sounds/1.wav"); // 배경음악에 넣을 음악 지정하며 객체 생성
+        music = new Sound("sounds/bgm.wav"); // 배경음악에 넣을 음악 지정하며 객체 생성
         bgm = new JButton("BGM"); // 배경음악 버튼
         bgm.setBounds(810, 20, 80, 80); // 버튼 위치 및 사이즈 조절
         bgm.setFont(fnt);
@@ -289,12 +289,13 @@ public class MainPanel extends JPanel {
                 addMainPanel();
                 revalidate();
                 repaint();
-
+                offMainIntro();
+                introNumber = 0;
                 lblstatePeople.setVisible(true);
                 gameStart.setVisible(false);
                 insertPeople.setVisible(true);
                 peopleField.setVisible(true);
-
+            	game.setgameNumZero();
                 peopleField.setEnabled(true);
                 insertPeople.setEnabled(true); // 사용자 입력 못하도록
             } else if (object == insertPeople || object == peopleField) {
@@ -320,7 +321,31 @@ public class MainPanel extends JPanel {
                     	intro_0.On_1();
                     }
                     else {
-                    	game.onOff(introOn);
+                    	introNumber = game.getIntroNumber();
+                    	if(introNumber==0) {
+                        	intro_0 = new Sound("sounds/main.wav");
+                        	intro_0.On_1();
+                    	}
+                    	else if(introNumber==1) {
+                        	intro_0 = new Sound("sounds/gamestart.wav");
+                        	intro_0.On_1();
+                    	}
+                    	else if(introNumber==2) {
+                        	intro_0 = new Sound("sounds/gamestart.wav");
+                        	intro_0.On_1();
+                    	}
+                    	else if(introNumber==3) {
+                        	intro_0 = new Sound("sounds/sing.wav");
+                        	intro_0.On_1();
+                    	}
+                    	else if(introNumber==4) {
+                        	intro_0 = new Sound("sounds/hun.wav");
+                        	intro_0.On_1();
+                    	}
+                    	else if(introNumber==5) {
+                        	intro_0 = new Sound("sounds/genius.wav");
+                        	intro_0.On();
+                    	}
                     }
                     System.out.println("music on");
                 } else {
@@ -330,6 +355,7 @@ public class MainPanel extends JPanel {
                     	intro_0.Off();
                     }
                     else {
+                    	intro_0.Off();
                         game.onOff(introOn);
                     }
                     System.out.println("music off");
@@ -439,16 +465,13 @@ public class MainPanel extends JPanel {
         return people;
     }
     
-    public int getIntroNum(){
-        return introOn;
-    }
     public void offMainIntro() {
     	if(intro_0!=null) {
         	intro_0.Off();
     	}
+    	introOn = 0;
     }
-    public void OnMainIntro() {
-    	intro_0 = new Sound("sounds/main.wav");
-    	intro_0.On_1();
+    public void setGameNum(int num) {
+    	introNumber = num;
     }
 }
