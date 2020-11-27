@@ -148,8 +148,8 @@ public class GameSelector  {
 		main.removeAll();
 		//bottleCap = new BottleCapPanel();
 		bottleCap = new BottleCapPanel(this, main); 
-		main.offMainIntro();
-		game_number = 1;
+		main.offMainIntro();// 게임 시작되면 이전에 틀어지 인트로 꺼주기
+		game_number = 1;// 인트로 번호
 		main.add(bottleCap);
 		main.addMainPanel();
 		main.revalidate();
@@ -160,8 +160,8 @@ public class GameSelector  {
 	public void createCatchCatch() {
 		main.removeAll();
 		Catch = new CatchCatchPanel(this, main);
-		main.offMainIntro();
-		game_number = 2;
+		main.offMainIntro();// 게임 시작되면 이전에 틀어지 인트로 꺼주기
+		game_number = 2;// 인트로 번호
 		main.add(Catch);
 		main.addMainPanel();
 		main.revalidate();
@@ -170,8 +170,8 @@ public class GameSelector  {
 	
 	public void createSingContest() {
 		main.removeAll();
-		game_number = 3;
-		main.offMainIntro();
+		game_number = 3;// 인트로 번호
+		main.offMainIntro();// 게임 시작되면 이전에 틀어지 인트로 꺼주기
 		singer = new Singer(main, this);
 		main.add(singer);
 		main.addMainPanel();
@@ -181,8 +181,8 @@ public class GameSelector  {
 	
 	public void createHunmin() {
 		main.removeAll();
-		game_number = 4;
-		main.offMainIntro();
+		game_number = 4;// 인트로 번호
+		main.offMainIntro();// 게임 시작되면 이전에 틀어지 인트로 꺼주기
 		hunmin = new HunMinGame(main, this);
 		main.add(hunmin);
 		main.addMainPanel();
@@ -193,8 +193,8 @@ public class GameSelector  {
 	public void createCombination() {
 		main.removeAll();
 		game = new Game(this, main); //게임 실행 패널 객체 생성
-		main.offMainIntro();
-		game_number = 5;
+		main.offMainIntro(); // 게임 시작되면 이전에 틀어지 인트로 꺼주기
+		game_number = 5; // 인트로 번호
 		main.add(game);
 		main.addMainPanel();
 		main.revalidate();

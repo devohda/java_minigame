@@ -109,7 +109,7 @@ public class Singer extends JPanel {
 				word.setText(pickSinger[index]); // 해당 인덱스의 가수로 제시어 재설정
 				
 				if(time.getThread().isAlive()){
-					time.getThread().interrupt(); 
+					time.getThread().interrupt(); //타이머 작동중이면 멈추기
 				}
 				remove(time); // 타이머 삭제
 				time = new LabelThread(10); // 타이머 재성
