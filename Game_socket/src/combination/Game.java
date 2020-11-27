@@ -4,7 +4,6 @@ package combination;
 import tool.*;
 
 import clientgame.ClientGame;
-import combination.Game.renewScore;
 import frame_panel.*;
 
 import javax.swing.*;
@@ -21,12 +20,12 @@ public class Game extends JPanel {
     private JButton btnHap;
     private JButton btnGeul;
     private JTextField userinput;
-    private JLabel lblScore;
     private JLabel lblState;
     private int _score;
     private GameBoardPanel gameBoard;
 
     private renewScore update; //actionListener class
+    private Player nowPlayer;
 
     //배경 이미지 만들기
     private ImageIcon background;
@@ -38,8 +37,13 @@ public class Game extends JPanel {
     Font fnt;
 
     //player
+    private JTextArea scoreArea;
+    private JLabel scoreBoard;
+    private String scoreString;
+    private int turn;
     private Player[] players;
     private int _playerNum;
+    private int turntmp;
     
     //종료 시 게임선택화면 가기위해 이용할 객체
     private MainPanel main;
@@ -60,20 +64,53 @@ public class Game extends JPanel {
  	private GameSelector gs;
 
     public Game(ClientGame c, GameSelector g, MainPanel m) {
-    	
+      	
     	main = m; //종료 시 게임선택화면 가기위해 이용할 객체
-    	
-        _playerNum = g.getPeopleNum();
-        System.out.println(_playerNum);
+
+        makeFnt = new Customfont();
     	
         gs = g;
     	cl = c;
     	
     	setBounds(125, 130, 800, 520); // Game 패널 크기 지정
-        setLayout(null);
+        setLayout(null); // 레이아웃 매니저 끄기
+        
+        /**********************************/
+        /*****인원 수 받아서 player 생성******/
+        /**********************************/
+        _playerNum = g.getPeopleNum();
+        players = new Player[_playerNum];
+
+        for (int i = 0; i < _playerNum; i++) { // 지금현재 4명임의 수  // >> 수정 personNum 만큼의 숫자로
+            players[i] = new Player();
+            players[i].setScore(0); // 플레이어 수 점수 전부 0점초기화
+            players[i].setOrder(i + 1);
+        }
+        
+        /**********************************/
+        /************점수판 초기화***********/
+        /**********************************/
+
+        turn = 1;
+        scoreString = "현재 순서는 " + turn + "번 플레이어입니다.\n\n";
+
+        for (int i = 0; i < _playerNum; i++) {// >> 수정 personNum 만큼의 숫자로
+            scoreString += players[i].getOrder() + "등 [Player " + (i + 1) + "]" + " : " + players[i].getScore() + "\n";
+        }
+
+        scoreArea = new JTextArea(scoreString) {
+            {
+                setOpaque(false);
+            }
+        };
+        scoreArea.setEditable(false); // 점수판 편집 불가
+        scoreArea.setForeground(Color.WHITE);
+        scoreArea.setBounds(490, 120, 220, 250);
+        fnt = makeFnt.getCustomFont("font/고양체.ttf", Font.BOLD, 16);
+        scoreArea.setFont(fnt);
+        add(scoreArea);
 
         _score = 0; // 점수 초기화
-        lblScore = new JLabel("점수 : 0"); // lblScore 초기화
         lblState = new JLabel("게임을 시작합니다."); // lblState 초기화
         lblState.setHorizontalAlignment(JLabel.CENTER); //글자 가운데 정렬
         lblState.setForeground(Color.black);
@@ -89,38 +126,21 @@ public class Game extends JPanel {
         userinput.addActionListener(update);
 
         /************* 폰트 지정 **************/
-        makeFnt = new Customfont();
         fnt = makeFnt.getCustomFont("font/고양체.ttf", Font.BOLD, 24);
         lblState.setFont(fnt);
-        fnt = makeFnt.getCustomFont("font/고양체.ttf", Font.PLAIN, 22);
-        lblScore.setFont(fnt);
 
         // 위치 지정
         lblState.setBounds(170, 35, 500, 50);
-        lblScore.setBounds(490, 120, 200, 50);
-        btnGeul.setBounds(480, 380, 70, 30);
-        btnHap.setBounds(480, 420, 70, 30);
+        btnGeul.setBounds(480, 400, 70, 30);
+        btnHap.setBounds(480, 440, 70, 30);
         userinput.setBounds(560, 420, 160, 30);
 
-        // 네트워크 구현위한 버튼
+        // 초기화 버튼
      	btnReset = new JButton("초기화");
      	btnReset.setBounds(650, 35, 70, 30);
      	add(btnReset);
      	btnReset.addActionListener(new ResetListener());
         
-        // 채팅창 구현		
-     	/*
-     	chatArea = new JTextArea(); 
-     	scrollPane = new JScrollPane(chatArea);
-     	chatArea.setEditable(false); 
-     	scrollPane.setBounds(500, 0, 150, 675);
-     	add(scrollPane);		
-     	chat = new JTextField();
-     	chat.setBounds(500, 675, 150, 25);
-     	add(chat);
-     	chat.addActionListener(new sendMessage());*/
-        
-        add(lblScore);
         add(lblState);
         add(btnHap);
         add(btnGeul);
@@ -169,30 +189,41 @@ public class Game extends JPanel {
     public void init(){
 
         _score = 0;
-        lblScore.setText("점수 : " + _score);
         lblState.setText("게임을 시작합니다.");
         lblState.setForeground(Color.black);
 
         hapset = new ArrayList<>();
         deleteHapset = new ArrayList<>();
 
-        boardInfo = new Card[9];
-        System.out.println("1빠");
-        indexCombi = cl.getCombiIndex();
-        System.out.println("2빠");
-        setGameBoardInfo(indexCombi); //게임 초기화 --> 이것을 서버에서 구현해서 클라이언트에 전해줄려했으나 인덱스만 서버에서 클라이언트에 주는걸로...
-        System.out.println("4빠");
+        boardInfo = new Card[9]; // 게임판 정보
+        indexCombi = cl.getCombiIndex();  
+        setGameBoardInfo(indexCombi); //게임 초기화
         
-        System.out.println("5빠");
-        
-        gameBoard = new GameBoardPanel(boardInfo);
-        gameBoard.setBounds(50, 120, 500, 500);
-        add(gameBoard);
+        gameBoard = new GameBoardPanel(boardInfo); // 게임판 만들기
+        gameBoard.setBounds(50, 120, 500, 500); // 게임판 위치, 크기 지정
+        gameBoard.setBackground(new Color(236, 191, 246)); // 게임판 배경색 지정
+        add(gameBoard); // 게임판 추가
         repaint();
 
-        System.out.println("6빠");
         calculateHap();
-        System.out.println("7빠");
+        initGame(); //사용자 점수 초기화
+    }
+    
+    public void initGame() {
+        turn = 1;
+
+        for (int i = 0; i < _playerNum; i++) { // 지금현재 4명임의 수  // >> 수정 personNum 만큼의 숫자로
+            players[i].setScore(0); // 플레이어 수 점수 전부 0점초기화
+            players[i].setOrder(i + 1);
+        }
+
+        scoreString = "현재 순서는 " + turn + "번 플레이어입니다.\n\n";
+
+        for (int i = 0; i < _playerNum; i++) {// >> 수정 personNum 만큼의 숫자로
+            scoreString += players[i].getOrder() + "등 [Player " + (i + 1) + "]" + " : " + players[i].getScore() + "\n";
+        }
+        scoreArea.setText(scoreString);
+
     }
 
     /*******************************/
@@ -201,7 +232,6 @@ public class Game extends JPanel {
 
 
     public void setGameBoardInfo(int[][] index){
-    	System.out.println("3빠");
         for (int i = 0; i < 9; i++) {
             Card tmp = new Card(index[i]);
 
@@ -211,7 +241,6 @@ public class Game extends JPanel {
                 if(tmp.getCardColor() == boardInfo[j].getCardColor()){
                     if (tmp.getShape() == boardInfo[j].getShape()) {
                         if (tmp.getBackgroundColor() == boardInfo[j].getBackgroundColor()){
-                            System.out.println("11same~!");
                             //duplicated = true; --> 이미 해당 알고리즘을 서버에서 수행하고 온 인덱스들이므로 생략 
                             break;
                         }
@@ -300,44 +329,94 @@ public class Game extends JPanel {
     }
 
     /*******************************/
-    /********* 점수 계산하기 *********/
+    /**** player 순위 계산하기 *******/
     /*******************************/
 
+    public void sortPlayer() {
+
+        scoreString = "현재 순서는 " + turn + "번 플레이어입니다.\n\n";
+
+        int emp;
+        int j;
+        int[] arr;
+        arr = new int[_playerNum]; // >> 수정 personNum 만큼의 숫자로
+
+        for (int i = 0; i < _playerNum; i++) {// >> 수정 personNum 만큼의 숫자로
+            arr[i] = players[i].getScore();
+        }
+
+        // 삽입 정렬을 이용한 sorting
+        for (int i = 1; i < _playerNum; i++) {// >> 수정 personNum 만큼의 숫자로
+            emp = arr[i];
+            j = i - 1;
+            while (j >= 0 && (arr[j] > emp)) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = emp;
+        }
+
+        for (int i = 0; i < _playerNum; i++) {// >> 수정 personNum 만큼의 숫자로
+            for (j = 0; j < _playerNum; j++) {// >> 수정 personNum 만큼의 숫자로
+                if (arr[j] == players[i].getScore()) players[i].setOrder(_playerNum - j);
+            }
+        }
+
+        for (int i = 0; i < _playerNum; i++) {// >> 수정 personNum 만큼의 숫자로
+            scoreString += players[i].getOrder() + "등 [Player " + (i + 1) + "]" + " : " + players[i].getScore() + "\n";
+        }
+
+        scoreArea.setText(scoreString);
+    }
+    
+
     // ---------------------네트워크--------------------------------------
-    public void geulScore() {
+    public void geulScore(int t) {
+    	
+    	nowPlayer = players[t - 1];
     	
     	if(hapset.isEmpty()){
-            _score += 3;
+    		nowPlayer.setScore(nowPlayer.getScore() + 3);
             lblState.setText("'결' 입니다. 짝짝짝!!! 3점 획득하셨습니다!");
-            lblState.setForeground(Color.BLUE);
+            lblState.setForeground(new Color(31, 76, 224));
+            sortPlayer();
             restartGame();
         }
         else{
-            _score -= 1;
+        	nowPlayer.setScore(nowPlayer.getScore() - 1);
             lblState.setText("아직 합이 될 수 있는 경우가 남았습니다.");
-            lblState.setForeground(Color.RED);
+            lblState.setForeground(new Color(184, 22, 22));
         }  	
     	
-    	lblScore.setText("점수 : " + _score);
+    	if (turn == _playerNum) turn = 1;
+        else turn++;
+        sortPlayer();
+    	
     }
     
-    public void hapScore(String userInput) {
+    public void hapScore(String userInput, int t) {
     	
+    	nowPlayer = players[t - 1];
     	int answer = 0;
 
         //숫자 3개가 입력된 경우가 아닐 때(문자 등의 기호가 들어간 경우)
     	try{
-            //String userInput = userinput.getText();
             answer = Integer.parseInt(userInput);
             System.out.println(answer);
-            if(answer>=1000||answer<100) lblState.setText("1 ~ 9사이 서로 다른 숫자 3개를 입력하세요"); //숫자가 3개보다 작거나 많을 경우
+            if(answer>=1000||answer<100) {
+            	lblState.setText("1 ~ 9사이 서로 다른 숫자 3개를 입력하세요"); //숫자가 3개보다 작거나 많을 경우
+            	turn--;
+            }
             else{
                 HashSet<Integer> userAnswerSet = new HashSet<Integer>(3);
                 int num1, num2, num3;
                 num1 = answer/100;
                 num2 = answer%100/10;
                 num3 = answer%10;
-                if(num1 == 0 || num2 == 0 || num3 == 0) lblState.setText("1 ~ 9사이 서로 다른 숫자 3개를 입력하세요"); //0이 섞인 경우
+                if(num1 == 0 || num2 == 0 || num3 == 0) {
+                	lblState.setText("1 ~ 9사이 서로 다른 숫자 3개를 입력하세요"); //0이 섞인 경우
+                	turn--;
+                }
                 else{
                     userAnswerSet.add(num1);
                     userAnswerSet.add(num2);
@@ -345,14 +424,17 @@ public class Game extends JPanel {
                 }
 
 
-                if(userAnswerSet.size() != 3) lblState.setText("1 ~ 9사이 서로 다른 숫자 3개를 입력하세요");
+                if(userAnswerSet.size() != 3) {
+                	lblState.setText("1 ~ 9사이 서로 다른 숫자 3개를 입력하세요");
+                	turn--;
+                }
                 else{
                     boolean isBefore = false;
                     for (HashSet i : deleteHapset){
                         if(userAnswerSet.equals(i)){
                             lblState.setText("카드 " + userAnswerSet + " 은(는) 이미 나왔습니다.");
-                            lblState.setForeground(Color.RED);
-                            _score--;
+                            lblState.setForeground(new Color(184, 22, 22));
+                            nowPlayer.setScore(nowPlayer.getScore() - 1);
                             isBefore = true;
                             break;
                         }
@@ -365,14 +447,14 @@ public class Game extends JPanel {
                                 deleteHapset.add(i);
                                 hapset.remove(i);
                                 lblState.setText("카드 " + userAnswerSet + " 은(는) '합' 입니다.");
-                                lblState.setForeground(Color.BLUE);
-                                _score++;
+                                lblState.setForeground(new Color(31, 76, 224));
+                                nowPlayer.setScore(nowPlayer.getScore() + 1);
                                 isAnswer = true;
                                 break;
                             }
                         }
                         if(!isAnswer){
-                            _score--;
+                        	nowPlayer.setScore(nowPlayer.getScore() - 1);
                             lblState.setText("카드 " + userAnswerSet + " 은(는) 합이 아닙니다.");
                             lblState.setForeground(Color.RED);
                         }
@@ -380,27 +462,37 @@ public class Game extends JPanel {
 
                 }
             }
-
+            
+            System.out.println(turn);
         }catch (NumberFormatException ex){
+        	lblState.setForeground(Color.black);
             lblState.setText("숫자 3개를 입력하세요");
+            turn--;
         }finally {
             userinput.setText("");
         }
-        
-    	lblScore.setText("점수 : " + _score);
+    	
+    	if (turn == _playerNum) turn = 1;
+        else turn++;
+        sortPlayer();
+    	
     }
     
+    /*******************************/
+    /********* 점수 계산하기 *********/
+    /*******************************/
+    
     class renewScore implements ActionListener {
-
+    	
         @Override
         public void actionPerformed(ActionEvent e) {
         	
         	 if (e.getSource() == btnGeul) {
-        		 cl.sendMessage("[GEULCOMBINATION]");
+        		 cl.sendMessage("[GEULCOMBINATION]" + turn);
         	 }
         	 else if (e.getSource() == btnHap) {
         		 String userInput = userinput.getText();
-        		 cl.sendMessage("[HAPCOMBINATION]" + userInput);
+        		 cl.sendMessage("[HAPCOMBINATION]" + turn + userInput);
         	 }
         }
     }

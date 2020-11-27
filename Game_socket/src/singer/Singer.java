@@ -66,16 +66,16 @@ public class Singer extends JPanel {
 		board.setLayout(null);
 				
 		word = new JLabel(pickSinger[index]); //j라벨에 뽑힌 가수 넣으며 생성
-		word.setBounds(150, 10, 500, 200); // 사이즈 및 위치 조절
+		word.setBounds(120, 10, 520, 200); // 사이즈 및 위치 조절
 		word.setFont(new Font("타이포_헬로피오피 테두리M", Font.BOLD, 100)); // 글자 스타일 변경
 		word.setForeground(new Color(0,0,255)); // 글자색 파란색으로 변경
 		
-		btnReset = new JButton("초기화"); // 재생성 버튼
-		btnReset.setBounds(50, 500, 100, 40); // 위치 및 사이즈 조절
+		btnReset = new JButton(""); // 재생성 버튼
+		btnReset.setBounds(600, 70, 100, 50); // 위치 및 사이즈 조절
 		add(btnReset); 
 		
 		back = new JButton(""); // 뒤로가기 버튼
-		back.setBounds(50, 450, 100, 50); // 위치 및 사이즈 조절
+		back.setBounds(40, 450, 100, 50); // 위치 및 사이즈 조절
 		add(back);
 		
 		// 채팅창 구현				
@@ -130,7 +130,7 @@ public class Singer extends JPanel {
 		}
 		remove(time);
 		time = new LabelThread(10);
-		time.setBounds(400, 150, 500, 200);
+		time.setBounds(300, 150, 500, 200);
 		time.setFont(new Font("MD솔체", Font.BOLD, 150));
 		add(time);
 		add(board);

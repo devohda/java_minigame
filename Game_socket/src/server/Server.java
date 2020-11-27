@@ -90,7 +90,7 @@ public class Server {
     public void init() {
     	
     	Random generator = new Random();
-		iRanNum = generator.nextInt(50)+1; //1~50 랜덤숫자 생성
+		iRanNum = generator.nextInt(20)+1; //1~20 랜덤숫자 생성
 		WrongAnswers = "";
 		int[] ar = new int[50];
 		filled=0;
@@ -226,13 +226,15 @@ public class Server {
     	System.out.println("[COMBINATIONINIT]" + concat);
     }
     
-    public void geul() {
-    	sendMessage("[GEUL]");
+    public void geul(String m) {
+    	String str = m.substring(17);
+    	sendMessage("[GEUL]" + str);
     }
     
     public void hap(String m) {
-    	String str = m.substring(16);
-    	sendMessage("[HAP]" + str);
+    	String str1 = m.substring(16, 17);
+    	String str2 = m.substring(17);
+    	sendMessage("[HAP]" + str1 + str2);
     }
     
     
@@ -263,7 +265,7 @@ public class Server {
                     else if (msg.startsWith("[CATCHINIT]")) initCatch();
                     else if (msg.startsWith("[REWARDCATCH]")) rewardCatch(msg);
                     else if (msg.startsWith("[COMBINATIONINIT]")) initCombination();
-                    else if (msg.startsWith("[GEULCOMBINATION]")) geul();
+                    else if (msg.startsWith("[GEULCOMBINATION]")) geul(msg);
                     else if (msg.startsWith("[HAPCOMBINATION]")) hap(msg);
                     else {
                     	sendMessage(msg);

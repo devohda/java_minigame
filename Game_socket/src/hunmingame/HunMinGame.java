@@ -75,12 +75,12 @@ public class HunMinGame extends JPanel {
 		board.add(word); // 라벨 더해주기
 		
 		// 초기화 버튼
-		btnReset = new JButton("초기화");
-		btnReset.setBounds(50, 500, 100, 40); // 위치 및 사이즈 조절
+		btnReset = new JButton("");
+		btnReset.setBounds(600, 70, 100, 50); // 위치 및 사이즈 조절
 		add(btnReset); // 버튼 화면에 더하기
 		
 		back = new JButton(""); // 뒤로가기 버튼
-		back.setBounds(50, 450, 100, 50); // 위치 및 사이즈 조절
+		back.setBounds(40, 450, 100, 50); // 위치 및 사이즈 조절
 		add(back); // 버튼 화면에 더하기
 		
 		rImg = new ResizeImg("images/back.png", 50, 50); // 버튼 이미지 사이즈 조절해주기
@@ -137,7 +137,7 @@ public class HunMinGame extends JPanel {
 		}
 		board.remove(time); //타이머 삭제
 		time = new LabelThread(10); // 타이머 재 생성
-		time.setBounds(400, 50, 500, 200); // 위치 및 사이즈 조절
+		time.setBounds(340, 50, 500, 200); // 위치 및 사이즈 조절
 		time.setFont(new Font("MD솔체", Font.BOLD, 150)); // 폰트 설정
 		board.add(time); // 타이머 더해주기
 		revalidate();
