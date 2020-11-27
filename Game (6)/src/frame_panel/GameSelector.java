@@ -45,6 +45,8 @@ public class GameSelector  {
 	private final int HEIGHT = 230;
 
 	private int people;
+	
+	private int game_number=0;
 
 	public GameSelector(MainPanel m) {
 		
@@ -162,7 +164,8 @@ public class GameSelector  {
 	
 	public void createSingContest() {
 		main.removeAll();
-		singer = new Singer();
+		game_number = 3;
+		singer = new Singer(main);
 		main.add(singer);
 		main.addMainPanel();
 		main.revalidate();
@@ -171,7 +174,8 @@ public class GameSelector  {
 	
 	public void createHunmin() {
 		main.removeAll();
-		hunmin = new HunMinGame();
+		game_number = 4;
+		hunmin = new HunMinGame(main);
 		main.add(hunmin);
 		main.addMainPanel();
 		main.revalidate();
@@ -200,6 +204,10 @@ public class GameSelector  {
 		return people;
 
 	} 
+	
+	public int getIntroNumber() {
+		return game_number;
+	}
 	
 	private class startListener implements MouseListener {
 

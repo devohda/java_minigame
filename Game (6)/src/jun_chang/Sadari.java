@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,7 +19,11 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+<<<<<<< HEAD
 import tool.ResizeImg;
+=======
+import tool.*;
+>>>>>>> dfb79bea8a3b17e5e6f92d39cfb9374ee9a723de
 
 @SuppressWarnings("serial")
 public class Sadari extends JPanel implements SadariInterFace{
@@ -30,16 +35,30 @@ public class Sadari extends JPanel implements SadariInterFace{
 	
 	private JPanel inputPanel;
 	private JTextField inputNumber;
-	private JButton startButton;
+	private JButton btnBasic, startButton;
 	private JButton resetButton;
 	private JLabel borderLab;
 	
 	private Color color,colorborder;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> dfb79bea8a3b17e5e6f92d39cfb9374ee9a723de
 	
+
+    private Customfont makeFnt;
+    private Font fnt;
+    
+    
 	public Sadari()
 	{	
+<<<<<<< HEAD
 		
+=======
+        makeFnt = new Customfont(); //외부 폰트 만들기
+        fnt = makeFnt.getCustomFont("font/SSShinb7.ttf", Font.PLAIN, 20); //폰트 지정
+        
+>>>>>>> dfb79bea8a3b17e5e6f92d39cfb9374ee9a723de
 		color= new Color(255, 255, 224);
 		colorborder = new Color(201,200,208);
 		
@@ -57,7 +76,11 @@ public class Sadari extends JPanel implements SadariInterFace{
 		mainPanel.setBounds(0, 0, 450, 360);
 
 		mainPanel.setBackground(color);
+<<<<<<< HEAD
 		mainPanel.setLayout(null);
+=======
+		mainPanel.setLayout(null);		
+>>>>>>> dfb79bea8a3b17e5e6f92d39cfb9374ee9a723de
 		
 
 		
@@ -65,19 +88,33 @@ public class Sadari extends JPanel implements SadariInterFace{
 		inputPanel = new JPanel();
 		inputPanel.setLayout(new FlowLayout());
 		
-		inputNumber = new JTextField(1);		
-		startButton = new JButton("START");
-		resetButton = new JButton("RESET");
+		inputNumber = new JTextField(2);
+		inputNumber.setHorizontalAlignment(SwingConstants.CENTER);
+		inputNumber.setSize(new Dimension(10,10));
+		inputNumber.setVisible(false);
 		
+		btnBasic = new JButton("시작하기");
+		btnBasic.setFont(fnt);
+		
+		startButton = new JButton("START");
+		startButton.setFont(fnt);
+		startButton.setVisible(false);
+		resetButton = new JButton("RESET");
+		resetButton.setFont(fnt);
 		add(mainPanel);
 		
 		inputPanel.add(inputNumber);
 		inputPanel.add(startButton);
+		inputPanel.add(btnBasic);
 		inputPanel.add(resetButton);
 		inputPanel.setBounds(0, 450, 450, 50);
 		add(inputPanel);	
 		
 
+<<<<<<< HEAD
+=======
+		btnBasic.addActionListener(new basicListener());
+>>>>>>> dfb79bea8a3b17e5e6f92d39cfb9374ee9a723de
 		startButton.addActionListener(new StartListener());
 		resetButton.addActionListener(new ResetListener());
 		
@@ -118,6 +155,20 @@ public class Sadari extends JPanel implements SadariInterFace{
 		
 		} 	
 	} 
+	
+	public class basicListener implements ActionListener 
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			mainStatus = STATUS.INIT;
+			inputNumber.setVisible(true);
+			startButton.setVisible(true);
+			btnBasic.setVisible(false);
+			mainPanel.repaint();
+			
+		}
+		
+	}
 
 
 }
