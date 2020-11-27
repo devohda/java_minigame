@@ -8,17 +8,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import javax.swing.*;
 
-
-import jun_chang.BottleCapPanel;
-import jun_chang.CatchCatchPanel;
-import jun_chang.Sadari;
+import bottlecap.BottleCapPanel;
+import catchCatch.CatchCatchPanel;
 import combination.Game;
 import hunmingame.HunMinGame;
+import sadari.Sadari;
 import singer.Singer;
 
 import clientgame.ClientGame;
 
-import tool.ResizeImg;
+import tool.*;
 
 public class GameSelector  {
 	
@@ -29,6 +28,7 @@ public class GameSelector  {
 	private Singer singer;
 	private HunMinGame hunmin;
 	private Game game;
+	private Sound intro;
 	
 	private MainPanel main;
 	
@@ -47,6 +47,8 @@ public class GameSelector  {
 	private final int HEIGHT = 230;
 
 	private int people;
+	
+	private int game_number=0; // 인트로 번호
 	
 	private ClientGame client;
 	
@@ -146,6 +148,8 @@ public class GameSelector  {
 	public void createBottleCap() {
 		main.removeAll();
 		bottleCap = new BottleCapPanel(client, this, main);
+		main.offMainIntro();// 게임 시작되면 이전에 틀어지 인트로 꺼주기
+		game_number = 1;// 인트로 번호
 		main.add(bottleCap);
 		main.addMainPanel();
 		main.revalidate();
@@ -156,6 +160,8 @@ public class GameSelector  {
 	public void createCatchCatch() {
 		main.removeAll();
 		Catch = new CatchCatchPanel(client, this, main);
+		main.offMainIntro();// 게임 시작되면 이전에 틀어지 인트로 꺼주기
+		game_number = 2;// 인트로 번호
 		main.add(Catch);
 		main.addMainPanel();
 		main.revalidate();
@@ -164,7 +170,9 @@ public class GameSelector  {
 	
 	public void createSingContest() {
 		main.removeAll();
-		singer = new Singer(client);
+		singer = new Singer(client, this, main);	
+		main.offMainIntro();// 게임 시작되면 이전에 틀어지 인트로 꺼주기
+		game_number = 3;// 인트로 번호
 		main.add(singer);
 		main.addMainPanel();
 		main.revalidate();
@@ -173,7 +181,9 @@ public class GameSelector  {
 	
 	public void createHunmin() {
 		main.removeAll();
-		hunmin = new HunMinGame(client);
+		hunmin = new HunMinGame(client, this, main);
+		main.offMainIntro();// 게임 시작되면 이전에 틀어지 인트로 꺼주기
+		game_number = 4;// 인트로 번호
 		main.add(hunmin);
 		main.addMainPanel();
 		main.revalidate();
@@ -183,6 +193,8 @@ public class GameSelector  {
 	public void createCombination() {
 		main.removeAll();
 		game = new Game(client, this, main); //게임 실행 패널 객체 생성
+		main.offMainIntro(); // 게임 시작되면 이전에 틀어지 인트로 꺼주기
+		game_number = 5; // 인트로 번호
 		main.add(game);
 		main.addMainPanel();
 		main.revalidate();
@@ -315,6 +327,29 @@ public class GameSelector  {
 		public void mouseReleased(MouseEvent e) {}
 
 
+	}
+	public void offIntro() { // 게임을 나갈 때 게임의 인트로를 꺼주기 위함
+		if(intro!=null) {
+			intro.Off();
+		}
+		main.offMainIntro(); // 메인의 노래도 확실하게 꺼주기 위함
+	}
+	
+	public int getgameNum() { // 게임을 선택하면 게임에 해당하는 인트로를 얻기 위한 함수
+		return game_number;
+	}
+	
+	public void setgameNumZero() {
+		game_number = 0; // 게임이 끝나거나 메인화면으로 넘어갈 시 인트로 번호 0 으로 넘겨주기 위함
+	}
+	public int getIntroNumber() { // 게임을 선택하면 게임에 해당하는 인트로를 얻기 위한 함수 // 함수 확인 실수로 같은 기능으로 재생성
+		return game_number;
+	}
+	
+	public void onOff(int onOff) { // 게임을 나갈 때 게임의 인트로를 꺼주기 위함  // 함수 확인 실수로 같은 기능으로 재생성
+		if(intro!=null) {
+			intro.Off();
+		}
 	}
 
 }

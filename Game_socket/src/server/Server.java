@@ -142,7 +142,7 @@ public class Server {
     
     // ----------------------------------전국노래자랑--------------------------------------------------
     public void singerIndex() {
-    	int singerIndex = (int)(Math.random()*3);
+    	int singerIndex = (int)(Math.random()*25);
     	sendMessage("[SINGERINDEX]" + singerIndex);
     }
     

@@ -1,8 +1,7 @@
 package combination;
 
 
-import tool.Customfont;
-import tool.ResizeImg;
+import tool.*;
 
 import clientgame.ClientGame;
 import combination.Game.renewScore;
@@ -58,6 +57,7 @@ public class Game extends JPanel {
  	    
  	private String name; 
  	private ClientGame cl;
+ 	private GameSelector gs;
 
     public Game(ClientGame c, GameSelector g, MainPanel m) {
     	
@@ -66,6 +66,7 @@ public class Game extends JPanel {
         _playerNum = g.getPeopleNum();
         System.out.println(_playerNum);
     	
+        gs = g;
     	cl = c;
     	
     	setBounds(125, 130, 800, 520); // Game 패널 크기 지정
@@ -411,9 +412,14 @@ public class Game extends JPanel {
 
         if(select == 0){ //다시 시작
         	cl.sendMessage("[COMBINATIONINIT]");
+        	gs.offIntro();
+        	main.offMainIntro();
         }else{ //종료 누르면 시스템 종료
         	main.createGameSelector();
         	main.addMainPanel();
+        	main.offMainIntro();
+        	gs.offIntro();
+        	gs.setgameNumZero();
             //종료하기 위한 상위 패널에 함수 만들어야 할 거 같음
         }
     }

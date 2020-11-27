@@ -4,13 +4,14 @@ package clientgame;
 import frame_panel.test;
 import hunmingame.HunMinGame;
 import singer.Singer;
-import jun_chang.BottleCapPanel;
-import jun_chang.CatchCatchPanel;
 import combination.Game;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+
+import bottlecap.BottleCapPanel;
+import catchCatch.CatchCatchPanel;
  
 public class ClientGame {
  
