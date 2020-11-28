@@ -7,10 +7,11 @@ import tool.LabelThread;
 import javax.swing.*;
 import frame_panel.GameSelector;
 import frame_panel.MainPanel;
+import socket.ClientGame;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import clientgame.ClientGame;
 
 
 public class Singer extends JPanel {

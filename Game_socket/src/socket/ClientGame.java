@@ -1,4 +1,4 @@
-package clientgame;
+package socket;
 
 
 import frame_panel.test;
@@ -67,7 +67,7 @@ public class ClientGame {
     public void connet() {
         try {
             socket = new Socket("127.0.0.1", 7777);
-            System.out.println("ì„œë²„ ì—°ê²°ì™„ë£Œ.");
+            System.out.println("?„œë²? ?—°ê²°ì™„ë£?.");
  
             out = new DataOutputStream(socket.getOutputStream());
             in = new DataInputStream(socket.getInputStream());         
@@ -78,13 +78,13 @@ public class ClientGame {
                 msg = (String)in.readUTF();
                 System.out.println("12");
               
-     // ----------------------------------------ê²Œì„ë³„ ë°ì´í„° ì²˜ë¦¬-----------------------------------
-                // ---------ë³‘ëšœê»‘ flow ì²˜ë¦¬--------------
+     // ----------------------------------------ê²Œì„ë³? ?°?´?„° ì²˜ë¦¬-----------------------------------
+                // ---------ë³‘ëšœê»? flow ì²˜ë¦¬--------------
                 if ( msg.startsWith("[TRUE OR FALSE]") && guiBottle!=null) {
                 	guiBottle.initTurn();
 
-                	if(msg.substring(15) == "ì •ë‹µ!") {
-                		// ì¢…ë£Œì°½ ë„ìš°ê¸°
+                	if(msg.substring(15) == "? •?‹µ!") {
+                		// ì¢…ë£Œì°? ?„?š°ê¸?
                 		guiBottle.exit();
                 	}
                 	else {
@@ -101,7 +101,7 @@ public class ClientGame {
                 	System.out.println(iRandNum);
                 }
                 else if (guiBottle!=null) guiBottle.appendMsg(msg);
-                // ----------------í›ˆë¯¼ì •ìŒ-----------------------------------------------------
+                // ----------------?›ˆë¯¼ì •?Œ-----------------------------------------------------
                 if (msg.startsWith("[HUNMININDEX]") && guiHunmin!=null) {
                 	int nSplit = msg.indexOf("/"); 
                 	hunminIndex[0] = Integer.parseInt(msg.substring(13,nSplit)); 
@@ -109,8 +109,8 @@ public class ClientGame {
                 	System.out.println(hunminIndex[0] + "@@" + hunminIndex[1]);
                 	guiHunmin.init();
                 }
-                else if (guiHunmin!=null) guiHunmin.appendMsg(msg); // ì—¬ê¸°ì„œ ì˜¤ë¥˜ ë‚¬ì—ˆìŒ ==> í•´ë‹¹ ê³ ê°ë“¤ì´ ê²Œì„ ì‹¤í–‰ì „ ë“¤ì–´ì˜¤ë©´ gui ëŠ” nullì´ê¸°ì—
-                // --------------ì „êµ­ë…¸ë˜ìë‘-----------------------------------------------------
+                else if (guiHunmin!=null) guiHunmin.appendMsg(msg); // ?—¬ê¸°ì„œ ?˜¤ë¥? ?‚¬?—ˆ?Œ ==> ?•´?‹¹ ê³ ê°?“¤?´ ê²Œì„ ?‹¤?–‰? „ ?“¤?–´?˜¤ë©? gui ?Š” null?´ê¸°ì—
+                // --------------? „êµ??…¸?˜??‘-----------------------------------------------------
                 if (msg.startsWith("[SINGERINDEX]") && guiSing!=null) {
                 	singerIndex = Integer.parseInt(msg.substring(13)); 
                 	guiSing.init();
@@ -177,13 +177,13 @@ public class ClientGame {
         this.nickName = nickName;
     }
  
-    // ------------------------------------ë³‘ëšœê»‘------------------------------------
+    // ------------------------------------ë³‘ëšœê»?------------------------------------
     public int getRandNum() { return iRandNum; }
     
-    // --------------------------------------ë…¸ë˜ìë‘---------------------------------
+    // --------------------------------------?…¸?˜??‘---------------------------------
     public int getSingerIndex() { return singerIndex; }
     
-    // ------------------------------------í›ˆë¯¼ì •ìŒ-------------------------------------
+    // ------------------------------------?›ˆë¯¼ì •?Œ-------------------------------------
     public int[] getHunminIndex() { return hunminIndex; }
   
     // ----------------------------------ìºì¹˜ìºì¹˜--------------------------------------

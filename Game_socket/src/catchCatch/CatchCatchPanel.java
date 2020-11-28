@@ -15,8 +15,8 @@ import tool.RoundedButton;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import clientgame.ClientGame;
 import frame_panel.*;
+import socket.ClientGame;
 
 public class CatchCatchPanel extends JPanel {
 

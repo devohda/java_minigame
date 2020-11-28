@@ -25,17 +25,17 @@ import tool.*;
 public class Sadari extends JPanel implements SadariInterFace{
 	
 
-	public STATUS mainStatus = STATUS.INIT;
+	public STATUS mainStatus = STATUS.INIT; //기본상태 INIT
 	
 	private SadariPanel mainPanel;
 	
-	private JPanel inputPanel;
-	private JTextField inputNumber;
-	private JButton btnBasic, startButton;
-	private JButton resetButton;
-	private JLabel borderLab;
+	private JPanel inputPanel;  // 아래 텍스트필드와 버튼 넣는 패널
+	private JTextField inputNumber; //정답입력 텍스트필드
+	private JButton startButton; // 시작버튼과 초기화버튼
+	private JButton resetButton; //리셋버튼
 	
-	private Color color,colorborder;
+	private JLabel borderLab; //테두리 꾸미기
+	private Color color,colorborder; //테두리 꾸미기
 	
 
     private Customfont makeFnt;
@@ -43,7 +43,8 @@ public class Sadari extends JPanel implements SadariInterFace{
     
     
 	public Sadari()
-	{	
+	{		
+		
         makeFnt = new Customfont(); //외부 폰트 만들기
         fnt = makeFnt.getCustomFont("font/SSShinb7.ttf", Font.PLAIN, 20); //폰트 지정
         
@@ -53,51 +54,43 @@ public class Sadari extends JPanel implements SadariInterFace{
 		borderLab = new JLabel("");
 		borderLab.setBorder(new TitledBorder(new LineBorder(colorborder,5), ""));
 		borderLab.setBounds(0, 0, 450, 500);
-		add(borderLab);
+		add(borderLab); // 테두리 꾸미기
 		
 		setBounds(300, 170, 450, 500);
 		setLayout(null);
-		this.setBackground(color);
+		this.setBackground(color); //배경색지정
 		
 		mainPanel = new SadariPanel(this);
-		mainPanel.setBackground(Color.white);
-		mainPanel.setBounds(0, 0, 450, 360);
+		mainPanel.setBounds(0, 0, 450, 360); //메인패널 위치 설정
 
-		mainPanel.setBackground(color);
+		mainPanel.setBackground(color); //메인패널 배경색설정
 		mainPanel.setLayout(null);		
 		
 		inputPanel = new JPanel();
-		inputPanel.setLayout(new FlowLayout());
+		inputPanel.setLayout(new FlowLayout()); // 왼쪽에서 오른쪽배치
 		
 		inputNumber = new JTextField(2);
 		inputNumber.setHorizontalAlignment(SwingConstants.CENTER);
-		inputNumber.setSize(new Dimension(10,10));
-		inputNumber.setVisible(false);
+		inputNumber.setSize(new Dimension(10,10)); //정답 입력 텍스트 필드 설정
 		
-		btnBasic = new JButton("시작하기");
-		btnBasic.setFont(fnt);
 		
 		startButton = new JButton("START");
 		startButton.setFont(fnt);
-		startButton.setVisible(false);
 		resetButton = new JButton("RESET");
 		resetButton.setFont(fnt);
-		add(mainPanel);
+		add(mainPanel);   //스타트 버튼과 리셋버튼 생성후 글꼴 설정
 		
 		inputPanel.add(inputNumber);
 		inputPanel.add(startButton);
-		inputPanel.add(btnBasic);
 		inputPanel.add(resetButton);
 		inputPanel.setBounds(0, 450, 450, 50);
-		add(inputPanel);	
+		add(inputPanel);	 //inputPanel 설정
 		
 
-		btnBasic.addActionListener(new basicListener());
 		startButton.addActionListener(new StartListener());
 		resetButton.addActionListener(new ResetListener());
 		
-		
-		
+	
 
 	}
 	
@@ -107,16 +100,16 @@ public class Sadari extends JPanel implements SadariInterFace{
 			String text = inputNumber.getText().trim();
 			inputNumber.setText(" ");
 			
-			if( text.equals("")) text = "1";
+			if( text.equals("")) text = "1"; //정답입력 공백이면 1로 치환
 			int input = Integer.valueOf(text);
-			if( input < 1 ) input = 1;
+			if( input < 1 ) input = 1; 
 			if( input > 5 ) input = 5;
-			mainPanel.setStartPosition(input);
+			mainPanel.setStartPosition(input); //시작 지점 설정
 			
 			mainStatus=STATUS.DRAWING;
-			mainPanel.repaint();	
-			
-		} 	
+			mainPanel.repaint();	 //사다리 리페인트 
+			 
+		} 	 
 	} 
 	
 	private class ResetListener implements ActionListener
@@ -124,30 +117,10 @@ public class Sadari extends JPanel implements SadariInterFace{
 		public void actionPerformed(ActionEvent event) {
 			inputNumber.setText(" ");
 			
-			
-			
-			mainStatus = STATUS.INIT;
-			mainPanel.repaint();
-			
-			
-		
+			mainStatus = STATUS.INIT; // 사다리 초기화
+			mainPanel.repaint(); //다시그리기
 		} 	
 	} 
 	
-	public class basicListener implements ActionListener 
-	{
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			mainStatus = STATUS.INIT;
-			inputNumber.setVisible(true);
-			startButton.setVisible(true);
-			btnBasic.setVisible(false);
-			mainPanel.repaint();
-			
-		}
-		
-	}
-
-
 }
 

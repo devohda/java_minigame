@@ -12,11 +12,10 @@ import javax.swing.border.TitledBorder;
 import frame_panel.GameSelector;
 import frame_panel.MainPanel;
 import sadari.Sadari;
+import socket.ClientGame;
 import tool.Customfont;
 import tool.ResizeImg;
 import tool.RoundedButton;
-
-import clientgame.ClientGame;
 
 public class BottleCapPanel extends JPanel {
 

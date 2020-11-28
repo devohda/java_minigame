@@ -14,9 +14,7 @@ import combination.Game;
 import hunmingame.HunMinGame;
 import sadari.Sadari;
 import singer.Singer;
-
-import clientgame.ClientGame;
-
+import socket.ClientGame;
 import tool.*;
 
 public class GameSelector  {

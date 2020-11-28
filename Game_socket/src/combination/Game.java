@@ -2,9 +2,8 @@ package combination;
 
 
 import tool.*;
-
-import clientgame.ClientGame;
 import frame_panel.*;
+import socket.ClientGame;
 
 import javax.swing.*;
 

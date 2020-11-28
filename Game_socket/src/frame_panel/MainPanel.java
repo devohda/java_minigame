@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import clientgame.ClientGame;
 import sadari.Sadari;
+import socket.ClientGame;
 import tool.*;
 
 

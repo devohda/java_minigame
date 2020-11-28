@@ -2,8 +2,10 @@ package frame_panel;
 
 import java.awt.*;
 import javax.swing.*;
+
+import socket.ClientGame;
+
 import java.util.Scanner;
-import clientgame.ClientGame;
 
 public class test {
 

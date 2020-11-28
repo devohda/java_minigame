@@ -9,9 +9,9 @@ import java.awt.Image;
 import javax.swing.*;
 
 import tool.LabelThread;
-import clientgame.ClientGame;
 import frame_panel.GameSelector;
 import frame_panel.MainPanel;
+import socket.ClientGame;
 import tool.ResizeImg;
 
 public class HunMinGame extends JPanel {
