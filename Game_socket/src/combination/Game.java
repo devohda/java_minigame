@@ -486,12 +486,12 @@ public class Game extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
         	
-        	 if (e.getSource() == btnGeul) {
-        		 cl.sendMessage("[GEULCOMBINATION]" + turn);
+        	 if (e.getSource() == btnGeul) { // 결 버튼 누른경우
+        		 cl.sendMessage("[GEULCOMBINATION]" + turn); // 서버에 해당 플레이어 순서정보와 결 처리 메세지 전달
         	 }
-        	 else if (e.getSource() == btnHap) {
+        	 else if (e.getSource() == btnHap) { // 합 버튼을 누른경우
         		 String userInput = userinput.getText();
-        		 cl.sendMessage("[HAPCOMBINATION]" + turn + userInput);
+        		 cl.sendMessage("[HAPCOMBINATION]" + turn + userInput); // 서버에 플레이어 순서정보와 합 처리 메세지 전달
         	 }
         }
     }

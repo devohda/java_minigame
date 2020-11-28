@@ -62,10 +62,10 @@ public class BottleCapPanel extends JPanel {
 	
 	public BottleCapPanel(ClientGame c, GameSelector gs, MainPanel m) {
 		
-		gameselector = gs;
-		main = m;
+		gameselector = gs; // 게임선택 클래스의 객체 전달 받기
+		main = m; // 메인패널의 객체 전달 받기
 		
-		cl = c;
+		cl = c; // 클라이언트 객체 전달 받기
 		
 		iRanNum = 7; // 7로 초기화 reset 버튼 클릭 시 계속 변경될예정 (아래 리스너로 처리)
 		
@@ -110,7 +110,7 @@ public class BottleCapPanel extends JPanel {
 		num.setBounds(191, 190, 20, 20);
 		add(num);
 		
-		// 오답 표시 라벨 3개		--------------------
+		// 오답 표시를 위한 라벨 3개 --------------------
 		wrong = new JLabel("<오답>");
 		wrong.setBounds(240, 30, 50, 30);
 		wrong.setForeground(Color.white);
@@ -137,7 +137,7 @@ public class BottleCapPanel extends JPanel {
 		wrongAnswerLabel.setFont(fnt);
 		personNumLabel.setFont(fnt);
 		        
-		// 오답..              --------------------
+		// 오답 표시를 위한 라벨 3개 여기까지 ----------------------------------
 		
 		
 		//TextField + Button
@@ -166,22 +166,22 @@ public class BottleCapPanel extends JPanel {
 		add(back);
 		
 		// 채팅창 구현
-		chatArea = new JTextArea(); // 점수판 글씨 임준
-		scrollPane = new JScrollPane(chatArea);
+		chatArea = new JTextArea(); // 채팅내용을 나타낼 객체 생성
+		scrollPane = new JScrollPane(chatArea); // JScrollPane을 이용하여 긴 내용도 표시가능
 		chatArea.setEditable(false); // 점수판 편집 불가
 		scrollPane.setBounds(400, 0, 200, 375);
 		add(scrollPane);
 				
-		chat = new JTextField();
+		chat = new JTextField(); //채팅을 입력할 객체 생성
 		chat.setBounds(400, 375, 200, 25);
 		add(chat);
 		
-		init.addActionListener(new InitListener());
-		enterNumButton.addActionListener(new AnwserListener());
-		chat.addActionListener(new sendMessage());
+		init.addActionListener(new InitListener()); // 게임 재시작을 위한 리스너
+		enterNumButton.addActionListener(new AnwserListener()); // 정답입력 시 실행되는 리스너
+		chat.addActionListener(new sendMessage()); // 채팅입력시 실행되는 리스너
 
-		cl.setGuiBottle(this);
-		name = cl.getNickname();
+		cl.setGuiBottle(this); // 클라이언트 구현을 위한 보틀캡 객체 전달
+		name = cl.getNickname(); // 처음 게임 실행 시 입력 한 닉네임 설정
 		
 	} // construct
 	
@@ -191,10 +191,10 @@ public class BottleCapPanel extends JPanel {
 	
 	
 	public void init() {
-		iRanNum = cl.getRandNum();
-		enterNum.setText("");
-		wrongAnswerLabel.setText("");
-		blank.setVisible(true);
+		iRanNum = cl.getRandNum(); // ClientGame 클래스로부터 랜덤 변수 가져오기
+		enterNum.setText(""); // 입력하는 칸 비우기
+		wrongAnswerLabel.setText(""); // 오답 칸 비우기
+		blank.setVisible(true); // 정답 숫자 가리기 
 		
 		// 추가된 부분 초기화 시 순번 1로
 		n = 1; 
@@ -211,17 +211,22 @@ public class BottleCapPanel extends JPanel {
 	}
 	
 	public void exit() {
+		
+		// 정답 시 실행되는 JOptionPane
 		String[] option = {"다시 시작", "종료"};
 		int select = JOptionPane.showOptionDialog(this, "게임이 종료되었습니다", "게임종료", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, option, option[0]);
 
+		// 다시 시작하는 경우
 		if (select == 0) {
-			cl.sendMessage("[initBottle]");
-			gameselector.offIntro();
+			cl.sendMessage("[initBottle]"); // 서버에 초기화 메세지 보내기
+			gameselector.offIntro(); // 인트로끄기
         	main.offMainIntro();
-		} else if (select == JOptionPane.NO_OPTION) {
-			main.createGameSelector();
-        	main.addMainPanel();
-        	gameselector.offIntro();
+		} 
+		// 종료하는 경우
+		else if (select == JOptionPane.NO_OPTION) {
+			main.createGameSelector(); // 게임 선택화면으로 이동하기 위한 객체 생성
+        	main.addMainPanel(); // 메인패널을 구성하는 라벨, 버튼들 추가
+        	gameselector.offIntro(); // 인트로끄기
         	main.offMainIntro();
         	gameselector.setgameNumZero();		
 		} else {
@@ -229,6 +234,7 @@ public class BottleCapPanel extends JPanel {
 		}
 	}
 	
+	// 오답 시  실행되는 오디오
 	public void audio1()
 	{ 	
 		 File bgm;
@@ -254,16 +260,19 @@ public class BottleCapPanel extends JPanel {
 		
 	}
 	
-	// 네트워크
+	// 채팅창에 본인 또는 상대방이 입력한 메세지 출력
 	public void appendMsg(String msg) {
         chatArea.append(msg);
     }     
 	
+	// 서버로 부터 전달받은 정답 또는 오답 메세지를 통해 오답 칠판에 출력
 	public void appendWrongAns(String msg) {
-		if ( msg.startsWith("[TRUE OR FALSE]")) msg = msg.substring(15);
-    	wrongAnswerLabel.setText(msg);
+		if ( msg.startsWith("[TRUE]")) msg = msg.substring(6);
+		else if (msg.startsWith("[FALSE]")) msg = msg.substring(7); 
+    	wrongAnswerLabel.setText(msg); // 오답 칠판에 출력
     }
 	
+	// 본인이 채팅창에 입력한 내용을 서버로 전달
 	private class sendMessage implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 	        String msg = name + " : " + chat.getText() + "\n";
@@ -271,12 +280,11 @@ public class BottleCapPanel extends JPanel {
 	        chat.setText("");
 	    }
 	}
-    // 여기까지 네트워크 
 	
 	private class InitListener implements ActionListener { // 게임 초기화
 		public void actionPerformed(ActionEvent e) {
 			try {
-				cl.sendMessage("[initBottle]");
+				cl.sendMessage("[initBottle]"); // 서버로 보틀캡 게임 초기화 메세지 전달
 			} catch (Exception e1) {
 	            System.out.println("오류 발생! >> " + e1); 
 			}
@@ -288,7 +296,7 @@ public class BottleCapPanel extends JPanel {
 	private class AnwserListener implements ActionListener { // 숫자 입력 및, 오답 판 갱신
 		public void actionPerformed(ActionEvent e) {
 			try {
-				cl.sendMessage("[Answer]" + enterNum.getText());
+				cl.sendMessage("[Answer]" + enterNum.getText()); // 서버로 입력한 숫자의 정답 여부 판단을 요구하는 메세지 전달
 				enterNum.setText("");
 			} catch (Exception e1) {
 				 System.out.println("오류 발생! >> " + e1); 

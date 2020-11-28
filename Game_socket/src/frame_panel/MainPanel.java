@@ -241,6 +241,7 @@ public class MainPanel extends JPanel {
 		
 	}
 	
+	// 메인 패널구성하는 라벨, 버튼 추가
 	public void addMainPanel() {
 		add(help);
 		add(bgm); 
@@ -252,14 +253,14 @@ public class MainPanel extends JPanel {
 		add(goToHome); 
 		add(penalty);
 		add(lbl); 
-		revalidate();
+		revalidate(); // 새롭게 적용
 		repaint();
 	}
 	
 	public void createGameSelector() {		
-		removeAll();
-		game = new GameSelector(this, client);
-		revalidate();
+		removeAll(); // 현재 메인패널에 있는 객체들을 모두 지움
+		game = new GameSelector(this, client); // 게임셀렉터 생성
+		revalidate(); // 새롭게 적용
 		repaint();
 	}
 	
@@ -364,6 +365,8 @@ public class MainPanel extends JPanel {
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
+			
+			// 마우스가 라벨에 들어올 경우 호버 효과 적용 (투명도 50%)
 			Object obj = e.getSource();
 			if (obj == goToHome) {
 				goToHome.setIcon(hoverHome);
@@ -400,6 +403,8 @@ public class MainPanel extends JPanel {
 
 		@Override
 		public void mouseExited(MouseEvent e) {//---------------------
+			
+			// 마우스가 라벨을 벗어날 경우 호버효과 해제
 			Object obj = e.getSource();
 			if (obj == goToHome) {
 				goToHome.setIcon(home);
@@ -445,7 +450,8 @@ public class MainPanel extends JPanel {
     	
     }
 
-    public void createSadari() {//---------------------
+    // 위와 마찬가지로 메인패널을 모두 지우고 사다리 패널 객체 생성 후 추가 및 새롭게 적용
+    public void createSadari() {
         removeAll();
         sadari = new Sadari();
         add(sadari);
@@ -454,7 +460,7 @@ public class MainPanel extends JPanel {
         repaint();
         gameStart.setVisible(false);
         peopleField.setVisible(false);
-        insertPeople.setVisible(false);//---------------------
+        insertPeople.setVisible(false);
     }
 
     public int getPeopleNum(){ // 인원수 반환 함수

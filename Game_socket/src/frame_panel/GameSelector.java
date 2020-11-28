@@ -19,18 +19,18 @@ import tool.*;
 
 public class GameSelector  {
 	
-	private JLabel playBottleCap, playCatch, playRandom, playSingContest, playHunmin, playCombination;
-	private ImageIcon imgBottle, imgCatch, imgRandom, imgSingContest, imgHunmin, imgCombination;	
-	private BottleCapPanel bottleCap;
-	private CatchCatchPanel Catch;
-	private Singer singer;
-	private HunMinGame hunmin;
-	private Game game;
-	private Sound intro;
+	private JLabel playBottleCap, playCatch, playRandom, playSingContest, playHunmin, playCombination; // 각 게임들을 위한 라벨들
+	private ImageIcon imgBottle, imgCatch, imgRandom, imgSingContest, imgHunmin, imgCombination; // 각 게임 선택에 쓰이는 이미지들
+	private BottleCapPanel bottleCap; // 보틀캡 객체 선언
+	private CatchCatchPanel Catch; // 캐치캐치 객체 선언
+	private Singer singer; // 전국노래자랑 객체 선언
+	private HunMinGame hunmin; // 훈민정음 객체 선언
+	private Game game; // 결합게임 객체 선언
+	private Sound intro; // 시운드 객체 선언
 	
-	private MainPanel main;
+	private MainPanel main; // 클래스 생성 시 인자로 전달받는 메인패널 위한 객체
 	
-	private startListener start;
+	private startListener start; // startListener 객체 선언
 	
 	// 벌칙화면
 	Sadari sadari;
@@ -39,22 +39,23 @@ public class GameSelector  {
 	private Image resizeImgBottle, resizeImgCatch, resizeImgSing, resizeImgHunmin, resizeImgCom, resizeImgRandom;
 	private ResizeImg rImg;
 	
-	private Font fnt;
+	private Font fnt; // 폰트 객체 선언
 	
-	private final int WIDTH = 230;
+	private final int WIDTH = 230; // 각 게임별 라벨의 크기
 	private final int HEIGHT = 230;
 
-	private int people;
+	private int people; // 메인패널에서 입력받은 플레이어 수를 위한 변수
 	
 	private int game_number=0; // 인트로 번호
 	
-	private ClientGame client;
+	private ClientGame client; // 클라이언트 구현을 위한 객체 선언
 	
 	public GameSelector(MainPanel m, ClientGame c) {
 		
-		main = m;
+		main = m; // 메인패널의 객체 전달 받기
 		people = m.getPeopleNum(); //사용자 수 가져오기	
 		
+		// 폰트 불러오기
 		try {
 			fnt = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("font/SSShinb7.ttf"))).deriveFont(Font.PLAIN,20);
 		} catch (Exception ex) {
@@ -63,9 +64,12 @@ public class GameSelector  {
 			fnt = new Font("serif", Font.PLAIN, 24);
 		}
 		
-		client = c;
+		client = c; // 클라이언트 객체 전달 받기
 		
-		// 게임 라벨 add
+		// 각 게임별 라벨 생성 후 메인패널에 add
+		// ----------------------------------------
+		// ----------------------------------------
+		
 		// bottlecap
 		rImg = new ResizeImg("images/bottlePlay.png", WIDTH-20,HEIGHT-20);
 		resizeImgBottle = rImg.getResizeImage();
@@ -133,7 +137,7 @@ public class GameSelector  {
 		main.add(playRandom);
 				
 		//add action listener
-		start = new startListener();
+		start = new startListener(); // startListener 객체 생성
 		playBottleCap.addMouseListener(start);
 		playCatch.addMouseListener(start);
 		playSingContest.addMouseListener(start);
@@ -144,67 +148,67 @@ public class GameSelector  {
 	}
 	
 	public void createBottleCap() {
-		main.removeAll();
-		bottleCap = new BottleCapPanel(client, this, main);
-		main.offMainIntro();// 게임 시작되면 이전에 틀어지 인트로 꺼주기
+		main.removeAll(); // 현재 메인패널에 있는 객체들 모두 지우기
+		bottleCap = new BottleCapPanel(client, this, main); // bottlecap 객체 생성
+		main.offMainIntro();// 게임 시작되면 이전에 틀어진 인트로 꺼주기
 		game_number = 1;// 인트로 번호
-		main.add(bottleCap);
-		main.addMainPanel();
-		main.revalidate();
+		main.add(bottleCap); // 메인패널에 보틀캡 패널 추가
+		main.addMainPanel(); // 메인패널에 기존에 있던 라벨, 버튼들 추가
+		main.revalidate(); // 새롭게 적용
 		main.repaint();
 	}
 	
 	
 	public void createCatchCatch() {
-		main.removeAll();
-		Catch = new CatchCatchPanel(client, this, main);
-		main.offMainIntro();// 게임 시작되면 이전에 틀어지 인트로 꺼주기
+		main.removeAll(); // 현재 메인패널에 있는 객체들 모두 지우기
+		Catch = new CatchCatchPanel(client, this, main); // catchcatch 객체 재생성
+		main.offMainIntro();// 게임 시작되면 이전에 틀어진 인트로 꺼주기
 		game_number = 2;// 인트로 번호
-		main.add(Catch);
-		main.addMainPanel();
-		main.revalidate();
+		main.add(Catch); // 메인패널에 캐치캐치 패널 추가
+		main.addMainPanel(); // 메인패널에 기존에 있던 라벨, 버튼들 추가
+		main.revalidate(); // 새롭게 적용
 		main.repaint();
 	}
 	
 	public void createSingContest() {
-		main.removeAll();
-		singer = new Singer(client, this, main);	
-		main.offMainIntro();// 게임 시작되면 이전에 틀어지 인트로 꺼주기
+		main.removeAll(); // 현재 메인패널에 있는 객체들 모두 지우기
+		singer = new Singer(client, this, main); //전국노래자랑 실행 패널 객체 생성
+		main.offMainIntro();// 게임 시작되면 이전에 틀어진 인트로 꺼주기
 		game_number = 3;// 인트로 번호
 		main.add(singer);
-		main.addMainPanel();
-		main.revalidate();
+		main.addMainPanel(); // 메인패널에 기존에 있던 라벨, 버튼들 추가
+		main.revalidate(); // 새롭게 적용
 		main.repaint();
 	}
 	
 	public void createHunmin() {
-		main.removeAll();
-		hunmin = new HunMinGame(client, this, main);
-		main.offMainIntro();// 게임 시작되면 이전에 틀어지 인트로 꺼주기
+		main.removeAll(); // 현재 메인패널에 있는 객체들 모두 지우기
+		hunmin = new HunMinGame(client, this, main); //훈민정음 실행 패널 객체 생성
+		main.offMainIntro();// 게임 시작되면 이전에 틀어진 인트로 꺼주기
 		game_number = 4;// 인트로 번호
-		main.add(hunmin);
-		main.addMainPanel();
-		main.revalidate();
+		main.add(hunmin); // 메인패널에 훈민 패널 추가
+		main.addMainPanel(); // 메인패널에 기존에 있던 라벨, 버튼들 추가
+		main.revalidate(); // 새롭게 적용
 		main.repaint();
 	}
 	
 	public void createCombination() {
-		main.removeAll();
+		main.removeAll(); // 현재 메인패널에 있는 객체들 모두 지우기
 		game = new Game(client, this, main); //게임 실행 패널 객체 생성
-		main.offMainIntro(); // 게임 시작되면 이전에 틀어지 인트로 꺼주기
+		main.offMainIntro(); // 게임 시작되면 이전에 틀어진 인트로 꺼주기
 		game_number = 5; // 인트로 번호
-		main.add(game);
-		main.addMainPanel();
-		main.revalidate();
+		main.add(game); // 메인패널에 결합 패널 추가
+		main.addMainPanel(); // 메인패널에 기존에 있던 라벨, 버튼들 추가
+		main.revalidate(); // 새롭게 적용
 		main.repaint();
 	}
 	
 	public void createSadari() {
-		main.removeAll();
-		sadari = new Sadari();
-		main.add(sadari);
-		main.addMainPanel();
-		main.revalidate();
+		main.removeAll(); // 현재 메인패널에 있는 객체들 모두 지우기
+		sadari = new Sadari(); //사다리 실행 패널 객체 생성
+		main.add(sadari); // 메인패널에 사다리 패널 추가
+		main.addMainPanel(); // 메인패널에 기존에 있던 라벨, 버튼들 추가
+		main.revalidate(); // 새롭게 적용
 		main.repaint();
 	}
 	
@@ -213,26 +217,28 @@ public class GameSelector  {
 
 	} 
 	
+	// 각 게임별 라벨 클릭 시 해당 게임 실행을 위한 리스너
 	private class startListener implements MouseListener {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
 
+			// 마우스로 클릭한 경우로 해당 게임 실행
 			Object obj = e.getSource();
 			
 			if (obj == playBottleCap) {
-				createBottleCap();				
+				createBottleCap(); // 병뚜껑 숫자 피하기 게임 실행을 위한 함수 호출
 			} else if (obj == playCatch) {
-				createCatchCatch();
+				createCatchCatch(); // 캐치캐치 게임 실행을 위한 함수 호출
 			} else if (obj == playSingContest) {
-				createSingContest();
+				createSingContest(); // 전국노래자랑 게임 실행을 위한 함수 호출
 			} else if (obj == playHunmin) {
-				createHunmin();
+				createHunmin(); // 훈민정음 게임 실행을 위한 함수 호출
 			} else if (obj == playCombination) {
-				System.out.println("hello");
-				createCombination();
+				createCombination(); // 결합 게임 실행을 위한 함수 호출
 			} else if (obj == playRandom) {
 				
+				// 랜덤으로 인덱스 생성 후 해당 숫자에 따른 게임 실행을 위한 함수 호출
 				int _randNum = (int)(Math.random()*5) + 1;
 				
 				if (_randNum == 1) createBottleCap();
@@ -245,6 +251,8 @@ public class GameSelector  {
 	
 		@Override
 		public void mouseEntered(MouseEvent e) {
+			
+			// 마우스가 라벨에 들어올 경우 호버 효과 적용 (투명도 50%)
 			Object obj = e.getSource();
 			
 			if (obj == playBottleCap) {
@@ -283,6 +291,8 @@ public class GameSelector  {
 
 		@Override
 		public void mouseExited(MouseEvent e) {
+			
+			// 마우스가 라벨을 벗어날 경우 호버효과 해제
 			Object obj = e.getSource();
 			
 			if (obj == playBottleCap) {
