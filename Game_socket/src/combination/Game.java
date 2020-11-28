@@ -49,7 +49,7 @@ public class Game extends JPanel {
     
     // 네트워크 랜덤 카드 생성 인자
     private int[][] indexCombi = new int[9][3];
-    // 네트워크 구현위한 버튼
+    // 초기화 버튼
  	private JButton btnReset;
  	
  	// 채팅구현
@@ -489,7 +489,7 @@ public class Game extends JPanel {
         	 if (e.getSource() == btnGeul) { // 결 버튼 누른경우
         		 cl.sendMessage("[GEULCOMBINATION]" + turn); // 서버에 해당 플레이어 순서정보와 결 처리 메세지 전달
         	 }
-        	 else if (e.getSource() == btnHap) { // 합 버튼을 누른경우
+        	 else if (e.getSource() == btnHap || e.getSource() == userinput) { //합을 누른 경우, enter 친 경우
         		 String userInput = userinput.getText();
         		 cl.sendMessage("[HAPCOMBINATION]" + turn + userInput); // 서버에 플레이어 순서정보와 합 처리 메세지 전달
         	 }
