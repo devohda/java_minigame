@@ -64,6 +64,8 @@ public class BottleCapPanel extends JPanel {
 		gameselector = gs; // 게임선택 클래스의 객체 전달 받기
 		main = m; // 메인패널의 객체 전달 받기
 		
+		personNum = gameselector.getPeopleNum();
+		
 		cl = c; // 클라이언트 객체 전달 받기
 		
 		iRanNum = 7; // 7로 초기화 reset 버튼 클릭 시 계속 변경될예정 (아래 리스너로 처리)
@@ -206,7 +208,10 @@ public class BottleCapPanel extends JPanel {
 			n++;
 			personNumLabel.setText("" + n + " 번째 사람의 차례입니다.");
 		}
-		if( n==personNum) n=0;
+		else {
+			n=1;
+			personNumLabel.setText("" + n + " 번째 사람의 차례입니다.");
+		}
 	}
 	
 	public void exit() {
