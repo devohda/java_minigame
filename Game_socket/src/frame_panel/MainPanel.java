@@ -295,7 +295,7 @@ public class MainPanel extends JPanel {
                 gameStart.setVisible(false);
                 insertPeople.setVisible(true);
                 peopleField.setVisible(true);
-            	game.setgameNumZero();
+            	if (game != null) game.setgameNumZero(); // 아직 게임셀렉터 객체가 생성되지 않은 경우 실행 하지 않음
                 peopleField.setEnabled(true);
                 insertPeople.setEnabled(true); // 사용자 입력 못하도록 //---------------------
             } else if (object == insertPeople || object == peopleField) {//---------------------

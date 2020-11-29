@@ -498,11 +498,10 @@ public class Game extends JPanel {
     // ---------------------------------------------여까지--------------------------------------------
     
     public void restartGame(){
-        String[] option = {"다시 시작","종료"};
+        String[] option = {"계속 하기","종료"};
         int select = JOptionPane.showOptionDialog(this,"게임이 종료되었습니다","게임종료",0,JOptionPane.INFORMATION_MESSAGE,null,option,option[0]);
 
         if(select == 0){ //다시 시작
-        	cl.sendMessage("[COMBINATIONINIT]");
         	gs.offIntro();
         	main.offMainIntro();
         }else{ //종료 누르면 시스템 종료

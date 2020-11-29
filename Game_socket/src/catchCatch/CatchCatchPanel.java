@@ -107,10 +107,10 @@ public class CatchCatchPanel extends JPanel {
         background = new ImageIcon(resizeImg);  //배경이미지
 		
 		//ImageIcon
-		jewel = new ImageIcon("images/Jewel.png");
+		jewel = new ImageIcon("images/Jewel_bg.png");
 		candy = new ImageIcon("images/Candy.png");
-		bomb = new ImageIcon("images/Bomb.png");
-		skul = new ImageIcon("images/Skul.png");
+		bomb = new ImageIcon("images/Bomb_bg.png");
+		skul = new ImageIcon("images/Skul_bg.png");
 				
 		boxImg = new ImageIcon("images/Box.png"); 
 		hoverBoxImg = new ImageIcon("images/hoverBox.png");
@@ -186,19 +186,24 @@ public class CatchCatchPanel extends JPanel {
 		// -----------------------------네트워크를 위한 초기화 해주기---------------------------------------------------
 		
 		for(int i=0; i<5; i++) {
-			box[i].setScore(2);
+			if(i%2 == 0) box[i].setScore(2);
+			else box[i].setScore(0);
 		}
 		for(int i=5; i<10; i++) {
-			box[i].setScore(1);
+			if(i%2 == 0) box[i].setScore(1);
+			else box[i].setScore(-1);
 		}
 		for(int i=10; i<15; i++) {
-			box[i].setScore(0);
+			if(i%2 == 0) box[i].setScore(0);
+			else box[i].setScore(-2);
 		}
 		for(int i=15; i<20; i++) {
-			box[i].setScore(-1);
+			if(i%2 == 0) box[i].setScore(-1);
+			else box[i].setScore(1);
 		}
 		for(int i=20; i<25; i++) {
-			box[i].setScore(-2);
+			if(i%2 == 0) box[i].setScore(-2);
+			else box[i].setScore(2);
 		}
 		// ----------------------------------------------------------------------------------------------------
 				
