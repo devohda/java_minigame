@@ -179,6 +179,4 @@ public class HunMinGame extends JPanel {
         	gameselector.setgameNumZero(); // 인트로 관련 번호 0으로 설정
 	    }
 	}
-	
-
 }
