@@ -75,7 +75,7 @@ public class MainPanel extends JPanel {
         hover = new hoverListener(); // 마우스 리스너 객체 생성
 		
         // 배경 이미지 삽입
-        rImg = new ResizeImg("images/bg_2.jpg", 1050, 800); // 사이즈 조절할 이미지 클래스에 넣어주기
+        rImg = new ResizeImg("images/bg.png", 1050, 800); // 사이즈 조절할 이미지 클래스에 넣어주기
         resizeImg = rImg.getResizeImage(); // 재조정 이미지 반환
         icon = new ImageIcon(resizeImg); // 아이콘에 넣어주기
         lbl = new JLabel("", icon, SwingConstants.RIGHT); // 배경이미지 라벨에 삽입

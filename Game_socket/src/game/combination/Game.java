@@ -80,7 +80,7 @@ public class Game extends JPanel {
         _playerNum = g.getPeopleNum();
         players = new Player[_playerNum];
 
-        for (int i = 0; i < _playerNum; i++) { // 지금현재 4명임의 수  // >> 수정 personNum 만큼의 숫자로
+        for (int i = 0; i < _playerNum; i++) { // personNum 만큼의 숫자로
             players[i] = new Player();
             players[i].setScore(0); // 플레이어 수 점수 전부 0점초기화
             players[i].setOrder(i + 1);
@@ -510,7 +510,6 @@ public class Game extends JPanel {
         	main.offMainIntro();
         	gs.offIntro();
         	gs.setgameNumZero();
-            //종료하기 위한 상위 패널에 함수 만들어야 할 거 같음
         }
     }
 }

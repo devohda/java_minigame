@@ -107,10 +107,8 @@ public class Sadari extends JPanel implements SadariInterFace{
 			if( input > 5 ) input = 5;
 			mainPanel.setStartPosition(input); //시작 지점 설정
 
-			mainStatus = STATUS.INIT; // 사다리 초기화
-			mainPanel.repaint();	 //사다리 리페인트
 			mainStatus=STATUS.DRAWING;
-
+			mainPanel.repaint();	 //사다리 리페인트
 		} 	 
 	} 
 	

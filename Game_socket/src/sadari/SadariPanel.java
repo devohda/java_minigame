@@ -174,7 +174,6 @@ public class SadariPanel extends JPanel implements SadariInterFace{
 				g2.drawLine(currentDrawX+3, currentDrawY, currentDrawX+3, ++currentDrawY);
 			}
 			repaint(); //사다리 타고 내려오는 길 굵은 빨간선으로 칠하는 과정
-			setBackground(Color.red);
 			mainFrame.mainStatus = STATUS.END;
 		}
 

@@ -43,8 +43,8 @@ public class CardPanel extends JPanel {
                 break;
             }
             case TRIANGLE : { //삼각형 그리기
-                int x[] = { 15, 40, 65 };
-                int y[] = { 65, 15, 65 };
+                int[] x = { 15, 40, 65 };
+                int[] y = { 65, 15, 65 };
                 paint.fillPolygon( x, y, 3 );
                 break;
             }
