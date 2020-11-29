@@ -199,8 +199,8 @@ public class Game extends JPanel {
         setGameBoardInfo(indexCombi); //게임 초기화
         
         gameBoard = new GameBoardPanel(boardInfo); // 게임판 만들기
-        gameBoard.setBounds(50, 120, 500, 500); // 게임판 위치, 크기 지정
-        gameBoard.setBackground(new Color(236, 191, 246)); // 게임판 배경색 지정
+        gameBoard.setBounds(50, 120, 350, 350); // 게임판 위치, 크기 지정
+
         add(gameBoard); // 게임판 추가
         repaint();
 

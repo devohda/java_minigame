@@ -5,7 +5,8 @@ import java.awt.*;
 
 public class GameBoardPanel extends JPanel {
     public GameBoardPanel(Card boardInfo[]){
-    	
+
+        setBackground(Color.CYAN);
         setLayout(null); //레이아웃 배치 관리자 끄기
 
         int cnt = 0;
@@ -18,4 +19,10 @@ public class GameBoardPanel extends JPanel {
         }
 
     }//constructor
+    public void paintComponent(Graphics paint){
+
+        super.paintComponent(paint); //패널 내 잔상 지우기
+        super.setBackground(new Color(115, 15, 15));
+
+    }//paintComponent()
 }

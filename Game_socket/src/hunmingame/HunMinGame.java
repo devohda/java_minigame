@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.Image;
 import javax.swing.*;
 
+import tool.Customfont;
 import tool.LabelThread;
 import frame_panel.GameSelector;
 import frame_panel.MainPanel;
@@ -40,7 +41,10 @@ public class HunMinGame extends JPanel {
     
     private GameSelector gameselector;
     private MainPanel main; 
-    
+
+    private Customfont makeFnt;
+    private Font fnt;
+
 	public HunMinGame(ClientGame c, GameSelector gs, MainPanel m) {
 			
 		gameselector = gs;
@@ -55,8 +59,10 @@ public class HunMinGame extends JPanel {
 		icon = new ImageIcon(resizeimg); // 이미지 아이콘화
 		board = new JLabel("",icon,SwingConstants.CENTER); // 아이콘을 넣으며 라벨로 배경화면 삽입
 		board.setBounds(0, 0, 750, 550); // 크기조절 950 -> 750
-		
-		
+
+		makeFnt = new Customfont();
+		fnt = makeFnt.getCustomFont("font/헤움아빠와크레파스A.ttf", Font.PLAIN, 250);
+
 		hangul = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ"; // 자음 모음
 		
 		index = cl.getHunminIndex();  // 자음 초기화
@@ -67,8 +73,8 @@ public class HunMinGame extends JPanel {
 		added = added + two; // 자음 두개 더하기
 		
 		word = new JLabel(added); // 더해진 초성 라벨에 넣기
-		word.setBounds(125, 150, 500, 300); // 크기조절 250 -> 125
-		word.setFont(new Font("MD솔체", Font.BOLD, 200)); // 폰트 설정
+		word.setBounds(110, 70, 500, 300); // 크기조절 250 -> 125
+		word.setFont(fnt); // 폰트 설정
 		word.setForeground(Color.white); // 글자 색 설정
 		word.setHorizontalAlignment(SwingConstants.CENTER); // 위치 설정
 		word.setVerticalAlignment(SwingConstants.CENTER); // 위치 설정
@@ -137,8 +143,9 @@ public class HunMinGame extends JPanel {
 		}
 		board.remove(time); //타이머 삭제
 		time = new LabelThread(10); // 타이머 재 생성
-		time.setBounds(340, 50, 500, 200); // 위치 및 사이즈 조절
-		time.setFont(new Font("MD솔체", Font.BOLD, 150)); // 폰트 설정
+		time.setBounds(340, 30, 500, 200); // 위치 및 사이즈 조절
+		fnt = makeFnt.getCustomFont("font/헤움아빠와크레파스A.ttf", Font.BOLD, 90);
+		time.setFont(fnt); // 폰트 설정
 		board.add(time); // 타이머 더해주기
 		revalidate();
 		repaint();
