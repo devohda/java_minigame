@@ -1,17 +1,17 @@
 package socket;
 
 
-import frame_panel.test;
-import hunmingame.HunMinGame;
-import singer.Singer;
-import combination.Game;
+import frame_panel.Test;
+import game.hunmingame.HunMinGame;
+import game.singer.Singer;
+import game.combination.Game;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-import bottlecap.BottleCapPanel;
-import catchCatch.CatchCatchPanel;
+import game.bottlecap.BottleCapPanel;
+import game.catchCatch.CatchCatchPanel;
  
 public class ClientGame {
  
@@ -21,7 +21,7 @@ public class ClientGame {
     private DataOutputStream out;
     
     // 각 게임별 gui연결을 위한 객체 선언
-    private test gui;
+    private Test gui;
     private HunMinGame guiHunmin;
     private Singer guiSing;
     private BottleCapPanel guiBottle;
@@ -31,7 +31,7 @@ public class ClientGame {
     private String msg;
     private String nickName;
     
-    // bottlecap
+    // game.bottlecap
     private int iRandNum;
     // singcontest
     private int singerIndex;
@@ -39,10 +39,10 @@ public class ClientGame {
     private int[] hunminIndex = new int[2];
     // catchcatch
     private int[] Point = new int[25];
-    // combination
+    // game.combination
     private int[][] indexCombi = {{1,1,0}, {1,2,0}, {2,1,2}, {2,2,2}, {0,1,1}, {0,2,2}, {0,2,1}, {1,0,2}, {1,2,1}};   
     
-    public void setGui(test gui) {
+    public void setGui(Test gui) {
         this.gui = gui; // 초기 게임 실행 연결하는 gui
     }
     

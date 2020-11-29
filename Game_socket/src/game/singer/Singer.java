@@ -1,9 +1,8 @@
-package singer;
+package game.singer;
 
 import tool.LabelThread;
 import tool.ResizeImg;
-import tool.Sound;
-import tool.LabelThread;
+
 import javax.swing.*;
 import frame_panel.GameSelector;
 import frame_panel.MainPanel;

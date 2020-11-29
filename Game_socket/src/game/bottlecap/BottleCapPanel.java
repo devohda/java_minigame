@@ -1,11 +1,10 @@
-package bottlecap;
+package game.bottlecap;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.File;
 import javax.sound.sampled.*;
 import java.awt.event.ActionEvent;
-import java.util.Random;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;

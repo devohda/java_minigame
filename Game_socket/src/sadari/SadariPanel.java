@@ -21,7 +21,7 @@ public class SadariPanel extends JPanel implements SadariInterFace{
 	final int termX = 70;  //사다리 간격
 	final int lengthY = 250;
 	final int lineLength = 5;
-	int y[] = new int[12];
+	int[] y = new int[12];
 	
 	final int countBridge = 6;//6+4개 실제로  add Bridge Count 
 	
@@ -36,34 +36,35 @@ public class SadariPanel extends JPanel implements SadariInterFace{
 	{
 		mainFrame = _mainFrame;
 
-		
 		txtPenalty1 = new JTextField();
 		txtPenalty1.setBounds(55, 360, 45, 25);
 		txtPenalty1.setHorizontalAlignment(SwingConstants.CENTER);
 		mainFrame.add(txtPenalty1);
+
 		txtPenalty2 = new JTextField();
 		txtPenalty2.setBounds(125, 360, 45, 25);
 		txtPenalty2.setHorizontalAlignment(SwingConstants.CENTER);
 		mainFrame.add(txtPenalty2);
+
 		txtPenalty3 = new JTextField();
 		txtPenalty3.setBounds(195, 360, 45, 25);
 		txtPenalty3.setHorizontalAlignment(SwingConstants.CENTER);
 		mainFrame.add(txtPenalty3);
+
 		txtPenalty4 = new JTextField();
 		txtPenalty4.setBounds(265, 360, 45, 25);
 		txtPenalty4.setHorizontalAlignment(SwingConstants.CENTER);
 		mainFrame.add(txtPenalty4);
+
 		txtPenalty5 = new JTextField();
 		txtPenalty5.setBounds(335, 360, 45, 25);
 		txtPenalty5.setHorizontalAlignment(SwingConstants.CENTER);
 		mainFrame.add(txtPenalty5);
+
 		//벌칙 입력 텍스트
-		
 		txt = new JLabel("↑ 벌칙 입력!");
 		txt.setBounds(55, 390, 80, 20); //설명 텍스트
-		mainFrame.add(txt);		
-		
-	
+		mainFrame.add(txt);
 		
 	}
 	
@@ -77,10 +78,9 @@ public class SadariPanel extends JPanel implements SadariInterFace{
 	{		
 
 		Font fnt = new Font("Verdana", Font.BOLD, 15);
-		
-		
+
 		if( mainFrame.mainStatus == STATUS.INIT)
-		{		
+		{
 			super.paintComponent(g);  /* 화면삭제 */
 			
 			g.setColor(Color.BLACK);
@@ -130,8 +130,7 @@ public class SadariPanel extends JPanel implements SadariInterFace{
 				g.drawLine(paddingX+2+rdX*termX, paddingY+rdY+lineLength, paddingX+2+rdX*termX+termX, paddingY+rdY+lineLength);
 				/* 랜덤생성한 브릿지를 저장 */
 				bridge.put(paddingY+rdY+lineLength, new PointX(paddingX+rdX*termX,paddingX+rdX*termX+termX));
-			} //나머지 다리를 랜덤으로 생성 
-			
+			} //나머지 다리를 랜덤으로 생성
 			
 			Graphics2D g2 = (Graphics2D)g;
 			g2.setColor(color);
@@ -173,8 +172,9 @@ public class SadariPanel extends JPanel implements SadariInterFace{
 				}
 			    g2.setStroke(new BasicStroke(3,BasicStroke.CAP_ROUND,0));
 				g2.drawLine(currentDrawX+3, currentDrawY, currentDrawX+3, ++currentDrawY);
-				repaint(); //사다리 타고 내려오는 길 굵은 빨간선으로 칠하는 과정
-			}	
+			}
+			repaint(); //사다리 타고 내려오는 길 굵은 빨간선으로 칠하는 과정
+			setBackground(Color.red);
 			mainFrame.mainStatus = STATUS.END;
 		}
 

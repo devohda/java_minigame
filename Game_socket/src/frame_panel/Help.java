@@ -118,7 +118,7 @@ public class Help extends JFrame {
 		hunminLab.setVisible(false);
 		helpPanel.add(hunminLab);
 				
-		//singer
+		//game.singer
 		singerimg = new ImageIcon("images/helpimg4.png");
 		singerLab = new JLabel("", singerimg, SwingConstants.CENTER);
 		singerLab.setBounds(0, 0, 700, 400);

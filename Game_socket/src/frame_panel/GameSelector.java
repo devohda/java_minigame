@@ -1,19 +1,18 @@
 package frame_panel;
 
 import java.awt.*;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileInputStream;
 import javax.swing.*;
 
-import bottlecap.BottleCapPanel;
-import catchCatch.CatchCatchPanel;
-import combination.Game;
-import hunmingame.HunMinGame;
+import game.bottlecap.BottleCapPanel;
+import game.catchCatch.CatchCatchPanel;
+import game.combination.Game;
+import game.hunmingame.HunMinGame;
 import sadari.Sadari;
-import singer.Singer;
+import game.singer.Singer;
 import socket.ClientGame;
 import tool.*;
 
@@ -70,7 +69,7 @@ public class GameSelector  {
 		// ----------------------------------------
 		// ----------------------------------------
 		
-		// bottlecap
+		// game.bottlecap
 		rImg = new ResizeImg("images/bottlePlay.png", WIDTH-20,HEIGHT-20);
 		resizeImgBottle = rImg.getResizeImage();
 		imgBottle = new ImageIcon(resizeImgBottle);		
@@ -149,7 +148,7 @@ public class GameSelector  {
 	
 	public void createBottleCap() {
 		main.removeAll(); // 현재 메인패널에 있는 객체들 모두 지우기
-		bottleCap = new BottleCapPanel(client, this, main); // bottlecap 객체 생성
+		bottleCap = new BottleCapPanel(client, this, main); // game.bottlecap 객체 생성
 		main.offMainIntro();// 게임 시작되면 이전에 틀어진 인트로 꺼주기
 		game_number = 1;// 인트로 번호
 		main.add(bottleCap); // 메인패널에 보틀캡 패널 추가

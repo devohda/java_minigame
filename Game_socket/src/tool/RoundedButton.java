@@ -43,7 +43,7 @@ public class RoundedButton extends JButton { //둥근 버튼 만드는 클래스
         graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); //가장자리 부드럽게 만들기
 
         // 버튼 상태에 따라 배경색 달라지게 하기
-        if (getModel().isArmed()) { // 
+        if (getModel().isArmed()) { //
             graphics.setColor(getBackground().darker());
         } else if (getModel().isRollover()) {
             graphics.setColor(getBackground().brighter());
@@ -51,10 +51,13 @@ public class RoundedButton extends JButton { //둥근 버튼 만드는 클래스
             graphics.setColor(getBackground());
         }
 
+        
+        // 가장자리 둥근 사각형 그리기
         int width = getWidth();
         int height = getHeight();
-
         graphics.fillRoundRect(0, 0, width, height, 10, 10);
+        
+        // 글씨 그리기
         FontMetrics fontMetrics = graphics.getFontMetrics();
         Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds();
         int textX = (width - stringBounds.width) / 2;
@@ -62,6 +65,7 @@ public class RoundedButton extends JButton { //둥근 버튼 만드는 클래스
         graphics.setColor(getForeground());
         graphics.setFont(getFont());
         graphics.drawString(getText(), textX, textY);
+
         graphics.dispose();
         super.paintComponent(g);
     }

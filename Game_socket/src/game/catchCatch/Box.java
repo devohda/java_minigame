@@ -1,7 +1,6 @@
-package catchCatch;
+package game.catchCatch;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Box extends JLabel {
 

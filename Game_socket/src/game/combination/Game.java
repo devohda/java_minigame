@@ -1,4 +1,4 @@
-package combination;
+package game.combination;
 
 
 import tool.*;

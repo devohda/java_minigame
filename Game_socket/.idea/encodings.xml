@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/src/bottlecap/BottleCapPanel.java" charset="x-windows-949" />
-    <file url="file://$PROJECT_DIR$/src/catchCatch/CatchCatchPanel.java" charset="x-windows-949" />
-    <file url="file://$PROJECT_DIR$/src/combination/Card.java" charset="x-windows-949" />
-    <file url="file://$PROJECT_DIR$/src/combination/CardPanel.java" charset="x-windows-949" />
-    <file url="file://$PROJECT_DIR$/src/combination/Game.java" charset="x-windows-949" />
-    <file url="file://$PROJECT_DIR$/src/combination/GameBoardPanel.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/frame_panel/GameSelector.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/frame_panel/Help.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/frame_panel/MainPanel.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/frame_panel/Player.java" charset="x-windows-949" />
-    <file url="file://$PROJECT_DIR$/src/frame_panel/test.java" charset="x-windows-949" />
-    <file url="file://$PROJECT_DIR$/src/hunmingame/HunMinGame.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/frame_panel/Test.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/game/bottlecap/BottleCapPanel.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/game/catchCatch/CatchCatchPanel.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/game/combination/Card.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/game/combination/CardPanel.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/game/combination/Game.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/game/combination/GameBoardPanel.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/game/hunmingame/HunMinGame.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/game/singer/Singer.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/sadari/Sadari.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/sadari/SadariInterFace.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/sadari/SadariPanel.java" charset="x-windows-949" />
-    <file url="file://$PROJECT_DIR$/src/singer/Singer.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/socket/Server.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/tool/LabelThread.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/tool/Sound.java" charset="x-windows-949" />

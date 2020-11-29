@@ -7,12 +7,12 @@ import socket.ClientGame;
 
 import java.util.Scanner;
 
-public class test {
+public class Test {
 
 	private static ClientGame client;
 	private static String nickName;
 	
-	public test() {
+	public Test() {
 		
 		client = new ClientGame();
 		
@@ -43,7 +43,7 @@ public class test {
         nickName = scanner.nextLine();
         scanner.close();
 		      
-		new test();	
+		new Test();
 		
 	}
 

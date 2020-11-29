@@ -58,39 +58,40 @@ public class Sadari extends JPanel implements SadariInterFace{
 		
 		setBounds(300, 170, 450, 500);
 		setLayout(null);
-		this.setBackground(color); //배경색지정
-		
-		mainPanel = new SadariPanel(this);
-		mainPanel.setBounds(0, 0, 450, 360); //메인패널 위치 설정
+		setBackground(color); //배경색지정
 
-		mainPanel.setBackground(color); //메인패널 배경색설정
-		mainPanel.setLayout(null);		
-		
 		inputPanel = new JPanel();
 		inputPanel.setLayout(new FlowLayout()); // 왼쪽에서 오른쪽배치
-		
+
 		inputNumber = new JTextField(2);
 		inputNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		inputNumber.setSize(new Dimension(10,10)); //정답 입력 텍스트 필드 설정
-		
-		
+
+
 		startButton = new JButton("START");
 		startButton.setFont(fnt);
 		resetButton = new JButton("RESET");
 		resetButton.setFont(fnt);
-		add(mainPanel);   //스타트 버튼과 리셋버튼 생성후 글꼴 설정
-		
+
+
+		inputPanel.setBounds(0, 450, 450, 50);
 		inputPanel.add(inputNumber);
 		inputPanel.add(startButton);
 		inputPanel.add(resetButton);
-		inputPanel.setBounds(0, 450, 450, 50);
+
 		add(inputPanel);	 //inputPanel 설정
-		
+
+		mainPanel = new SadariPanel(this);
+		mainPanel.setLayout(null);
+
+		mainPanel.setBounds(0, 0, 450, 360); //메인패널 위치 설정
+
+		mainPanel.setBackground(color); //메인패널 배경색설정
+		add(mainPanel);   //스타트 버튼과 리셋버튼 생성후 글꼴 설정
+
 
 		startButton.addActionListener(new StartListener());
 		resetButton.addActionListener(new ResetListener());
-		
-	
 
 	}
 	
@@ -105,10 +106,11 @@ public class Sadari extends JPanel implements SadariInterFace{
 			if( input < 1 ) input = 1; 
 			if( input > 5 ) input = 5;
 			mainPanel.setStartPosition(input); //시작 지점 설정
-			
+
+			mainStatus = STATUS.INIT; // 사다리 초기화
+			mainPanel.repaint();	 //사다리 리페인트
 			mainStatus=STATUS.DRAWING;
-			mainPanel.repaint();	 //사다리 리페인트 
-			 
+
 		} 	 
 	} 
 	

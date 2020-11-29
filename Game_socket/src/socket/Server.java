@@ -1,24 +1,19 @@
 package socket;
 
 
-import combination.Card;
-import frame_panel.test;
+import game.combination.Card;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
-import java.util.Scanner;
 
-import javax.swing.JPanel;
- 
 public class Server {
  	
     private ServerSocket serverSocket;
