@@ -105,10 +105,10 @@ public class CatchCatchPanel extends JPanel {
         background = new ImageIcon(resizeImg);  //배경이미지
 		
 		//ImageIcon
-		jewel = new ImageIcon("images/Jewel_bg.png");
+		jewel = new ImageIcon("images/Jewel.png");
 		candy = new ImageIcon("images/Candy.png");
-		bomb = new ImageIcon("images/Bomb_bg.png");
-		skul = new ImageIcon("images/Skul_bg.png");
+		bomb = new ImageIcon("images/Bomb.png");
+		skul = new ImageIcon("images/Skul.png");
 				
 		boxImg = new ImageIcon("images/Box.png"); 
 		hoverBoxImg = new ImageIcon("images/hoverBox.png");
