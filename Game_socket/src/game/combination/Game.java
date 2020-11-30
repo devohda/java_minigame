@@ -403,8 +403,8 @@ public class Game extends JPanel {
             answer = Integer.parseInt(userInput);
             System.out.println(answer);
             if(answer>=1000||answer<100) {
-            	lblState.setText("1 ~ 9사이 서로 다른 숫자 3개를 입력하세요"); //숫자가 3개보다 작거나 많을 경우
-            	turn--;
+                lblState.setText("1 ~ 9사이 서로 다른 숫자 3개를 입력하세요"); //숫자가 3개보다 작거나 많을 경우
+                turn--;
             }
             else{
                 HashSet<Integer> userAnswerSet = new HashSet<Integer>(3);
@@ -413,8 +413,8 @@ public class Game extends JPanel {
                 num2 = answer%100/10;
                 num3 = answer%10;
                 if(num1 == 0 || num2 == 0 || num3 == 0) {
-                	lblState.setText("1 ~ 9사이 서로 다른 숫자 3개를 입력하세요"); //0이 섞인 경우
-                	turn--;
+                    lblState.setText("1 ~ 9사이 서로 다른 숫자 3개를 입력하세요"); //0이 섞인 경우
+                    turn--;
                 }
                 else{
                     userAnswerSet.add(num1);
@@ -424,8 +424,8 @@ public class Game extends JPanel {
 
 
                 if(userAnswerSet.size() != 3) {
-                	lblState.setText("1 ~ 9사이 서로 다른 숫자 3개를 입력하세요");
-                	turn--;
+                    lblState.setText("1 ~ 9사이 서로 다른 숫자 3개를 입력하세요");
+                    turn--;
                 }
                 else{
                     boolean isBefore = false;
@@ -453,7 +453,7 @@ public class Game extends JPanel {
                             }
                         }
                         if(!isAnswer){
-                        	nowPlayer.setScore(nowPlayer.getScore() - 1);
+                            nowPlayer.setScore(nowPlayer.getScore() - 1);
                             lblState.setText("카드 " + userAnswerSet + " 은(는) 합이 아닙니다.");
                             lblState.setForeground(Color.RED);
                         }
@@ -461,7 +461,7 @@ public class Game extends JPanel {
 
                 }
             }
-            
+
             System.out.println(turn);
         }catch (NumberFormatException ex){
         	lblState.setForeground(Color.black);
