@@ -12,25 +12,25 @@ import java.net.Socket;
 
 import game.bottlecap.BottleCapPanel;
 import game.catchCatch.CatchCatchPanel;
- 
+
 public class ClientGame {
- 
-	// ë„¤íŠ¸ì›Œí¬ ì²˜ë¦¬ë¥¼ ìœ„í•œ ë³€ìˆ˜ë“¤ ìƒì„±
+
+    // ³×Æ®¿öÅ© Ã³¸®¸¦ À§ÇÑ º¯¼öµé »ı¼º
     private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
-    
-    // ê° ê²Œì„ë³„ guiì—°ê²°ì„ ìœ„í•œ ê°ì²´ ì„ ì–¸
+
+    // °¢ °ÔÀÓº° gui¿¬°áÀ» À§ÇÑ °´Ã¼ ¼±¾ğ
     private Test gui;
     private HunMinGame guiHunmin;
     private Singer guiSing;
     private BottleCapPanel guiBottle;
     private CatchCatchPanel guiCatch;
     private Game guiCombination;
-    
+
     private String msg;
     private String nickName;
-    
+
     // game.bottlecap
     private int iRandNum;
     // singcontest
@@ -40,117 +40,117 @@ public class ClientGame {
     // catchcatch
     private int[] Point = new int[25];
     // game.combination
-    private int[][] indexCombi = {{1,1,0}, {1,2,0}, {2,1,2}, {2,2,2}, {0,1,1}, {0,2,2}, {0,2,1}, {1,0,2}, {1,2,1}};   
-    
+    private int[][] indexCombi = {{1,1,0}, {1,2,0}, {2,1,2}, {2,2,2}, {0,1,1}, {0,2,2}, {0,2,1}, {1,0,2}, {1,2,1}};
+
     public void setGui(Test gui) {
-        this.gui = gui; // ì´ˆê¸° ê²Œì„ ì‹¤í–‰ ì—°ê²°í•˜ëŠ” gui
+        this.gui = gui; // ÃÊ±â °ÔÀÓ ½ÇÇà ¿¬°áÇÏ´Â gui
     }
-    
+
     public void setGuiHunmin(HunMinGame gui) {
-        this.guiHunmin = gui; // í›ˆë¯¼ì •ìŒ gui
+        this.guiHunmin = gui; // ÈÆ¹ÎÁ¤À½ gui
     }
-    
+
     public void setGuiSing(Singer gui) {
-        this.guiSing = gui; // ì „êµ­ë…¸ë˜ìë‘ gui
+        this.guiSing = gui; // Àü±¹³ë·¡ÀÚ¶û gui
     }
-    
+
     public void setGuiBottle(BottleCapPanel gui) {
-        this.guiBottle = gui; // ë³´í‹€ìº¡ gui
+        this.guiBottle = gui; // º¸Æ²Ä¸ gui
     }
-    
+
     public void setGuiCatch(CatchCatchPanel gui) {
-        this.guiCatch = gui; // ìºì¹˜ìºì¹˜ gui
+        this.guiCatch = gui; // Ä³Ä¡Ä³Ä¡ gui
     }
-    
-    public void setGuiCombination(Game gui) {  	   	    
-        this.guiCombination = gui; // ê²°í•© gui
+
+    public void setGuiCombination(Game gui) {
+        this.guiCombination = gui; // °áÇÕ gui
     }
- 
+
     public void connet() {
         try {
-            socket = new Socket("127.0.0.1", 7777); // ì„œë²„ ì†Œì¼“ì´ ìƒì„±ëœ ì»´í“¨í„°ì˜ ì„œë²„ ipì™€ port ë²ˆí˜¸ë¥¼ í†µí•´ í´ë¼ì´ì–¸íŠ¸ ê°ì²´ ìƒì„±(ì—¬ê¸°ì„œëŠ” í•˜ë‚˜ì˜ ì»´í“¨í„°ë¡œ ìƒì„± ë° ì‹¤í–‰í•˜ë¯€ë¡œ 127.0.0.1ì„ ì‚¬ìš©)
-            System.out.println("ì„œë²„ ì—°ê²°ì™„ë£Œ."); // ì„œë²„ ì—°ê²° ì‹œ ì½˜ì†” ì°½ì— ë©”ì„¸ì§€ ì¶œë ¥
- 
-            out = new DataOutputStream(socket.getOutputStream()); // OutputStreamì„ ì²˜ë¦¬í•˜ëŠ” ë³€ìˆ˜
-            in = new DataInputStream(socket.getInputStream()); // InputStreamì„ ì²˜ë¦¬í•˜ëŠ” ë³€ìˆ˜        
-            
-            out.writeUTF(nickName); //ë‹‰ë„¤ì„ ì„œë²„ë¡œ ì „ë‹¬
+            socket = new Socket("127.0.0.1", 7777); // ¼­¹ö ¼ÒÄÏÀÌ »ı¼ºµÈ ÄÄÇ»ÅÍÀÇ ¼­¹ö ip¿Í port ¹øÈ£¸¦ ÅëÇØ Å¬¶óÀÌ¾ğÆ® °´Ã¼ »ı¼º(¿©±â¼­´Â ÇÏ³ªÀÇ ÄÄÇ»ÅÍ·Î »ı¼º ¹× ½ÇÇàÇÏ¹Ç·Î 127.0.0.1À» »ç¿ë)
+            System.out.println("¼­¹ö ¿¬°á ¿Ï·á"); // ¼­¹ö ¿¬°á ½Ã ÄÜ¼Ö Ã¢¿¡ ¸Ş¼¼Áö Ãâ·Â
+
+            out = new DataOutputStream(socket.getOutputStream()); // OutputStreamÀ» Ã³¸®ÇÏ´Â º¯¼ö
+            in = new DataInputStream(socket.getInputStream()); // InputStreamÀ» Ã³¸®ÇÏ´Â º¯¼ö
+
+            out.writeUTF(nickName); //´Ğ³×ÀÓ ¼­¹ö·Î Àü´Ş
             while (in != null) {
-                msg = (String)in.readUTF(); // ì„œë²„ì—ì„œ ë³´ë‚¸ ë©”ì„¸ì§€ ì½ì–´ë“¤ì´ê¸°
-              
-     // ----------------------------------------ê²Œì„ë³„ ë°ì´í„° ì²˜ë¦¬-----------------------------------
-     // ---------------------------------------------------------------------------------------      
-                
-                // ---------ë³‘ëšœê»‘ flow ì²˜ë¦¬--------------
-                if ( msg.startsWith("[TRUE]") && guiBottle!=null) { // ì •ë‹µ ì‹œ
-                	guiBottle.initTurn();               	// í”Œë ˆì´ì–´ ìˆœì„œ ì´ˆê¸°í™”
+                msg = (String)in.readUTF(); // ¼­¹ö¿¡¼­ º¸³½ ¸Ş¼¼Áö ÀĞ¾îµéÀÌ±â
 
-                	guiBottle.exit(); // ì¢…ë£Œì°½ ë„ìš°ê¸°
-                	guiBottle.appendWrongAns(msg); // ì˜¤ë‹µ íŒì— ì •ë‹µ ë©”ì„¸ì§€ ì¶œë ¥
-                	
-                } 
-                else if ( msg.startsWith("[FALSE]") && guiBottle!=null) { // ì˜¤ë‹µ ì‹œ
-                	guiBottle.initTurn();  // í”Œë ˆì´ì–´ ìˆœì„œ ì´ˆê¸°í™”
-                	
-                	guiBottle.audio1(); // ì˜¤ë‹µ ì˜¤ë””ì˜¤ ì‹¤í–‰
-                	guiBottle.appendWrongAns(msg); // ì˜¤ë‹µ íŒì— ì •ë‹µ ë©”ì„¸ì§€ ì¶œë ¥
+                // ----------------------------------------°ÔÀÓº° µ¥ÀÌÅÍ Ã³¸®-----------------------------------
+                // ---------------------------------------------------------------------------------------
+
+                // ---------º´¶Ñ²± flow Ã³¸®--------------
+                if ( msg.startsWith("[TRUE]") && guiBottle!=null) { // Á¤´ä ½Ã
+                    guiBottle.initTurn();               	// ÇÃ·¹ÀÌ¾î ¼ø¼­ ÃÊ±âÈ­
+
+                    guiBottle.exit(); // Á¾·áÃ¢ ¶ç¿ì±â
+                    guiBottle.appendWrongAns(msg); // ¿À´ä ÆÇ¿¡ Á¤´ä ¸Ş¼¼Áö Ãâ·Â
 
                 }
-                else if ( msg.startsWith("[init]") && guiBottle!=null) guiBottle.init(); // ë³´í‹€ìº¡ ê²Œì„ ì´ˆê¸°í™”
-                else if ( msg.startsWith("[RandNum]") && guiBottle!=null) { // ë³‘ëšœê»‘ ìˆ«ì ì „ë‹¬
-                	System.out.println(msg);
-                	iRandNum = Integer.parseInt(msg.substring(9));
-                	System.out.println(iRandNum);
+                else if ( msg.startsWith("[FALSE]") && guiBottle!=null) { // ¿À´ä ½Ã
+                    guiBottle.initTurn();  // ÇÃ·¹ÀÌ¾î ¼ø¼­ ÃÊ±âÈ­
+
+                    guiBottle.audio1(); // ¿À´ä ¿Àµğ¿À ½ÇÇà
+                    guiBottle.appendWrongAns(msg); // ¿À´ä ÆÇ¿¡ Á¤´ä ¸Ş¼¼Áö Ãâ·Â
+
                 }
-                else if (guiBottle!=null) guiBottle.appendMsg(msg); // ì±„íŒ… ë‚´ìš© ì±„íŒ…ì°½ì— ì¶œë ¥
-                // ----------------í›ˆë¯¼ì •ìŒ-----------------------------------------------------
-                if (msg.startsWith("[HUNMININDEX]") && guiHunmin!=null) { // í›ˆë¯¼ì •ìŒ ê²Œì„ì„ ìœ„í•œ ì¸ë±ìŠ¤ ì „ë‹¬ ë° ì´ˆê¸°í™”
-                	int nSplit = msg.indexOf("/"); 
-                	hunminIndex[0] = Integer.parseInt(msg.substring(13,nSplit)); 
-                	hunminIndex[1] = Integer.parseInt(msg.substring(nSplit+1)); 
-                	System.out.println(hunminIndex[0] + "@@" + hunminIndex[1]);
-                	guiHunmin.init();
+                else if ( msg.startsWith("[init]") && guiBottle!=null) guiBottle.init(); // º¸Æ²Ä¸ °ÔÀÓ ÃÊ±âÈ­
+                else if ( msg.startsWith("[RandNum]") && guiBottle!=null) { // º´¶Ñ²± ¼ıÀÚ Àü´Ş
+                    System.out.println(msg);
+                    iRandNum = Integer.parseInt(msg.substring(9));
+                    System.out.println(iRandNum);
                 }
-                else if (guiHunmin!=null) guiHunmin.appendMsg(msg); //ì±„íŒ… ë‚´ìš© ì±„íŒ…ì°½ì— ì¶œë ¥, ì—¬ê¸°ì„œ ì˜¤ë¥˜ ë‚¬ì—ˆìŒ ==> í•´ë‹¹ ê³ ê°ë“¤ì´ ê²Œì„ ì‹¤í–‰ì „ ë“¤ì–´ì˜¤ë©´ gui ëŠ” nullì´ê¸°ì—
-                // --------------ì „êµ­ë…¸ë˜ìë‘-----------------------------------------------------
-                if (msg.startsWith("[SINGERINDEX]") && guiSing!=null) { // ì „êµ­ë…¸ë˜ìë‘ ê²Œì„ì„ ìœ„í•œ ì¸ë±ìŠ¤ ì „ë‹¬ ë° ì´ˆê¸°í™”
-                	singerIndex = Integer.parseInt(msg.substring(13)); 
-                	guiSing.init();
+                else if (guiBottle!=null) guiBottle.appendMsg(msg); // Ã¤ÆÃ ³»¿ë Ã¤ÆÃÃ¢¿¡ Ãâ·Â
+                // ----------------ÈÆ¹ÎÁ¤À½-----------------------------------------------------
+                if (msg.startsWith("[HUNMININDEX]") && guiHunmin!=null) { // ÈÆ¹ÎÁ¤À½ °ÔÀÓÀ» À§ÇÑ ÀÎµ¦½º Àü´Ş ¹× ÃÊ±âÈ­
+                    int nSplit = msg.indexOf("/");
+                    hunminIndex[0] = Integer.parseInt(msg.substring(13,nSplit));
+                    hunminIndex[1] = Integer.parseInt(msg.substring(nSplit+1));
+                    System.out.println(hunminIndex[0] + "@@" + hunminIndex[1]);
+                    guiHunmin.init();
                 }
-                else if (guiSing!=null) guiSing.appendMsg(msg); // ì±„íŒ… ë‚´ìš© ì±„íŒ…ì°½ì— ì¶œë ¥
-                // ----------------ìºì¹˜ìºì¹˜------------------------------------------------------
-                if (msg.startsWith("[POINTINDEX]") && guiCatch!=null) { // ìºì¹˜ìºì¹˜ ê²Œì„ ì´ˆê¸°í™”
-                	int start = 12;
-                	int nSplit = msg.indexOf("/"); 
-                	for(int i=0; i<25; i++) {
-                		Point[i] = Integer.parseInt(msg.substring(start, nSplit));
-                		start = nSplit + 1;
-                		nSplit = msg.indexOf("/", start);
-                	}
-                	guiCatch.initGame();
+                else if (guiHunmin!=null) guiHunmin.appendMsg(msg); //Ã¤ÆÃ ³»¿ë Ã¤ÆÃÃ¢¿¡ Ãâ·Â, ¿©±â¼­ ¿À·ù ³µ¾úÀ½ ==> ÇØ´ç °í°´µéÀÌ °ÔÀÓ ½ÇÇàÀü µé¾î¿À¸é gui ´Â nullÀÌ±â¿¡
+                // --------------Àü±¹³ë·¡ÀÚ¶û-----------------------------------------------------
+                if (msg.startsWith("[SINGERINDEX]") && guiSing!=null) { // Àü±¹³ë·¡ÀÚ¶û °ÔÀÓÀ» À§ÇÑ ÀÎµ¦½º Àü´Ş ¹× ÃÊ±âÈ­
+                    singerIndex = Integer.parseInt(msg.substring(13));
+                    guiSing.init();
                 }
-                else if (msg.startsWith("[BOXCATCH]") && guiCatch!=null) {  // ìºì¹˜ìºì¹˜ ë°•ìŠ¤ í´ë¦­ì— ë”°ë¥¸ ë³´ìƒ ê°’ ì ìš©
-                	int catchIndex = Integer.parseInt(msg.substring(10)); 
-                	guiCatch.BoxOff(catchIndex);
+                else if (guiSing!=null) guiSing.appendMsg(msg); // Ã¤ÆÃ ³»¿ë Ã¤ÆÃÃ¢¿¡ Ãâ·Â
+                // ----------------Ä³Ä¡Ä³Ä¡------------------------------------------------------
+                if (msg.startsWith("[POINTINDEX]") && guiCatch!=null) { // Ä³Ä¡Ä³Ä¡ °ÔÀÓ ÃÊ±âÈ­
+                    int start = 12;
+                    int nSplit = msg.indexOf("/");
+                    for(int i=0; i<25; i++) {
+                        Point[i] = Integer.parseInt(msg.substring(start, nSplit));
+                        start = nSplit + 1;
+                        nSplit = msg.indexOf("/", start);
+                    }
+                    guiCatch.initGame();
                 }
-                else if (guiCatch!=null) guiCatch.appendMsg(msg); // ì±„íŒ… ë‚´ìš© ì±„íŒ…ì°½ì— ì¶œë ¥
-                // -----------------ê²°í•©------------------------------------------------------------
-                if (msg.startsWith("[COMBINATIONINIT]") && guiCombination!=null) { //ê²°í•© ì¹´ë“œê²Œì„ì„ ìœ„í•œ ì¸ë±ìŠ¤ ì •ë³´ ì „ë‹¬
-                	int cnt = 0;
-                	for(int i=0; i<9; i++) {
-            			for(int j=0; j<3; j++) {
-            				indexCombi[i][j] = Integer.parseInt(msg.substring(17+cnt, 17+cnt+1));
-            				cnt++;				
-            			}
-            		}
-                	
-                	guiCombination.init();
+                else if (msg.startsWith("[BOXCATCH]") && guiCatch!=null) {  // Ä³Ä¡Ä³Ä¡ ¹Ú½º Å¬¸¯¿¡ µû¸¥ º¸»ó °ª Àû¿ë
+                    int catchIndex = Integer.parseInt(msg.substring(10));
+                    guiCatch.BoxOff(catchIndex);
                 }
-                else if (msg.startsWith("[GEUL]") && guiCombination!=null) { // ê²°ì„ ëˆ„ë¥¸ ê²½ìš° ì •ë‹µ ë˜ëŠ” ì˜¤ë‹µì— ë”°ë¥¸ í”Œë ˆì´ì–´ì˜ ì ìˆ˜ ê°±ì‹ 
-                	guiCombination.geulScore(Integer.parseInt(msg.substring(6)));
+                else if (guiCatch!=null) guiCatch.appendMsg(msg); // Ã¤ÆÃ ³»¿ë Ã¤ÆÃÃ¢¿¡ Ãâ·Â
+                // -----------------°áÇÕ------------------------------------------------------------
+                if (msg.startsWith("[COMBINATIONINIT]") && guiCombination!=null) { //°áÇÕ Ä«µå°ÔÀÓÀ» À§ÇÑ ÀÎµ¦½º Á¤º¸ Àü´Ş
+                    int cnt = 0;
+                    for(int i=0; i<9; i++) {
+                        for(int j=0; j<3; j++) {
+                            indexCombi[i][j] = Integer.parseInt(msg.substring(17+cnt, 17+cnt+1));
+                            cnt++;
+                        }
+                    }
+
+                    guiCombination.init();
                 }
-                else if (msg.startsWith("[HAP]") && guiCombination!=null) { // í•©ì„ ëˆ„ë¥¸ê²½ìš° ê²½ìš° ì •ë‹µ ë˜ëŠ” ì˜¤ë‹µì— ë”°ë¥¸ í”Œë ˆì´ì–´ì˜ ì ìˆ˜ ê°±ì‹ 
-                	guiCombination.hapScore(msg.substring(6), Integer.parseInt(msg.substring(5,6)));
+                else if (msg.startsWith("[GEUL]") && guiCombination!=null) { // °áÀ» ´©¸¥ °æ¿ì Á¤´ä ¶Ç´Â ¿À´ä¿¡ µû¸¥ ÇÃ·¹ÀÌ¾îÀÇ Á¡¼ö °»½Å
+                    guiCombination.geulScore(Integer.parseInt(msg.substring(6)));
+                }
+                else if (msg.startsWith("[HAP]") && guiCombination!=null) { // ÇÕÀ» ´©¸¥°æ¿ì °æ¿ì Á¤´ä ¶Ç´Â ¿À´ä¿¡ µû¸¥ ÇÃ·¹ÀÌ¾îÀÇ Á¡¼ö °»½Å
+                    guiCombination.hapScore(msg.substring(6), Integer.parseInt(msg.substring(5,6)));
                 }
                 else if (guiCombination!=null) ;//guiCombination.appendMsg(msg);
             }
@@ -158,39 +158,39 @@ public class ClientGame {
             e.printStackTrace();
         }
     }
- 
-    // -----------------------------------ì±„íŒ…êµ¬í˜„----------------------------------
+
+    // -----------------------------------Ã¤ÆÃ±¸Çö----------------------------------
     public void sendMessage(String msg2) {
         try {
             out.writeUTF(msg2);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    } 
- 
-    public String getNickname() {
-       return nickName;
     }
-    
+
+    public String getNickname() {
+        return nickName;
+    }
+
     public void setNickname(String nickName) {
         this.nickName = nickName;
     }
- 
-    // ------------------------------------ë³‘ëšœê»‘------------------------------------
+
+    // ------------------------------------º´¶Ñ²±------------------------------------
     public int getRandNum() { return iRandNum; }
-    
-    // --------------------------------------ë…¸ë˜ìë‘---------------------------------
+
+    // --------------------------------------³ë·¡ÀÚ¶û---------------------------------
     public int getSingerIndex() { return singerIndex; }
-    
-    // ------------------------------------í›ˆë¯¼ì •ìŒ-------------------------------------
+
+    // ------------------------------------ÈÆ¹ÎÁ¤À½-------------------------------------
     public int[] getHunminIndex() { return hunminIndex; }
-  
-    // ----------------------------------ìºì¹˜ìºì¹˜--------------------------------------
+
+    // ----------------------------------Ä³Ä¡Ä³Ä¡--------------------------------------
     public int[] getCatchPoint() { return Point; }
-    
-    // --------------------------------------ê²°í•©----------------------------------
+
+    // --------------------------------------°áÇÕ----------------------------------
     public int[][] getCombiIndex() { return indexCombi; }
-    
+
 }
 
 

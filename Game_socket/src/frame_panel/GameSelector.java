@@ -211,10 +211,7 @@ public class GameSelector  {
 		main.repaint();
 	}
 	
-	public int getPeopleNum(){
-		return people;
-
-	} 
+	public int getPeopleNum(){ return people; }  // 사용자 수 반환
 	
 	// 각 게임별 라벨 클릭 시 해당 게임 실행을 위한 리스너
 	private class startListener implements MouseListener {
@@ -341,10 +338,7 @@ public class GameSelector  {
 		}
 		main.offMainIntro(); // 메인의 노래도 확실하게 꺼주기 위함
 	}
-	
-	public int getgameNum() { // 게임을 선택하면 게임에 해당하는 인트로를 얻기 위한 함수
-		return game_number;
-	}
+
 	
 	public void setgameNumZero() {
 		game_number = 0; // 게임이 끝나거나 메인화면으로 넘어갈 시 인트로 번호 0 으로 넘겨주기 위함

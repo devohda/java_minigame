@@ -64,7 +64,7 @@ public class MainPanel extends JPanel {
 	public MainPanel(ClientGame c) {
 		
 		client = c;
-		
+        setPreferredSize(new Dimension(1050,800)); // 크기 지정
 		setLayout(null); // 레이아웃 널
 		setBackground(Color.gray); // 배경색 no 중요
 				
@@ -473,7 +473,5 @@ public class MainPanel extends JPanel {
     	}
     	introOn = 0;
     }
-    public void setGameNum(int num) { // 받아온 값을 인트로 설정 값으로 설정하는 함수
-    	introNumber = num; 
-    }
+
 }
